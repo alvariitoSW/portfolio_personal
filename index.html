@@ -1,0 +1,2273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="page-title">Mi Viaje en Ciencia e Ingeniería de Datos</title>
+    
+    <!-- Favicon IA - Texto Simple -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23667eea' rx='6'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='12' font-family='monospace' fill='white' font-weight='bold'>AI</text></svg>">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Light theme colors */
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --text-light: #555555;
+            --text-muted: #666666;
+            --card-bg: #ffffff;
+            --navbar-bg: rgba(255, 255, 255, 0.95);
+            --hero-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --section-bg: #ffffff;
+            --border-color: #f0f0f0;
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --shadow-medium: rgba(0, 0, 0, 0.15);
+            --shadow-dark: rgba(0, 0, 0, 0.2);
+            --tech-bg: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+            --tech-item-bg: #ffffff;
+            --soft-skill-bg: #ffffff;
+            --academic-bg: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+            --footer-bg: #1a1a1a;
+            --footer-text: #cccccc;
+            --contact-item-bg: rgba(255, 255, 255, 0.1);
+            --contact-item-border: rgba(255, 255, 255, 0.2);
+            --timeline-line: linear-gradient(to bottom, #667eea, #764ba2);
+        }
+
+        [data-theme="dark"] {
+            /* Dark theme colors */
+            --bg-color: #0d1117;
+            --text-color: #e6edf3;
+            --text-light: #b1bac4;
+            --text-muted: #8b949e;
+            --card-bg: #161b22;
+            --navbar-bg: rgba(13, 17, 23, 0.95);
+            --hero-gradient: linear-gradient(135deg, #4c6ef5 0%, #9c27b0 100%);
+            --section-bg: #0d1117;
+            --border-color: #30363d;
+            --shadow-light: rgba(0, 0, 0, 0.3);
+            --shadow-medium: rgba(0, 0, 0, 0.4);
+            --shadow-dark: rgba(0, 0, 0, 0.5);
+            --tech-bg: linear-gradient(135deg, #161b22 0%, #1c2128 100%);
+            --tech-item-bg: #21262d;
+            --soft-skill-bg: #161b22;
+            --academic-bg: linear-gradient(135deg, #161b22 0%, #1c2128 100%);
+            --footer-bg: #010409;
+            --footer-text: #8b949e;
+            --contact-item-bg: rgba(255, 255, 255, 0.05);
+            --contact-item-border: rgba(255, 255, 255, 0.1);
+            --timeline-line: linear-gradient(to bottom, #4c6ef5, #9c27b0);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            overflow-x: hidden;
+        }
+
+        /* Navegación */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--navbar-bg);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .theme-toggle, .lang-toggle {
+            background: none;
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .theme-toggle:hover, .lang-toggle:hover {
+            border-color: #667eea;
+            color: #667eea;
+            transform: scale(1.05);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: var(--hero-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)" /></svg>');
+            animation: float 25s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-15px) translateX(10px); }
+            50% { transform: translateY(-25px) translateX(-5px); }
+            75% { transform: translateY(-10px) translateX(-15px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero-name {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease 0.2s both;
+            letter-spacing: -1px;
+        }
+
+        .hero-title {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.4s both;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-university {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            opacity: 0.85;
+            animation: fadeInUp 1s ease 0.6s both;
+            letter-spacing: 0.3px;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.8s both;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease 1s both;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 1.2s both;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.2rem 2.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            transition: all 0.4s ease;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.3px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .cta-button.primary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            border-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-button.primary:hover {
+            background: white;
+            color: #5a6fd8;
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Secciones */
+        .section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            position: relative;
+            z-index: 1;
+            background: var(--section-bg);
+        }
+
+        /* Excepción para la sección de contacto */
+        .contact-section .section {
+            background: transparent;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--timeline-line);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 3rem 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            color: var(--text-color);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            width: 45%;
+            position: relative;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px var(--shadow-medium);
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            left: -20px;
+            border-right-color: var(--card-bg);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            right: -20px;
+            border-left-color: var(--card-bg);
+        }
+
+        .timeline-year {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        /* Cards de Proyectos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+            align-items: stretch;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px var(--shadow-light);
+            transition: all 0.4s ease;
+            position: relative;
+            border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px var(--shadow-dark);
+            border-color: #667eea;
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .project-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+            font-weight: 600;
+        }
+
+        .project-subtitle {
+            opacity: 0.85;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .project-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-description {
+            margin-bottom: 1.8rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+            padding: 1rem 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .project-link {
+            flex: 1;
+            text-align: center;
+            padding: 1rem 1.5rem;
+            border: 2px solid #667eea;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .project-link:hover::before {
+            left: 0;
+        }
+
+        .project-link:hover {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .project-link.primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .project-link.primary::before {
+            background: linear-gradient(135deg, #5a6fd8 0%, #6b5b95 100%);
+        }
+
+        .project-link.primary:hover {
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Skills Section */
+        .skills-container {
+            margin-top: 3rem;
+        }
+
+        /* Technical Skills */
+        .technical-skills {
+            background: var(--tech-bg);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            margin-bottom: 3rem;
+        }
+
+        .tech-skills-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .tech-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tech-skill-item {
+            background: var(--tech-item-bg);
+            padding: 1rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .tech-skill-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px var(--shadow-medium);
+        }
+
+        .tech-skill-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-skill-name {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            justify-content: center;
+        }
+
+        .tech-skill-tag {
+            background: #f0f2ff;
+            color: #667eea;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Dark mode tech skill tags */
+        [data-theme="dark"] .tech-skill-tag {
+            background: #30363d;
+            color: #4c6ef5;
+        }
+
+        /* Soft Skills */
+        .soft-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .soft-skill-category {
+            background: var(--soft-skill-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px var(--shadow-light);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .soft-skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .soft-skill-category:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px var(--shadow-medium);
+            border-color: #667eea;
+        }
+
+        .soft-skill-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        .soft-skill-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .soft-skill-subtitle {
+            font-size: 0.9rem;
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .soft-skill-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .soft-skill-list li {
+            background: var(--tech-bg);
+            margin: 0.8rem 0;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-left: 3px solid #667eea;
+        }
+
+        .soft-skill-list li:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Academic Record */
+        .academic-record {
+            background: var(--academic-bg);
+            padding: 3rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+            box-shadow: 0 10px 30px var(--shadow-light);
+        }
+
+        .record-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .record-item {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px var(--shadow-light);
+        }
+
+        .record-value {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .record-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--hero-gradient);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            background: var(--contact-item-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--contact-item-border);
+            transition: all 0.3s ease;
+            min-width: 200px;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Theme transition class */
+        .theme-transition * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .nav-center {
+                display: none;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 3rem;
+                transition: left 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-links.mobile-active {
+                left: 0;
+            }
+
+            .nav-links a {
+                color: white;
+                font-size: 1.2rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-controls {
+                position: fixed;
+                top: 100px;
+                right: 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+                z-index: 1000;
+            }
+
+            .nav-controls.mobile-active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .section {
+                padding: 3rem 0;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .hero {
+                padding: 0 1rem;
+                height: 100vh;
+                position: relative;
+                z-index: 0;
+            }
+
+            .hero-name {
+                font-size: 2.2rem;
+                line-height: 1.2;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .timeline {
+                padding: 1rem 0;
+                margin-left: 1rem;
+            }
+
+            .timeline::before {
+                left: 15px;
+                width: 2px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                align-items: flex-start;
+                padding-left: 40px;
+                margin: 2rem 0;
+            }
+
+            .timeline-content {
+                width: 100%;
+                padding: 1.5rem;
+                margin-left: 10px;
+            }
+
+            .timeline-content::before {
+                display: none;
+            }
+
+            .timeline-year {
+                left: 15px;
+                transform: translateX(-50%);
+                font-size: 0.8rem;
+                padding: 0.3rem 0.8rem;
+                position: relative;
+                margin-bottom: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+
+            .project-card {
+                margin: 0 0.5rem;
+            }
+
+            .project-header {
+                padding: 1.2rem;
+            }
+
+            .project-content {
+                padding: 1.2rem;
+            }
+
+            .tech-stack {
+                gap: 0.3rem;
+                margin-bottom: 1rem;
+            }
+
+            .tech-tag {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.6rem;
+            }
+
+            .project-links {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .technical-skills {
+                padding: 2rem 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .tech-skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .soft-skills-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+
+            .soft-skill-category {
+                padding: 2rem 1.5rem;
+            }
+
+            .academic-record {
+                padding: 2rem 1rem;
+                margin-top: 2rem;
+            }
+
+            .record-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                margin-top: 1.5rem;
+            }
+
+            .record-item {
+                padding: 1rem;
+            }
+
+            .record-value {
+                font-size: 1.5rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+
+            .contact-item {
+                width: 90%;
+                max-width: 300px;
+                padding: 1.2rem;
+            }
+
+            .contact-section .section h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .contact-section .section p {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-name {
+                font-size: 1.8rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .timeline-content {
+                padding: 1rem;
+            }
+
+            .timeline-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .record-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                margin: 0;
+            }
+
+            .tech-skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" data-lang-key="nav-logo">Mi Portfolio</div>
+            <div class="nav-center">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#inicio" onclick="closeMobileMenu()" data-lang-key="nav-home">Inicio</a></li>
+                    <li><a href="#recorrido" onclick="closeMobileMenu()" data-lang-key="nav-journey">Mi Recorrido</a></li>
+                    <li><a href="#proyectos" onclick="closeMobileMenu()" data-lang-key="nav-projects">Proyectos</a></li>
+                    <li><a href="#habilidades" onclick="closeMobileMenu()" data-lang-key="nav-skills">Habilidades</a></li>
+                    <li><a href="#expediente" onclick="closeMobileMenu()" data-lang-key="nav-record">Expediente</a></li>
+                    <li><a href="#contacto" onclick="closeMobileMenu()" data-lang-key="nav-contact">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="nav-controls">
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                    <span data-lang-key="theme-toggle">Modo Oscuro</span>
+                </button>
+                <button class="lang-toggle" onclick="toggleLanguage()">
+                    <i class="fas fa-globe"></i>
+                    <span id="lang-text">EN</span>
+                </button>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-chart-line"></i>
+                <span data-lang-key="hero-badge">ESTUDIANTE DE GRADO</span>
+            </div>
+            <h1 class="hero-name">Álvaro Martínez Gamo</h1>
+            <h2 class="hero-title" data-lang-key="hero-title">Ciencia e Ingeniería de Datos</h2>
+            <p class="hero-university" data-lang-key="hero-university">Universidad Autónoma de Madrid</p>
+            <p class="hero-description" data-lang-key="hero-description">
+                Transformando datos en conocimiento a través de la innovación tecnológica. 
+                Especializado en machine learning, análisis predictivo y desarrollo de soluciones 
+                basadas en inteligencia artificial.
+            </p>
+            
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">3+</span>
+                    <span class="hero-stat-label" data-lang-key="hero-stat-years">Años de Estudio</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">15+</span>
+                    <span class="hero-stat-label" data-lang-key="hero-stat-projects">Proyectos</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">8.28</span>
+                    <span class="hero-stat-label" data-lang-key="hero-stat-average">Promedio del último año (3º carrera)</span>
+                </div>
+            </div>
+            
+            <div class="hero-buttons">
+                <a href="#proyectos" class="cta-button primary">
+                    <i class="fas fa-rocket"></i>
+                    <span data-lang-key="hero-button-projects">Ver Proyectos</span>
+                </a>
+                <a href="#contacto" class="cta-button">
+                    <i class="fas fa-envelope"></i>
+                    <span data-lang-key="hero-button-contact">Contactar</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="recorrido" class="section">
+        <h2 class="section-title fade-in" data-lang-key="journey-title">Formación Académica y Desarrollo Profesional</h2>
+        <div class="timeline fade-in">
+            <div class="timeline-item">
+                <div class="timeline-year">2022/2023</div>
+                <div class="timeline-content">
+                    <h3 data-lang-key="timeline-year1-title">Primer Año - Fundamentos Matemáticos y Computacionales</h3>
+                    <p data-lang-key="timeline-year1-description">Establecimiento de una base sólida en matemáticas aplicadas, estadística inferencial y programación. Durante este período, desarrollé competencias fundamentales en análisis cuantitativo y adquirí dominio de las herramientas computacionales esenciales para la ciencia de datos. La formación incluyó metodologías rigurosas de investigación estadística y principios de diseño de experimentos que constituyen la base teórica para el análisis de datos avanzado.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <strong style="color: #667eea; font-size: 0.9rem;" data-lang-key="timeline-year1-skills-title">Competencias Adquiridas:</strong>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);" data-lang-key="timeline-year1-skills">Álgebra lineal aplicada, cálculo multivariable, estadística descriptiva e inferencial, programación estructurada en Python y R, modelado matemático, y fundamentos de arquitecturas de bases de datos relacionales.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2023/2024</div>
+                <div class="timeline-content">
+                    <h3 data-lang-key="timeline-year2-title">Segundo Año - Metodologías Avanzadas y Aplicaciones</h3>
+                    <p data-lang-key="timeline-year2-description">Profundización en algoritmos de aprendizaje automático supervisado y no supervisado, con énfasis en la implementación práctica de modelos predictivos. Este año se caracterizó por el desarrollo de proyectos multidisciplinarios que integraron técnicas estadísticas avanzadas con herramientas de visualización de datos. La formación abarcó metodologías de validación cruzada, optimización de hiperparámetros y evaluación robusta de modelos en escenarios reales.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <strong style="color: #667eea; font-size: 0.9rem;" data-lang-key="timeline-year2-achievements-title">Logros Destacados:</strong>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);" data-lang-key="timeline-year2-achievements">Implementación de pipelines de machine learning end-to-end, desarrollo de dashboards interactivos con Plotly y D3.js, colaboración en proyectos de análisis de big data utilizando Apache Spark, y aplicación de técnicas de feature engineering avanzadas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2024/2025</div>
+                <div class="timeline-content">
+                    <h3 data-lang-key="timeline-year3-title">Tercer Año - Especialización en Inteligencia Artificial</h3>
+                    <p data-lang-key="timeline-year3-description">Concentración en arquitecturas de deep learning, procesamiento de lenguaje natural y sistemas de aprendizaje por refuerzo. Este período incluyó la realización de proyectos de investigación aplicada en colaboración con la industria, enfocándose en la implementación de soluciones escalables de inteligencia artificial. La formación abarcó metodologías MLOps, deployment de modelos en producción y consideraciones éticas en el desarrollo de sistemas inteligentes.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <strong style="color: #667eea; font-size: 0.9rem;" data-lang-key="timeline-year3-research-title">Proyectos de Investigación:</strong>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);" data-lang-key="timeline-year3-research">Desarrollo de modelos generativos con arquitecturas de difusión, implementación de sistemas de recomendación híbridos, análisis de sentimientos en tiempo real utilizando transformers, y optimización de algoritmos de aprendizaje por refuerzo para aplicaciones financieras.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="proyectos" class="section">
+        <h2 class="section-title fade-in" data-lang-key="projects-title">Algunos de mis proyectos mas destacados</h2>
+        <div class="projects-grid fade-in">
+            
+            <!-- Proyecto 1 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-magic"></i></div>
+                    <h3 class="project-title" data-lang-key="project1-title">Sistema de Generación de Imágenes por Difusión</h3>
+                    <p class="project-subtitle" data-lang-key="project1-subtitle">Deep Learning Generativo</p>
+                </div>
+                <div class="project-content">
+                    <p class="project-description" data-lang-key="project1-description">
+                        Desarrollé un framework completo para entrenamiento y generación de imágenes usando modelos de difusión. 
+                        Incluye múltiples procesos de difusión, métodos de muestreo avanzados, y capacidades de generación condicional, 
+                        colorización e inpainting con interfaz interactiva.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">NumPy</span>
+                        <span class="tech-tag">PIL</span>
+                        <span class="tech-tag">Torchvision</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="demos/IA_gen.html" class="project-link primary" data-lang-key="project-view-dashboard">Ver Dashboard</a>
+                        <a href="https://github.com/HectorTablero/image-gen" class="project-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyecto 2 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3 class="project-title" data-lang-key="project2-title">Análisis Predictivo de Mercados</h3>
+                    <p class="project-subtitle" data-lang-key="project2-subtitle">Data Science & Finanzas</p>
+                </div>
+                <div class="project-content">
+                    <p class="project-description" data-lang-key="project2-description">
+                        Plataforma de análisis en tiempo real que utiliza modelos LSTM para predecir tendencias del mercado financiero 
+                        con visualizaciones interactivas y alertas automáticas.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">LSTM</span>
+                        <span class="tech-tag">Plotly</span>
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link primary" data-lang-key="project-view-demo">Ver Demo</a>
+                        <a href="#" class="project-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyecto 3 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-brain"></i></div>
+                    <h3 class="project-title" data-lang-key="project3-title">Sistema de Aprendizaje por Refuerzo Comparativo</h3>
+                    <p class="project-subtitle" data-lang-key="project3-subtitle">Reinforcement Learning Avanzado</p>
+                </div>
+                <div class="project-content">
+                    <p class="project-description" data-lang-key="project3-description">
+                        Implementé y comparé tres algoritmos fundamentales de aprendizaje por refuerzo (Q-learning, SARSA y DQN) 
+                        en el entorno FrozenLake, analizando su comportamiento en configuraciones deterministas y estocásticas 
+                        con métricas de rendimiento optimizadas.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">Gymnasium</span>
+                        <span class="tech-tag">NumPy</span>
+                        <span class="tech-tag">Matplotlib</span>
+                        <span class="tech-tag">Jupyter</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="demos/RL.html" class="project-link primary" data-lang-key="project-view-analysis">Ver Análisis</a>
+                        <a href="https://github.com/alvariitoSW/reinforcement_learning" class="project-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Proyecto 4 -->
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-icon"><i class="fas fa-chart-pie"></i></div>
+                <h3 class="project-title" data-lang-key="project4-title">Estudio Estadístico de Factores de Riesgo en Obesidad</h3>
+                <p class="project-subtitle" data-lang-key="project4-subtitle">Análisis Multivariante & Salud Pública</p>
+            </div>
+            <div class="project-content">
+                <p class="project-description" data-lang-key="project4-description">
+                    Análisis estadístico exhaustivo aplicando cinco técnicas multivariantes (PCA, LDA, Clustering, Naive Bayes) 
+                    para identificar patrones y factores de riesgo asociados con la obesidad, alcanzando 85% de precisión 
+                    en clasificación con LDA y revelando insights clave para estrategias de prevención personalizadas.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-tag">R</span>
+                    <span class="tech-tag">FactoMineR</span>
+                    <span class="tech-tag">ggplot2</span>
+                </div>
+                <div class="project-links">
+                    <a href="demos/estadistica.html" class="project-link primary" data-lang-key="project-view-analysis">Ver Análisis</a>
+                    <a href="https://github.com/alvariitoSW/factores_riesgo_obesidad" class="project-link">GitHub</a>
+                </div>
+            </div>
+        </div>
+
+            <!-- Proyecto 5 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-comments"></i></div>
+                    <h3 class="project-title" data-lang-key="project5-title">Análisis de Sentimientos en Redes Sociales</h3>
+                    <p class="project-subtitle" data-lang-key="project5-subtitle">NLP & Social Media</p>
+                </div>
+                <div class="project-content">
+                    <p class="project-description" data-lang-key="project5-description">
+                        Sistema de procesamiento de lenguaje natural que analiza sentimientos en tiempo real 
+                        en múltiples plataformas sociales, identificando tendencias y patrones emocionales.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">BERT</span>
+                        <span class="tech-tag">spaCy</span>
+                        <span class="tech-tag">Kafka</span>
+                        <span class="tech-tag">Elasticsearch</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link primary" data-lang-key="project-view-demo">Ver Demo</a>
+                        <a href="#" class="project-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyecto 6 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-robot"></i></div>
+                    <h3 class="project-title" data-lang-key="project6-title">Chatbot Inteligente para E-commerce</h3>
+                    <p class="project-subtitle" data-lang-key="project6-subtitle">AI & Customer Experience</p>
+                </div>
+                <div class="project-content">
+                    <p class="project-description" data-lang-key="project6-description">
+                        Asistente virtual conversacional que integra procesamiento de lenguaje natural 
+                        con sistemas de recomendación para mejorar la experiencia de compra online.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">GPT-3</span>
+                        <span class="tech-tag">Rasa</span>
+                        <span class="tech-tag">Redis</span>
+                        <span class="tech-tag">WebSocket</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link primary" data-lang-key="project-view-demo">Ver Demo</a>
+                        <a href="#" class="project-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="habilidades" class="section">
+        <h2 class="section-title fade-in" data-lang-key="skills-title">Mis Competencias</h2>
+        <div class="skills-container fade-in">
+            
+    <!-- Technical Skills -->
+    <div class="technical-skills">
+        <h3 class="tech-skills-title">
+            <i class="fas fa-code"></i>
+            <span data-lang-key="technical-skills-title">Habilidades Técnicas</span>
+        </h3>
+        <div class="tech-skills-grid">
+            <div class="tech-skill-item">
+                <div class="tech-skill-icon"><i class="fas fa-code"></i></div>
+                <div class="tech-skill-name" data-lang-key="skill-programming">Programación</div>
+                <div class="tech-skills-list">
+                    <span class="tech-skill-tag">Python</span>
+                    <span class="tech-skill-tag">R</span>
+                    <span class="tech-skill-tag">SQL</span>
+                    <span class="tech-skill-tag">JavaScript</span>
+                    <span class="tech-skill-tag">Scala</span>
+                </div>
+            </div>
+
+            <div class="tech-skill-item">
+                <div class="tech-skill-icon"><i class="fas fa-brain"></i></div>
+                <div class="tech-skill-name">Machine Learning</div>
+                <div class="tech-skills-list">
+                    <span class="tech-skill-tag">Scikit-learn</span>
+                    <span class="tech-skill-tag">TensorFlow</span>
+                    <span class="tech-skill-tag">PyTorch</span>
+                    <span class="tech-skill-tag">Keras</span>
+                    <span class="tech-skill-tag">XGBoost</span>
+                </div>
+            </div>
+
+            <div class="tech-skill-item">
+                <div class="tech-skill-icon"><i class="fas fa-chart-bar"></i></div>
+                <div class="tech-skill-name" data-lang-key="skill-visualization">Visualización</div>
+                <div class="tech-skills-list">
+                    <span class="tech-skill-tag">Matplotlib</span>
+                    <span class="tech-skill-tag">Seaborn</span>
+                    <span class="tech-skill-tag">Plotly</span>
+                    <span class="tech-skill-tag">D3.js</span>
+                    <span class="tech-skill-tag">Tableau</span>
+                </div>
+            </div>
+
+            <div class="tech-skill-item">
+                <div class="tech-skill-icon"><i class="fas fa-database"></i></div>
+                <div class="tech-skill-name">Big Data</div>
+                <div class="tech-skills-list">
+                    <span class="tech-skill-tag">Apache Spark</span>
+                    <span class="tech-skill-tag">Hadoop</span>
+                    <span class="tech-skill-tag">Kafka</span>
+                    <span class="tech-skill-tag">Elasticsearch</span>
+                    <span class="tech-skill-tag">MongoDB</span>
+                </div>
+            </div>
+
+            <div class="tech-skill-item">
+                <div class="tech-skill-icon"><i class="fas fa-comments"></i></div>
+                <div class="tech-skill-name">NLP & AI</div>
+                <div class="tech-skills-list">
+                    <span class="tech-skill-tag">BERT</span>
+                    <span class="tech-skill-tag">spaCy</span>
+                    <span class="tech-skill-tag">GPT-3</span>
+                    <span class="tech-skill-tag">Rasa</span>
+                    <span class="tech-skill-tag">Transformers</span>
+                </div>
+            </div>
+
+            <div class="tech-skill-item">
+                <div class="tech-skill-icon"><i class="fas fa-globe"></i></div>
+                <div class="tech-skill-name" data-lang-key="skill-web-dev">Desarrollo Web</div>
+                <div class="tech-skills-list">
+                    <span class="tech-skill-tag">React</span>
+                    <span class="tech-skill-tag">Django</span>
+                    <span class="tech-skill-tag">Streamlit</span>
+                    <span class="tech-skill-tag">WebSocket</span>
+                    <span class="tech-skill-tag">REST APIs</span>
+                </div>
+            </div>
+
+            <div class="tech-skill-item">
+                <div class="tech-skill-icon"><i class="fas fa-cloud"></i></div>
+                <div class="tech-skill-name">Cloud & DevOps</div>
+                <div class="tech-skills-list">
+                    <span class="tech-skill-tag">AWS</span>
+                    <span class="tech-skill-tag">Docker</span>
+                    <span class="tech-skill-tag">Kubernetes</span>
+                    <span class="tech-skill-tag">Git</span>
+                    <span class="tech-skill-tag">MLOps</span>
+                </div>
+            </div>
+
+            <div class="tech-skill-item">
+                <div class="tech-skill-icon"><i class="fas fa-cogs"></i></div>
+                <div class="tech-skill-name" data-lang-key="skill-tools">Herramientas</div>
+                <div class="tech-skills-list">
+                    <span class="tech-skill-tag">Jupyter</span>
+                    <span class="tech-skill-tag">VS Code</span>
+                    <span class="tech-skill-tag">Pandas</span>
+                    <span class="tech-skill-tag">NumPy</span>
+                    <span class="tech-skill-tag">Apache Airflow</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            <!-- Soft Skills -->
+            <div class="soft-skills-grid">
+                
+                <div class="soft-skill-category">
+                    <div class="soft-skill-icon"><i class="fas fa-users"></i></div>
+                    <h3 class="soft-skill-title" data-lang-key="soft-skill1-title">Liderazgo y Adaptabilidad</h3>
+                    <p class="soft-skill-subtitle" data-lang-key="soft-skill1-subtitle">Competencias clave para la transformación digital</p>
+                    <ul class="soft-skill-list">
+                        <li data-lang-key="soft-skill1-item1">Flexibilidad y adaptación al cambio</li>
+                        <li data-lang-key="soft-skill1-item2">Liderazgo ágil en equipos multidisciplinares</li>
+                        <li data-lang-key="soft-skill1-item3">Mentalidad de crecimiento continuo</li>
+                        <li data-lang-key="soft-skill1-item4">Gestión efectiva del cambio tecnológico</li>
+                        <li data-lang-key="soft-skill1-item5">Capacidad de influir sin autoridad formal</li>
+                    </ul>
+                </div>
+
+                <div class="soft-skill-category">
+                    <div class="soft-skill-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3 class="soft-skill-title" data-lang-key="soft-skill2-title">Innovación y Resolución de Problemas</h3>
+                    <p class="soft-skill-subtitle" data-lang-key="soft-skill2-subtitle">Pensamiento creativo para soluciones disruptivas</p>
+                    <ul class="soft-skill-list">
+                        <li data-lang-key="soft-skill2-item1">Pensamiento crítico y analítico</li>
+                        <li data-lang-key="soft-skill2-item2">Creatividad aplicada a soluciones tecnológicas</li>
+                        <li data-lang-key="soft-skill2-item3">Innovación centrada en el cliente</li>
+                        <li data-lang-key="soft-skill2-item4">Resolución ágil de problemas complejos</li>
+                        <li data-lang-key="soft-skill2-item5">Curiosidad intelectual y aprendizaje continuo</li>
+                    </ul>
+                </div>
+
+                <div class="soft-skill-category">
+                    <div class="soft-skill-icon"><i class="fas fa-handshake"></i></div>
+                    <h3 class="soft-skill-title" data-lang-key="soft-skill3-title">Colaboración y Comunicación</h3>
+                    <p class="soft-skill-subtitle" data-lang-key="soft-skill3-subtitle">Habilidades interpersonales para el éxito empresarial</p>
+                    <ul class="soft-skill-list">
+                        <li data-lang-key="soft-skill3-item1">Comunicación efectiva con stakeholders técnicos y no técnicos</li>
+                        <li data-lang-key="soft-skill3-item2">Colaboración en entornos virtuales e híbridos</li>
+                        <li data-lang-key="soft-skill3-item3">Inteligencia emocional y empatía</li>
+                        <li data-lang-key="soft-skill3-item4">Construcción de relaciones sólidas</li>
+                        <li data-lang-key="soft-skill3-item5">Persuasión y negociación estratégica</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Academic Record -->
+    <section id="expediente" class="section">
+        <h2 class="section-title fade-in" data-lang-key="academic-title">Expediente Académico</h2>
+        <div class="academic-record fade-in">
+            <h3 style="text-align: center; margin-bottom: 2rem; color: #667eea; font-size: 1.5rem;" data-lang-key="academic-degree">
+                Licenciatura en Ciencia e Ingeniería de Datos
+            </h3>
+            <div class="record-grid">
+                <div class="record-item">
+                    <div class="record-value">7.26</div>
+                    <div class="record-label" data-lang-key="academic-average">Promedio General</div>
+                </div>
+                <div class="record-item">
+                    <div class="record-value">3/4</div>
+                    <div class="record-label" data-lang-key="academic-years">Años Completados</div>
+                </div>
+                <div class="record-item">
+                    <div class="record-value">100%</div>
+                    <div class="record-label" data-lang-key="academic-subjects">Materias Aprobadas</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem; text-align: center;">
+                <h4 style="color: #667eea; margin-bottom: 1rem;" data-lang-key="academic-outstanding">Materias Destacadas</h4>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+                    <span style="background: var(--card-bg); padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 10px var(--shadow-light);" data-lang-key="academic-subject1">
+                        Aprendizaje automático III - 9.3
+                    </span>
+                    <span style="background: var(--card-bg); padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 10px var(--shadow-light);" data-lang-key="academic-subject2">
+                        Bases de datos: Integración y Arquitecturas - 9.0
+                    </span>
+                    <span style="background: var(--card-bg); padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 10px var(--shadow-light);" data-lang-key="academic-subject3">
+                        Computación de altas prestaciones - 8.5
+                    </span>
+                    <span style="background: var(--card-bg); padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 10px var(--shadow-light);" data-lang-key="academic-subject4">
+                        Tratamiento de señales y series temporales - 8.4
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="contact-section">
+        <div class="section">
+            <h2 style="color: white; text-align: center; margin-bottom: 2rem; font-size: 2.5rem;" data-lang-key="contact-title">
+                Conectemos
+            </h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; opacity: 0.9;" data-lang-key="contact-subtitle">
+                ¿Listo para transformar datos en valor? ¡Hablemos!
+            </p>
+            
+            <div class="contact-links">
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <h4>Email</h4>
+                    <a href="mailto:alva00003@gmail.com">alva00003@gmail.com</a>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <h4 data-lang-key="contact-phone">Teléfono</h4>
+                    <a href="tel:+34676785968">+34 676785968</a>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+                    <h4>LinkedIn</h4>
+                    <a href="https://linkedin.com/in/tu-perfil" target="_blank" data-lang-key="contact-view-profile">Ver Perfil</a>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-github"></i></div>
+                    <h4>GitHub</h4>
+                    <a href="https://github.com/alvariitoSW" target="_blank" data-lang-key="contact-view-repos">Ver Repositorios</a>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-file-pdf"></i></div>
+                    <h4 data-lang-key="contact-cv">CV Completo</h4>
+                    <a href="imagenes/CV.pdf" target="_blank" data-lang-key="contact-download-pdf">Descargar PDF</a>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h4 data-lang-key="contact-transcript">Expediente Académico</h4>
+                    <a href="imagenes/Expediente_Academico.pdf" target="_blank" data-lang-key="contact-download-pdf">Descargar PDF</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p data-lang-key="footer-text">&copy; 2024 Mi Portfolio de Ciencia e Ingeniería de Datos. Diseñado con pasión por los datos.</p>
+    </footer>
+
+    <script>
+        // Translations object
+        const translations = {
+            es: {
+                'page-title': 'Mi Viaje en Ciencia e Ingeniería de Datos',
+                'nav-logo': 'Mi Portfolio',
+                'nav-home': 'Inicio',
+                'nav-journey': 'Mi Recorrido',
+                'nav-projects': 'Proyectos',
+                'nav-skills': 'Habilidades',
+                'nav-record': 'Expediente',
+                'nav-contact': 'Contacto',
+                'theme-toggle': 'Modo Oscuro',
+                'hero-badge': 'ESTUDIANTE DE GRADO',
+                'hero-title': 'Ciencia e Ingeniería de Datos',
+                'hero-university': 'Universidad Autónoma de Madrid',
+                'hero-description': 'Transformando datos en conocimiento a través de la innovación tecnológica. Especializado en machine learning, análisis predictivo y desarrollo de soluciones basadas en inteligencia artificial.',
+                'hero-stat-years': 'Años de Estudio',
+                'hero-stat-projects': 'Proyectos',
+                'hero-stat-average': 'Promedio del último año (3º carrera)',
+                'hero-button-projects': 'Ver Proyectos',
+                'hero-button-contact': 'Contactar',
+                'journey-title': 'Formación Académica y Desarrollo Profesional',
+                'timeline-year1-title': 'Primer Año - Fundamentos Matemáticos y Computacionales',
+                'timeline-year1-description': 'Establecimiento de una base sólida en matemáticas aplicadas, estadística inferencial y programación. Durante este período, desarrollé competencias fundamentales en análisis cuantitativo y adquirí dominio de las herramientas computacionales esenciales para la ciencia de datos. La formación incluyó metodologías rigurosas de investigación estadística y principios de diseño de experimentos que constituyen la base teórica para el análisis de datos avanzado.',
+                'timeline-year1-skills-title': 'Competencias Adquiridas:',
+                'timeline-year1-skills': 'Álgebra lineal aplicada, cálculo multivariable, estadística descriptiva e inferencial, programación estructurada en Python y R, modelado matemático, y fundamentos de arquitecturas de bases de datos relacionales.',
+                'timeline-year2-title': 'Segundo Año - Metodologías Avanzadas y Aplicaciones',
+                'timeline-year2-description': 'Profundización en algoritmos de aprendizaje automático supervisado y no supervisado, con énfasis en la implementación práctica de modelos predictivos. Este año se caracterizó por el desarrollo de proyectos multidisciplinarios que integraron técnicas estadísticas avanzadas con herramientas de visualización de datos. La formación abarcó metodologías de validación cruzada, optimización de hiperparámetros y evaluación robusta de modelos en escenarios reales.',
+                'timeline-year2-achievements-title': 'Logros Destacados:',
+                'timeline-year2-achievements': 'Implementación de pipelines de machine learning end-to-end, desarrollo de dashboards interactivos con Plotly y D3.js, colaboración en proyectos de análisis de big data utilizando Apache Spark, y aplicación de técnicas de feature engineering avanzadas.',
+                'timeline-year3-title': 'Tercer Año - Especialización en Inteligencia Artificial',
+                'timeline-year3-description': 'Concentración en arquitecturas de deep learning, procesamiento de lenguaje natural y sistemas de aprendizaje por refuerzo. Este período incluyó la realización de proyectos de investigación aplicada en colaboración con la industria, enfocándose en la implementación de soluciones escalables de inteligencia artificial. La formación abarcó metodologías MLOps, deployment de modelos en producción y consideraciones éticas en el desarrollo de sistemas inteligentes.',
+                'timeline-year3-research-title': 'Proyectos de Investigación:',
+                'timeline-year3-research': 'Desarrollo de modelos generativos con arquitecturas de difusión, implementación de sistemas de recomendación híbridos, análisis de sentimientos en tiempo real utilizando transformers, y optimización de algoritmos de aprendizaje por refuerzo para aplicaciones financieras.',
+                'projects-title': 'Algunos de mis proyectos mas destacados',
+                'project1-title': 'Sistema de Generación de Imágenes por Difusión',
+                'project1-subtitle': 'Deep Learning Generativo',
+                'project1-description': 'Desarrollé un framework completo para entrenamiento y generación de imágenes usando modelos de difusión. Incluye múltiples procesos de difusión, métodos de muestreo avanzados, y capacidades de generación condicional, colorización e inpainting con interfaz interactiva.',
+                'project2-title': 'Análisis Predictivo de Mercados',
+                'project2-subtitle': 'Data Science & Finanzas',
+                'project2-description': 'Plataforma de análisis en tiempo real que utiliza modelos LSTM para predecir tendencias del mercado financiero con visualizaciones interactivas y alertas automáticas.',
+                'project3-title': 'Sistema de Aprendizaje por Refuerzo Comparativo',
+                'project3-subtitle': 'Reinforcement Learning Avanzado',
+                'project3-description': 'Implementé y comparé tres algoritmos fundamentales de aprendizaje por refuerzo (Q-learning, SARSA y DQN) en el entorno FrozenLake, analizando su comportamiento en configuraciones deterministas y estocásticas con métricas de rendimiento optimizadas.',
+                'project4-title': 'Estudio Estadístico de Factores de Riesgo en Obesidad',
+                'project4-subtitle': 'Análisis Multivariante & Salud Pública',
+                'project4-description': 'Análisis estadístico exhaustivo aplicando cinco técnicas multivariantes (PCA, LDA, Clustering, Naive Bayes) para identificar patrones y factores de riesgo asociados con la obesidad, alcanzando 85% de precisión en clasificación con LDA y revelando insights clave para estrategias de prevención personalizadas.',
+                'project5-title': 'Análisis de Sentimientos en Redes Sociales',
+                'project5-subtitle': 'NLP & Social Media',
+                'project5-description': 'Sistema de procesamiento de lenguaje natural que analiza sentimientos en tiempo real en múltiples plataformas sociales, identificando tendencias y patrones emocionales.',
+                'project6-title': 'Chatbot Inteligente para E-commerce',
+                'project6-subtitle': 'AI & Customer Experience',
+                'project6-description': 'Asistente virtual conversacional que integra procesamiento de lenguaje natural con sistemas de recomendación para mejorar la experiencia de compra online.',
+                'project-view-dashboard': 'Ver Dashboard',
+                'project-view-demo': 'Ver Demo',
+                'project-view-analysis': 'Ver Análisis',
+                'skills-title': 'Mis Competencias',
+                'technical-skills-title': 'Habilidades Técnicas',
+                'skill-programming': 'Programación',
+                'skill-visualization': 'Visualización',
+                'skill-web-dev': 'Desarrollo Web',
+                'skill-tools': 'Herramientas',
+                'soft-skill1-title': 'Liderazgo y Adaptabilidad',
+                'soft-skill1-subtitle': 'Competencias clave para la transformación digital',
+                'soft-skill1-item1': 'Flexibilidad y adaptación al cambio',
+                'soft-skill1-item2': 'Liderazgo ágil en equipos multidisciplinares',
+                'soft-skill1-item3': 'Mentalidad de crecimiento continuo',
+                'soft-skill1-item4': 'Gestión efectiva del cambio tecnológico',
+                'soft-skill1-item5': 'Capacidad de influir sin autoridad formal',
+                'soft-skill2-title': 'Innovación y Resolución de Problemas',
+                'soft-skill2-subtitle': 'Pensamiento creativo para soluciones disruptivas',
+                'soft-skill2-item1': 'Pensamiento crítico y analítico',
+                'soft-skill2-item2': 'Creatividad aplicada a soluciones tecnológicas',
+                'soft-skill2-item3': 'Innovación centrada en el cliente',
+                'soft-skill2-item4': 'Resolución ágil de problemas complejos',
+                'soft-skill2-item5': 'Curiosidad intelectual y aprendizaje continuo',
+                'soft-skill3-title': 'Colaboración y Comunicación',
+                'soft-skill3-subtitle': 'Habilidades interpersonales para el éxito empresarial',
+                'soft-skill3-item1': 'Comunicación efectiva con stakeholders técnicos y no técnicos',
+                'soft-skill3-item2': 'Colaboración en entornos virtuales e híbridos',
+                'soft-skill3-item3': 'Inteligencia emocional y empatía',
+                'soft-skill3-item4': 'Construcción de relaciones sólidas',
+                'soft-skill3-item5': 'Persuasión y negociación estratégica',
+                'academic-title': 'Expediente Académico',
+                'academic-degree': 'Licenciatura en Ciencia e Ingeniería de Datos',
+                'academic-average': 'Promedio General',
+                'academic-years': 'Años Completados',
+                'academic-subjects': 'Materias Aprobadas',
+                'academic-outstanding': 'Materias Destacadas',
+                'academic-subject1': 'Aprendizaje automático III - 9.3',
+                'academic-subject2': 'Bases de datos: Integración y Arquitecturas - 9.0',
+                'academic-subject3': 'Computación de altas prestaciones - 8.5',
+                'academic-subject4': 'Tratamiento de señales y series temporales - 8.4',
+                'contact-title': 'Conectemos',
+                'contact-subtitle': '¿Listo para transformar datos en valor? ¡Hablemos!',
+                'contact-phone': 'Teléfono',
+                'contact-view-profile': 'Ver Perfil',
+                'contact-view-repos': 'Ver Repositorios',
+                'contact-cv': 'CV Completo',
+                'contact-transcript': 'Expediente Académico',
+                'contact-download-pdf': 'Descargar PDF',
+                'footer-text': '© 2024 Mi Portfolio de Ciencia e Ingeniería de Datos. Diseñado con pasión por los datos.'
+            },
+            en: {
+                'page-title': 'My Journey in Data Science and Engineering',
+                'nav-logo': 'My Portfolio',
+                'nav-home': 'Home',
+                'nav-journey': 'My Journey',
+                'nav-projects': 'Projects',
+                'nav-skills': 'Skills',
+                'nav-record': 'Academic Record',
+                'nav-contact': 'Contact',
+                'theme-toggle': 'Dark Mode',
+                'hero-badge': 'UNDERGRADUATE STUDENT',
+                'hero-title': 'Data Science and Engineering',
+                'hero-university': 'Autonomous University of Madrid',
+                'hero-description': 'Transforming data into knowledge through technological innovation. Specialized in machine learning, predictive analytics and development of artificial intelligence-based solutions.',
+                'hero-stat-years': 'Years of Study',
+                'hero-stat-projects': 'Projects',
+                'hero-stat-average': 'Last Academic Average Year (3rd year)',
+                'hero-button-projects': 'View Projects',
+                'hero-button-contact': 'Contact',
+                'journey-title': 'Academic Formation and Professional Development',
+                'timeline-year1-title': 'First Year - Mathematical and Computational Foundations',
+                'timeline-year1-description': 'Establishment of a solid foundation in applied mathematics, inferential statistics and programming. During this period, I developed fundamental competencies in quantitative analysis and acquired mastery of the computational tools essential for data science. The training included rigorous statistical research methodologies and experimental design principles that constitute the theoretical basis for advanced data analysis.',
+                'timeline-year1-skills-title': 'Acquired Competencies:',
+                'timeline-year1-skills': 'Applied linear algebra, multivariable calculus, descriptive and inferential statistics, structured programming in Python and R, mathematical modeling, and fundamentals of relational database architectures.',
+                'timeline-year2-title': 'Second Year - Advanced Methodologies and Applications',
+                'timeline-year2-description': 'Deepening in supervised and unsupervised machine learning algorithms, with emphasis on practical implementation of predictive models. This year was characterized by the development of multidisciplinary projects that integrated advanced statistical techniques with data visualization tools. The training covered cross-validation methodologies, hyperparameter optimization and robust model evaluation in real scenarios.',
+                'timeline-year2-achievements-title': 'Outstanding Achievements:',
+                'timeline-year2-achievements': 'Implementation of end-to-end machine learning pipelines, development of interactive dashboards with Plotly and D3.js, collaboration on big data analysis projects using Apache Spark, and application of advanced feature engineering techniques.',
+                'timeline-year3-title': 'Third Year - Artificial Intelligence Specialization',
+                'timeline-year3-description': 'Focus on deep learning architectures, natural language processing and reinforcement learning systems. This period included the realization of applied research projects in collaboration with industry, focusing on the implementation of scalable artificial intelligence solutions. The training covered MLOps methodologies, model deployment in production and ethical considerations in the development of intelligent systems.',
+                'timeline-year3-research-title': 'Research Projects:',
+                'timeline-year3-research': 'Development of generative models with diffusion architectures, implementation of hybrid recommendation systems, real-time sentiment analysis using transformers, and optimization of reinforcement learning algorithms for financial applications.',
+                'projects-title': 'Some of my most outstanding projects',
+                'project1-title': 'Diffusion Image Generation System',
+                'project1-subtitle': 'Generative Deep Learning',
+                'project1-description': 'I developed a complete framework for training and generating images using diffusion models. It includes multiple diffusion processes, advanced sampling methods, and conditional generation, colorization and inpainting capabilities with interactive interface.',
+                'project2-title': 'Predictive Market Analysis',
+                'project2-subtitle': 'Data Science & Finance',
+                'project2-description': 'Real-time analysis platform that uses LSTM models to predict financial market trends with interactive visualizations and automatic alerts.',
+                'project3-title': 'Comparative Reinforcement Learning System',
+                'project3-subtitle': 'Advanced Reinforcement Learning',
+                'project3-description': 'I implemented and compared three fundamental reinforcement learning algorithms (Q-learning, SARSA and DQN) in the FrozenLake environment, analyzing their behavior in deterministic and stochastic configurations with optimized performance metrics.',
+                'project4-title': 'Statistical Study of Obesity Risk Factors',
+                'project4-subtitle': 'Multivariate Analysis & Public Health',
+                'project4-description': 'Comprehensive statistical analysis applying five multivariate techniques (PCA, LDA, Clustering, Naive Bayes) to identify patterns and risk factors associated with obesity, achieving 85% accuracy in LDA classification and revealing key insights for personalized prevention strategies.',
+                'project5-title': 'Social Media Sentiment Analysis',
+                'project5-subtitle': 'NLP & Social Media',
+                'project5-description': 'Natural language processing system that analyzes sentiments in real time across multiple social platforms, identifying emotional trends and patterns.',
+                'project6-title': 'Intelligent E-commerce Chatbot',
+                'project6-subtitle': 'AI & Customer Experience',
+                'project6-description': 'Conversational virtual assistant that integrates natural language processing with recommendation systems to improve the online shopping experience.',
+                'project-view-dashboard': 'View Dashboard',
+                'project-view-demo': 'View Demo',
+                'project-view-analysis': 'View Analysis',
+                'skills-title': 'My Competencies',
+                'technical-skills-title': 'Technical Skills',
+                'skill-programming': 'Programming',
+                'skill-visualization': 'Visualization',
+                'skill-web-dev': 'Web Development',
+                'skill-tools': 'Tools',
+                'soft-skill1-title': 'Leadership and Adaptability',
+                'soft-skill1-subtitle': 'Key competencies for digital transformation',
+                'soft-skill1-item1': 'Flexibility and adaptation to change',
+                'soft-skill1-item2': 'Agile leadership in multidisciplinary teams',
+                'soft-skill1-item3': 'Continuous growth mindset',
+                'soft-skill1-item4': 'Effective technological change management',
+                'soft-skill1-item5': 'Ability to influence without formal authority',
+                'soft-skill2-title': 'Innovation and Problem Solving',
+                'soft-skill2-subtitle': 'Creative thinking for disruptive solutions',
+                'soft-skill2-item1': 'Critical and analytical thinking',
+                'soft-skill2-item2': 'Creativity applied to technological solutions',
+                'soft-skill2-item3': 'Customer-centered innovation',
+                'soft-skill2-item4': 'Agile resolution of complex problems',
+                'soft-skill2-item5': 'Intellectual curiosity and continuous learning',
+                'soft-skill3-title': 'Collaboration and Communication',
+                'soft-skill3-subtitle': 'Interpersonal skills for business success',
+                'soft-skill3-item1': 'Effective communication with technical and non-technical stakeholders',
+                'soft-skill3-item2': 'Collaboration in virtual and hybrid environments',
+                'soft-skill3-item3': 'Emotional intelligence and empathy',
+                'soft-skill3-item4': 'Building strong relationships',
+                'soft-skill3-item5': 'Strategic persuasion and negotiation',
+                'academic-title': 'Academic Record',
+                'academic-degree': 'Bachelor in Data Science and Engineering',
+                'academic-average': 'Overall Average',
+                'academic-years': 'Years Completed',
+                'academic-subjects': 'Subjects Passed',
+                'academic-outstanding': 'Outstanding Subjects',
+                'academic-subject1': 'Machine Learning III - 9.3',
+                'academic-subject2': 'Databases: Integration and Architectures - 9.0',
+                'academic-subject3': 'High Performance Computing - 8.5',
+                'academic-subject4': 'Signal Processing and Time Series - 8.4',
+                'contact-title': 'Let\'s Connect',
+                'contact-subtitle': 'Ready to transform data into value? Let\'s talk!',
+                'contact-phone': 'Phone',
+                'contact-view-profile': 'View Profile',
+                'contact-view-repos': 'View Repositories',
+                'contact-cv': 'Complete CV',
+                'contact-transcript': 'Academic Transcript',
+                'contact-download-pdf': 'Download PDF',
+                'footer-text': '© 2024 My Data Science and Engineering Portfolio. Designed with passion for data.'
+            }
+        };
+
+        // Current language and theme
+        let currentLanguage = 'es';
+        let currentTheme = 'light';
+
+        // Initialize theme and language from localStorage
+        function initializeSettings() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedLanguage = localStorage.getItem('language') || 'es';
+            
+            currentTheme = savedTheme;
+            currentLanguage = savedLanguage;
+            
+            // Apply theme
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            updateThemeIcon();
+            
+            // Apply language
+            updateLanguage();
+            updateLanguageButton();
+        }
+
+        // Theme toggle function
+        function toggleTheme() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('theme', currentTheme);
+            updateThemeIcon();
+        }
+
+        // Update theme icon and text
+        function updateThemeIcon() {
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.querySelector('[data-lang-key="theme-toggle"]');
+            
+            if (currentTheme === 'dark') {
+                themeIcon.className = 'fas fa-sun';
+                themeText.textContent = currentLanguage === 'es' ? 'Modo Claro' : 'Light Mode';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+                themeText.textContent = currentLanguage === 'es' ? 'Modo Oscuro' : 'Dark Mode';
+            }
+        }
+
+        // Language toggle function
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'es' ? 'en' : 'es';
+            localStorage.setItem('language', currentLanguage);
+            updateLanguage();
+            updateLanguageButton();
+            updateThemeIcon(); // Update theme text in new language
+        }
+
+        // Update language button
+        function updateLanguageButton() {
+            const langText = document.getElementById('lang-text');
+            langText.textContent = currentLanguage === 'es' ? 'EN' : 'ES';
+        }
+
+        // Update all text content based on current language
+        function updateLanguage() {
+            const elements = document.querySelectorAll('[data-lang-key]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-lang-key');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    if (element.tagName === 'INPUT' && element.type === 'button') {
+                        element.value = translations[currentLanguage][key];
+                    } else {
+                        element.textContent = translations[currentLanguage][key];
+                    }
+                }
+            });
+            
+            // Update document title
+            document.title = translations[currentLanguage]['page-title'];
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = currentLanguage;
+        }
+
+        // Loading animation
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hide');
+            }, 1000);
+        });
+
+        // Initialize settings on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSettings();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = currentTheme === 'dark' ? 'rgba(13, 17, 23, 0.98)' : 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = currentTheme === 'dark' ? '0 2px 20px rgba(0, 0, 0, 0.3)' : '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = currentTheme === 'dark' ? 'rgba(13, 17, 23, 0.95)' : 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Project card interactions
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const navControls = document.querySelector('.nav-controls');
+            
+            navLinks.classList.toggle('mobile-active');
+            navControls.classList.toggle('mobile-active');
+            
+            // Change icon
+            const icon = menuBtn.querySelector('i');
+            if (navLinks.classList.contains('mobile-active')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
+        }
+
+        function closeMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const navControls = document.querySelector('.nav-controls');
+            
+            navLinks.classList.remove('mobile-active');
+            navControls.classList.remove('mobile-active');
+            
+            // Reset icon
+            const icon = menuBtn.querySelector('i');
+            icon.className = 'fas fa-bars';
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.querySelector('.nav-links');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const navbar = document.querySelector('.navbar');
+            
+            if (!navbar.contains(event.target) && navLinks.classList.contains('mobile-active')) {
+                closeMobileMenu();
+            }
+        });
+
+        // Add parallax effect to hero background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Interactive skill animations
+        function animateSkillBars() {
+            const skillItems = document.querySelectorAll('.tech-skill-item, .soft-skill-list li');
+            skillItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.transform = 'translateX(0)';
+                    item.style.opacity = '1';
+                }, index * 50);
+            });
+        }
+
+        // Trigger skill animation when section is visible
+        const skillsSection = document.querySelector('#habilidades');
+        if (skillsSection) {
+            const skillsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateSkillBars();
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            skillsObserver.observe(skillsSection);
+        }
+
+        // Enhanced hover effects for soft skills
+        document.querySelectorAll('.soft-skill-category').forEach(category => {
+            category.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+
+            category.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Enhanced hover effects for tech skills
+        document.querySelectorAll('.tech-skill-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.05)';
+            });
+
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Keyboard accessibility
+        document.addEventListener('keydown', function(event) {
+            // Press 'T' to toggle theme
+            if (event.key === 't' || event.key === 'T') {
+                if (!event.target.matches('input, textarea')) {
+                    toggleTheme();
+                }
+            }
+            
+            // Press 'L' to toggle language
+            if (event.key === 'l' || event.key === 'L') {
+                if (!event.target.matches('input, textarea')) {
+                    toggleLanguage();
+                }
+            }
+            
+            // Press 'Escape' to close mobile menu
+            if (event.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+
+        // Add smooth transitions for theme changes
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add transition class after initial load to prevent flash
+            setTimeout(() => {
+                document.body.classList.add('theme-transition');
+            }, 100);
+        });
+    </script>
+</body>
+</html>

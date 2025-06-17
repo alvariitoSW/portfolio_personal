@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generación de Imágenes por Difusión - Framework Avanzado</title>
+    <!-- Favicon IA - Texto Simple -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23667eea' rx='6'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='12' font-family='monospace' fill='white' font-weight='bold'>AI</text></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f9ff, #e8edff);
+            border: 1px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .tech-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+        }
+
+        .tech-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .capability-card {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .capability-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .capability-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .processes-comparison {
+            background: linear-gradient(135deg, #f1f3f4, #e8eaf6);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .process-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .process-name {
+            font-weight: bold;
+            color: #2c3e50;
+            min-width: 180px;
+        }
+
+        .process-trait {
+            color: #666;
+            font-style: italic;
+        }
+
+        .competencies {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .competency {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .dashboard-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* Contenedor para los botones duales */
+        .dashboard-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .dashboard-button {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            min-width: 220px;
+            text-align: center;
+        }
+
+        /* Botón principal - Dashboard */
+        .dashboard-button.primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .dashboard-button.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            background: #f8f9ff;
+        }
+
+        /* Botón secundario - Informe */
+        .dashboard-button.secondary {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .dashboard-button.secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .header, .content {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .stats-row {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .tech-grid,
+            .capabilities-grid,
+            .competencies {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .dashboard-button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tech-grid,
+            .capabilities-grid,
+            .competencies {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Sistema de Generación de Imágenes por Difusión</h1>
+            <p>Framework Avanzado de Deep Learning Generativo</p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>Descripción del Proyecto</h2>
+                <p>Desarrollé un framework completo y avanzado para la generación de imágenes utilizando modelos de difusión, una de las tecnologías más innovadoras en inteligencia artificial generativa. El sistema implementa múltiples algoritmos de vanguardia y proporciona una interfaz interactiva que permite a los usuarios experimentar con diferentes capacidades de generación de imágenes.</p>
+                
+                <div class="highlight-box">
+                    <strong>Innovación Clave:</strong> Framework modular que combina múltiples procesos de difusión, métodos de muestreo avanzados y capacidades especializadas como colorización e inpainting, todo integrado en una interfaz interactiva profesional.
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Algoritmos Implementados</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Procesos de Difusión</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Pasos de Generación</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Capacidades del Sistema</h2>
+                <div class="capabilities-grid">
+                    <div class="capability-card">
+                        <div class="capability-icon">🎨</div>
+                        <div class="capability-title">Generación Incondicional</div>
+                        <p>Creación de imágenes completamente nuevas desde ruido aleatorio</p>
+                    </div>
+                    <div class="capability-card">
+                        <div class="capability-icon">🏷️</div>
+                        <div class="capability-title">Generación Condicional</div>
+                        <p>Creación dirigida de imágenes basada en clases específicas</p>
+                    </div>
+                    <div class="capability-card">
+                        <div class="capability-icon">🌈</div>
+                        <div class="capability-title">Colorización</div>
+                        <p>Transformación automática de imágenes en escala de grises a color</p>
+                    </div>
+                    <div class="capability-card">
+                        <div class="capability-icon">🔧</div>
+                        <div class="capability-title">Inpainting</div>
+                        <p>Restauración inteligente de áreas faltantes en imágenes</p>
+                    </div>
+                </div>
+                
+                <p>El sistema integra capacidades avanzadas que permiten desde la generación completamente nueva de imágenes hasta tareas especializadas como la restauración y mejora de contenido visual existente, demostrando versatilidad técnica y aplicabilidad práctica en múltiples escenarios de uso.</p>
+            </div>
+
+            <div class="section">
+                <h2>Procesos de Difusión Implementados</h2>
+                <div class="processes-comparison">
+                    <div class="process-row">
+                        <span class="process-name">Variance Exploding</span>
+                        <span class="process-trait">Explosión controlada de varianza para generación robusta</span>
+                    </div>
+                    <div class="process-row">
+                        <span class="process-name">Variance Preserving</span>
+                        <span class="process-trait">Preservación de varianza para estabilidad mejorada</span>
+                    </div>
+                    <div class="process-row">
+                        <span class="process-name">Sub-Variance Preserving</span>
+                        <span class="process-trait">Variante optimizada con características de ruido modificadas</span>
+                    </div>
+                </div>
+                <p>Cada proceso de difusión representa un enfoque diferente para el equilibrio entre calidad de generación y estabilidad del entrenamiento. La implementación múltiple permite seleccionar el método más apropiado según las características específicas del problema y los requisitos de calidad deseados.</p>
+            </div>
+
+            <div class="section">
+                <h2>Tecnologías y Herramientas</h2>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4>PyTorch</h4>
+                        <p>Framework principal para desarrollo de redes neuronales y entrenamiento de modelos</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>Streamlit</h4>
+                        <p>Interface interactiva profesional para demostración y pruebas en tiempo real</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>NumPy & PIL</h4>
+                        <p>Procesamiento numérico optimizado y manipulación avanzada de imágenes</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>Python Avanzado</h4>
+                        <p>Implementación modular con patrones de diseño escalables y mantenibles</p>
+                    </div>
+                </div>
+                
+                <p>La arquitectura del sistema utiliza un stack tecnológico moderno y robusto que garantiza tanto rendimiento óptimo como facilidad de mantenimiento y extensión. La integración cuidadosa de estas tecnologías permite un flujo de trabajo eficiente desde el desarrollo hasta la implementación.</p>
+            </div>
+
+            <div class="section">
+                <h2>Competencias Técnicas Demostradas</h2>
+                <div class="competencies">
+                    <div class="competency">Deep Learning Avanzado</div>
+                    <div class="competency">Arquitecturas Generativas</div>
+                    <div class="competency">Optimización de Modelos</div>
+                    <div class="competency">Desarrollo de Interfaces</div>
+                    <div class="competency">Procesamiento de Imágenes</div>
+                    <div class="competency">Documentación Técnica</div>
+                </div>
+                
+                <p>El proyecto demuestra dominio completo del pipeline de machine learning, desde la conceptualización teórica hasta la implementación práctica y despliegue de soluciones interactivas. La capacidad para integrar múltiples tecnologías complejas en un sistema cohesivo refleja competencias avanzadas en ingeniería de software y ciencia de datos aplicada.</p>
+            </div>
+
+            <div class="section">
+                <h2>Valor e Impacto Empresarial</h2>
+                <div class="highlight-box">
+                    <p><strong>Aplicabilidad Comercial:</strong> El framework desarrollado tiene aplicaciones directas en industrias como marketing digital, entretenimiento, diseño gráfico y restauración de contenido, donde la generación y manipulación automatizada de imágenes representa ventajas competitivas significativas.</p>
+                </div>
+                
+                <p>La implementación modular permite adaptación rápida a diferentes casos de uso empresariales, mientras que la interfaz interactiva facilita la adopción por parte de usuarios no técnicos. El proyecto evidencia capacidad para traducir investigación avanzada en inteligencia artificial en soluciones prácticas que generan valor empresarial tangible.</p>
+            </div>
+        </div>
+
+        <div class="dashboard-section">
+            <h2>🚀 Prueba el Sistema en Vivo</h2>
+            <p>Experimenta con todas las capacidades del framework a través de la interfaz interactiva. Genera imágenes, realiza colorización e inpainting en tiempo real.</p>
+            
+            <div class="dashboard-buttons">
+                <a href="https://image-gen-htd.streamlit.app/" class="dashboard-button primary">
+                    📊 Acceder al Dashboard Interactivo
+                </a>
+                <a href="../imagenes/informe.pdf" class="dashboard-button secondary">
+                    📋 Ver Informe del Proyecto
+                </a>
+            </div>
+            
+            <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.9;">
+                Interfaz completa con controles avanzados, visualización en tiempo real y documentación técnica detallada
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>Framework desarrollado como demostración de competencias avanzadas en Deep Learning Generativo</p>
+        </div>
+    </div>
+</body>
+</html>

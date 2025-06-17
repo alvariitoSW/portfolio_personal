@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto de Aprendizaje por Refuerzo - Análisis Comparativo</title>
+    <!-- Favicon IA - Texto Simple -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23667eea' rx='6'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='12' font-family='monospace' fill='white' font-weight='bold'>AI</text></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f9ff, #e8edff);
+            border: 1px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .tech-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+        }
+
+        .tech-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .result-card {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .result-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .algorithm-comparison {
+            background: linear-gradient(135deg, #f1f3f4, #e8eaf6);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .algorithm-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .algorithm-name {
+            font-weight: bold;
+            color: #2c3e50;
+            min-width: 120px;
+        }
+
+        .algorithm-trait {
+            color: #666;
+            font-style: italic;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .competencies {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .competency {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .header, .content {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Proyecto de Aprendizaje por Refuerzo</h1>
+            <p>Análisis Comparativo de Algoritmos de Inteligencia Artificial</p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>Descripción del Proyecto</h2>
+                <p>Desarrollé un sistema completo de inteligencia artificial que compara tres algoritmos fundamentales de aprendizaje automático. El proyecto analiza cómo diferentes enfoques de aprendizaje resuelven problemas complejos, proporcionando insights valiosos para la toma de decisiones algorítmicas en proyectos reales.</p>
+                
+                <div class="highlight-box">
+                    <strong>Objetivo Principal:</strong> Demostrar competencias avanzadas en machine learning mediante la implementación y análisis de algoritmos que aprenden a tomar decisiones óptimas en entornos dinámicos.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Algoritmos Implementados</h2>
+                <div class="algorithm-comparison">
+                    <div class="algorithm-row">
+                        <span class="algorithm-name">Q-Learning</span>
+                        <span class="algorithm-trait">Busca soluciones rápidas y eficientes</span>
+                    </div>
+                    <div class="algorithm-row">
+                        <span class="algorithm-name">SARSA</span>
+                        <span class="algorithm-trait">Prioriza estrategias seguras y conservadoras</span>
+                    </div>
+                    <div class="algorithm-row">
+                        <span class="algorithm-name">Deep Q-Learning</span>
+                        <span class="algorithm-trait">Utiliza redes neuronales para problemas complejos</span>
+                    </div>
+                </div>
+                <p>Cada algoritmo representa un enfoque diferente para resolver problemas de toma de decisiones secuenciales, similar a cómo un navegador GPS puede elegir entre la ruta más rápida, la más segura, o la que mejor se adapta a condiciones cambiantes del tráfico.</p>
+            </div>
+
+            <div class="section">
+                <h2>Resultados Principales</h2>
+                <div class="results-grid">
+                    <div class="result-card">
+                        <div class="result-number">89%</div>
+                        <p>Mejora en recompensas con SARSA versus Q-learning en entornos inciertos</p>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-number">60%</div>
+                        <p>Reducción en pasos necesarios con Q-learning para alcanzar objetivos</p>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-number">3</div>
+                        <p>Algoritmos diferentes implementados y comparados sistemáticamente</p>
+                    </div>
+                </div>
+                
+                <p>Los experimentos revelaron que SARSA logra mejores resultados en entornos donde la gestión del riesgo es importante, mientras que Q-learning excede en situaciones que requieren eficiencia. Deep Q-Learning demostró capacidad para manejar problemas más complejos mediante el uso de redes neuronales.</p>
+            </div>
+
+            <div class="section">
+                <h2>Metodología y Tecnologías</h2>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4>Python & NumPy</h4>
+                        <p>Implementación core de algoritmos y cálculos científicos</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>TensorFlow</h4>
+                        <p>Desarrollo de redes neuronales para Deep Q-Learning</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>Gymnasium</h4>
+                        <p>Entornos de simulación para pruebas controladas</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>Matplotlib</h4>
+                        <p>Visualización de resultados y análisis comparativo</p>
+                    </div>
+                </div>
+                
+                <p>Utilicé el entorno FrozenLake como laboratorio de pruebas, simulando un agente que debe navegar hacia un objetivo evitando obstáculos. Esta configuración permite evaluar diferentes estrategias de aprendizaje en condiciones controladas pero realistas.</p>
+            </div>
+
+            <div class="section">
+                <h2>Competencias Demostradas</h2>
+                <div class="competencies">
+                    <div class="competency">Implementación de Algoritmos ML</div>
+                    <div class="competency">Análisis de Datos Comparativo</div>
+                    <div class="competency">Optimización de Código</div>
+                    <div class="competency">Experimentación Sistemática</div>
+                    <div class="competency">Visualización de Resultados</div>
+                    <div class="competency">Documentación Técnica</div>
+                </div>
+                
+                <p>El proyecto demuestra capacidad para abordar problemas complejos de inteligencia artificial desde la conceptualización hasta la implementación, análisis de resultados y comunicación de hallazgos. La habilidad para comparar objetivamente diferentes enfoques y extraer insights accionables resulta directamente aplicable en entornos profesionales donde la selección del algoritmo apropiado impacta significativamente los resultados del negocio.</p>
+            </div>
+
+            <div class="section">
+                <h2>Valor e Impacto</h2>
+                <div class="highlight-box">
+                    <p><strong>Aplicabilidad Práctica:</strong> Los insights generados proporcionan guías claras para la selección de algoritmos según las características del problema, competencia valiosa para proyectos de machine learning en producción donde la toma de decisiones basada en datos es fundamental.</p>
+                </div>
+                
+                <p>La metodología rigurosa de experimentación, combinada con implementaciones optimizadas y análisis sistemático, refleja capacidades sólidas en ciencia de datos aplicada. El proyecto evidencia tanto dominio técnico como pensamiento analítico, competencias directamente transferibles a roles donde se requiere desarrollar soluciones de inteligencia artificial para problemas empresariales complejos.</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Proyecto desarrollado como demostración de competencias en Machine Learning y Análisis de Datos</p>
+        </div>
+    </div>
+</body>
+</html>
