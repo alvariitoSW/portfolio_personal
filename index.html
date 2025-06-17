@@ -508,169 +508,356 @@
             z-index: 1;
         }
 
-        /* Cards de Proyectos */
+        /* Proyectos - Diseño Interactivo Mejorado */
+        .projects-showcase {
+            margin-top: 4rem;
+            position: relative;
+        }
+
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(3, 280px);
+            gap: 1.5rem;
             margin-top: 3rem;
-            align-items: stretch;
         }
 
         .project-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px var(--shadow-light);
-            transition: all 0.4s ease;
             position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
             border: 2px solid transparent;
+            backdrop-filter: blur(10px);
+            /* Agregar z-index para evitar problemas de apilamiento */
+            z-index: 1;
+        }
+
+        /* Diferentes tamaños para crear diseño dinámico */
+        .project-card:nth-child(1) {
+            grid-column: span 7;
+            grid-row: span 2;
+        }
+
+        .project-card:nth-child(2) {
+            grid-column: span 5;
+            grid-row: span 1;
+        }
+
+        .project-card:nth-child(3) {
+            grid-column: span 5;
+            grid-row: span 1;
+        }
+
+        .project-card:nth-child(4) {
+            grid-column: span 4;
+            grid-row: span 1;
+        }
+
+        .project-card:nth-child(5) {
+            grid-column: span 4;
+            grid-row: span 1;
+        }
+
+        .project-card:nth-child(6) {
+            grid-column: span 4;
+            grid-row: span 1;
+        }
+
+        /* Gradientes únicos para cada proyecto */
+        .project-card:nth-child(1) {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .project-card:nth-child(2) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .project-card:nth-child(3) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .project-card:nth-child(4) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .project-card:nth-child(5) {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .project-card:nth-child(6) {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .project-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            opacity: 0.9;
+            transition: all 0.6s ease;
+        }
+
+        .project-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)" /></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .project-content-wrapper {
+            position: relative;
+            z-index: 2;
+            height: 100%;
             display: flex;
             flex-direction: column;
-            height: 100%;
+            justify-content: space-between;
+            padding: 2rem;
+            color: white;
+        }
+
+        .project-header-new {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: auto;
+        }
+
+        .project-icon-large {
+            font-size: 3.5rem;
+            opacity: 0.9;
+            transition: all 0.4s ease;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+
+        .project-meta {
+            flex: 1;
+        }
+
+        .project-title-new {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .project-subtitle-new {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: all 0.5s ease;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
         }
 
         .project-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 30px 60px var(--shadow-dark);
-            border-color: #667eea;
+            /* Reducir la transformación para mantener el layout */
+            transform: translateY(-8px) scale(1.01);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            /* Aumentar z-index en hover para que aparezca encima */
+            z-index: 10;
         }
 
-        .project-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .project-card:hover .project-icon-large {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        .project-card:hover .project-background {
+            opacity: 1;
+            transform: scale(1.02);
+        }
+
+        .overlay-content {
             color: white;
-            padding: 2rem;
-            position: relative;
-            flex-shrink: 0;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.4s ease 0.1s;
         }
 
-        .project-header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        .project-card:hover .overlay-content {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .project-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.2rem;
-            opacity: 0.9;
+        .overlay-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 400px;
         }
 
-        .project-title {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-            line-height: 1.3;
-            font-weight: 600;
-        }
-
-        .project-subtitle {
-            opacity: 0.85;
-            font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        .project-content {
-            padding: 2rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-description {
-            margin-bottom: 1.8rem;
-            color: var(--text-light);
-            line-height: 1.7;
-            font-size: 0.95rem;
-            flex-grow: 1;
-        }
-
-        .tech-stack {
+        .overlay-tech-stack {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.6rem;
+            gap: 0.5rem;
+            justify-content: center;
             margin-bottom: 2rem;
-            padding: 1rem 0;
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
         }
 
-        .tech-tag {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .overlay-tech-tag {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
             color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
             font-weight: 600;
-            letter-spacing: 0.3px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
         }
 
-        .tech-tag:hover {
+        .overlay-tech-tag:hover {
+            background: rgba(255, 255, 255, 0.3);
             transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
         }
 
-        .project-links {
+        .overlay-buttons {
             display: flex;
             gap: 1rem;
-            margin-top: auto;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .project-link {
-            flex: 1;
-            text-align: center;
-            padding: 1rem 1.5rem;
-            border: 2px solid #667eea;
-            color: #667eea;
+        .overlay-button {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            color: white;
             text-decoration: none;
-            border-radius: 12px;
-            transition: all 0.3s ease;
+            border-radius: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
             font-weight: 600;
             font-size: 0.9rem;
-            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .project-link::before {
+        .overlay-button::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: rgba(255, 255, 255, 0.2);
             transition: left 0.3s ease;
-            z-index: -1;
         }
 
-        .project-link:hover::before {
+        .overlay-button:hover::before {
+            left: 100%;
+        }
+
+        .overlay-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .overlay-button.primary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .overlay-button.primary:hover {
+            background: white;
+            color: #333;
+        }
+
+        .project-preview-info {
+            position: absolute;
+            bottom: 0;
             left: 0;
+            right: 0;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+            backdrop-filter: blur(5px);
         }
 
-        .project-link:hover {
+        .preview-tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .preview-tech-tag {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
             color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .project-link.primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .project-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
             color: white;
-            border-color: transparent;
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        .project-link.primary::before {
-            background: linear-gradient(135deg, #5a6fd8 0%, #6b5b95 100%);
+        /* Animaciones de entrada */
+        .project-card {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: projectFadeIn 0.8s ease forwards;
         }
 
-        .project-link.primary:hover {
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+        .project-card:nth-child(5) { animation-delay: 0.5s; }
+        .project-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes projectFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Skills Section */
@@ -983,6 +1170,45 @@
             transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
         }
 
+        /* Responsive para la nueva sección de proyectos */
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(8, 1fr);
+                grid-template-rows: repeat(4, 250px);
+                gap: 1rem;
+            }
+
+            .project-card:nth-child(1) {
+                grid-column: span 8;
+                grid-row: span 1;
+            }
+
+            .project-card:nth-child(2) {
+                grid-column: span 4;
+                grid-row: span 1;
+            }
+
+            .project-card:nth-child(3) {
+                grid-column: span 4;
+                grid-row: span 1;
+            }
+
+            .project-card:nth-child(4) {
+                grid-column: span 3;
+                grid-row: span 1;
+            }
+
+            .project-card:nth-child(5) {
+                grid-column: span 3;
+                grid-row: span 1;
+            }
+
+            .project-card:nth-child(6) {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-container {
@@ -1115,35 +1341,84 @@
 
             .projects-grid {
                 grid-template-columns: 1fr;
+                grid-template-rows: auto;
                 gap: 1.5rem;
-                margin-top: 2rem;
+                margin: 2rem 0.5rem;
             }
 
             .project-card {
-                margin: 0 0.5rem;
+                grid-column: span 1 !important;
+                grid-row: span 1 !important;
+                min-height: 200px;
             }
 
-            .project-header {
-                padding: 1.2rem;
+            .project-content-wrapper {
+                padding: 1.5rem;
             }
 
-            .project-content {
-                padding: 1.2rem;
+            .project-header-new {
+                gap: 1rem;
+                flex-direction: column;
+                text-align: center;
             }
 
-            .tech-stack {
+            .project-icon-large {
+                font-size: 2.5rem;
+                align-self: center;
+            }
+
+            .project-title-new {
+                font-size: 1.3rem;
+                line-height: 1.3;
+            }
+
+            .project-subtitle-new {
+                font-size: 0.85rem;
+            }
+
+            .project-overlay {
+                padding: 1.5rem;
+            }
+
+            .overlay-description {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .overlay-tech-stack {
                 gap: 0.3rem;
-                margin-bottom: 1rem;
+                margin-bottom: 1.5rem;
             }
 
-            .tech-tag {
+            .overlay-tech-tag {
                 font-size: 0.7rem;
-                padding: 0.2rem 0.6rem;
+                padding: 0.3rem 0.6rem;
             }
 
-            .project-links {
+            .overlay-buttons {
                 flex-direction: column;
                 gap: 0.8rem;
+            }
+
+            .overlay-button {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            .project-status {
+                top: 0.5rem;
+                right: 0.5rem;
+                font-size: 0.65rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .preview-tech-stack {
+                gap: 0.2rem;
+            }
+
+            .preview-tech-tag {
+                font-size: 0.65rem;
+                padding: 0.2rem 0.4rem;
             }
 
             .technical-skills {
@@ -1234,12 +1509,42 @@
                 grid-template-columns: 1fr;
             }
 
-            .project-card {
-                margin: 0;
-            }
-
             .tech-skills-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .projects-showcase {
+                margin-top: 2rem;
+            }
+
+            .projects-grid {
+                margin: 1rem 0;
+                gap: 1rem;
+            }
+
+            .project-content-wrapper {
+                padding: 1rem;
+            }
+
+            .project-title-new {
+                font-size: 1.1rem;
+            }
+
+            .project-subtitle-new {
+                font-size: 0.8rem;
+            }
+
+            .project-icon-large {
+                font-size: 2rem;
+            }
+
+            .overlay-description {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+
+            .project-overlay {
+                padding: 1rem;
             }
         }
     </style>
@@ -1369,167 +1674,235 @@
     <!-- Projects Section -->
     <section id="proyectos" class="section">
         <h2 class="section-title fade-in" data-lang-key="projects-title">Algunos de mis proyectos mas destacados</h2>
-        <div class="projects-grid fade-in">
-            
-            <!-- Proyecto 1 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-magic"></i></div>
-                    <h3 class="project-title" data-lang-key="project1-title">Sistema de Generación de Imágenes por Difusión</h3>
-                    <p class="project-subtitle" data-lang-key="project1-subtitle">Deep Learning Generativo</p>
-                </div>
-                <div class="project-content">
-                    <p class="project-description" data-lang-key="project1-description">
-                        Desarrollé un framework completo para entrenamiento y generación de imágenes usando modelos de difusión. 
-                        Incluye múltiples procesos de difusión, métodos de muestreo avanzados, y capacidades de generación condicional, 
-                        colorización e inpainting con interfaz interactiva.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">PyTorch</span>
-                        <span class="tech-tag">Streamlit</span>
-                        <span class="tech-tag">NumPy</span>
-                        <span class="tech-tag">PIL</span>
-                        <span class="tech-tag">Torchvision</span>
+        <div class="projects-showcase fade-in">
+            <div class="projects-grid">
+                
+                <!-- Proyecto 1 - Destacado (Grande) -->
+                <div class="project-card">
+                    <div class="project-background"></div>
+                    <div class="project-status">Proyecto Estrella</div>
+                    
+                    <div class="project-content-wrapper">
+                        <div class="project-header-new">
+                            <div class="project-icon-large"><i class="fas fa-magic"></i></div>
+                            <div class="project-meta">
+                                <h3 class="project-title-new" data-lang-key="project1-title">Sistema de Generación de Imágenes por Difusión</h3>
+                                <p class="project-subtitle-new" data-lang-key="project1-subtitle">Deep Learning Generativo</p>
+                            </div>
+                        </div>
+                        
+                        <div class="project-preview-info">
+                            <div class="preview-tech-stack">
+                                <span class="preview-tech-tag">PyTorch</span>
+                                <span class="preview-tech-tag">Streamlit</span>
+                                <span class="preview-tech-tag">Deep Learning</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-links">
-                        <a href="demos/IA_gen.html" class="project-link primary" data-lang-key="project-view-dashboard">Ver Dashboard</a>
-                        <a href="https://github.com/HectorTablero/image-gen" class="project-link">GitHub</a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Proyecto 2 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-chart-line"></i></div>
-                    <h3 class="project-title" data-lang-key="project2-title">Análisis Predictivo de Mercados</h3>
-                    <p class="project-subtitle" data-lang-key="project2-subtitle">Data Science & Finanzas</p>
-                </div>
-                <div class="project-content">
-                    <p class="project-description" data-lang-key="project2-description">
-                        Plataforma de análisis en tiempo real que utiliza modelos LSTM para predecir tendencias del mercado financiero 
-                        con visualizaciones interactivas y alertas automáticas.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">LSTM</span>
-                        <span class="tech-tag">Plotly</span>
-                        <span class="tech-tag">Django</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link primary" data-lang-key="project-view-demo">Ver Demo</a>
-                        <a href="#" class="project-link">GitHub</a>
+                    <div class="project-overlay">
+                        <div class="overlay-content">
+                            <p class="overlay-description" data-lang-key="project1-description">
+                                Desarrollé un framework completo para entrenamiento y generación de imágenes usando modelos de difusión. 
+                                Incluye múltiples procesos de difusión, métodos de muestreo avanzados, y capacidades de generación condicional, 
+                                colorización e inpainting con interfaz interactiva.
+                            </p>
+                            <div class="overlay-tech-stack">
+                                <span class="overlay-tech-tag">Python</span>
+                                <span class="overlay-tech-tag">PyTorch</span>
+                                <span class="overlay-tech-tag">Streamlit</span>
+                                <span class="overlay-tech-tag">NumPy</span>
+                                <span class="overlay-tech-tag">PIL</span>
+                                <span class="overlay-tech-tag">Torchvision</span>
+                            </div>
+                            <div class="overlay-buttons">
+                                <a href="demos/IA_gen.html" class="overlay-button primary" data-lang-key="project-view-dashboard">Ver Dashboard</a>
+                                <a href="https://github.com/HectorTablero/image-gen" class="overlay-button">GitHub</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Proyecto 3 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-brain"></i></div>
-                    <h3 class="project-title" data-lang-key="project3-title">Sistema de Aprendizaje por Refuerzo Comparativo</h3>
-                    <p class="project-subtitle" data-lang-key="project3-subtitle">Reinforcement Learning Avanzado</p>
-                </div>
-                <div class="project-content">
-                    <p class="project-description" data-lang-key="project3-description">
-                        Implementé y comparé tres algoritmos fundamentales de aprendizaje por refuerzo (Q-learning, SARSA y DQN) 
-                        en el entorno FrozenLake, analizando su comportamiento en configuraciones deterministas y estocásticas 
-                        con métricas de rendimiento optimizadas.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">TensorFlow</span>
-                        <span class="tech-tag">Gymnasium</span>
-                        <span class="tech-tag">NumPy</span>
-                        <span class="tech-tag">Matplotlib</span>
-                        <span class="tech-tag">Jupyter</span>
+                <!-- Proyecto 2 -->
+                <div class="project-card">
+                    <div class="project-background"></div>
+                    <div class="project-status">FinTech</div>
+                    
+                    <div class="project-content-wrapper">
+                        <div class="project-header-new">
+                            <div class="project-icon-large"><i class="fas fa-chart-line"></i></div>
+                            <div class="project-meta">
+                                <h3 class="project-title-new" data-lang-key="project2-title">Análisis Predictivo de Mercados</h3>
+                                <p class="project-subtitle-new" data-lang-key="project2-subtitle">Data Science & Finanzas</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-links">
-                        <a href="demos/RL.html" class="project-link primary" data-lang-key="project-view-analysis">Ver Análisis</a>
-                        <a href="https://github.com/alvariitoSW/reinforcement_learning" class="project-link">GitHub</a>
-                    </div>
-                </div>
-            </div>
 
-        <!-- Proyecto 4 -->
-        <div class="project-card">
-            <div class="project-header">
-                <div class="project-icon"><i class="fas fa-chart-pie"></i></div>
-                <h3 class="project-title" data-lang-key="project4-title">Estudio Estadístico de Factores de Riesgo en Obesidad</h3>
-                <p class="project-subtitle" data-lang-key="project4-subtitle">Análisis Multivariante & Salud Pública</p>
-            </div>
-            <div class="project-content">
-                <p class="project-description" data-lang-key="project4-description">
-                    Análisis estadístico exhaustivo aplicando cinco técnicas multivariantes (PCA, LDA, Clustering, Naive Bayes) 
-                    para identificar patrones y factores de riesgo asociados con la obesidad, alcanzando 85% de precisión 
-                    en clasificación con LDA y revelando insights clave para estrategias de prevención personalizadas.
-                </p>
-                <div class="tech-stack">
-                    <span class="tech-tag">R</span>
-                    <span class="tech-tag">FactoMineR</span>
-                    <span class="tech-tag">ggplot2</span>
+                    <div class="project-overlay">
+                        <div class="overlay-content">
+                            <p class="overlay-description" data-lang-key="project2-description">
+                                Plataforma de análisis en tiempo real que utiliza modelos LSTM para predecir tendencias del mercado financiero 
+                                con visualizaciones interactivas y alertas automáticas.
+                            </p>
+                            <div class="overlay-tech-stack">
+                                <span class="overlay-tech-tag">Python</span>
+                                <span class="overlay-tech-tag">LSTM</span>
+                                <span class="overlay-tech-tag">Plotly</span>
+                                <span class="overlay-tech-tag">Django</span>
+                                <span class="overlay-tech-tag">PostgreSQL</span>
+                            </div>
+                            <div class="overlay-buttons">
+                                <a href="#" class="overlay-button primary" data-lang-key="project-view-demo">Ver Demo</a>
+                                <a href="#" class="overlay-button">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="project-links">
-                    <a href="demos/estadistica.html" class="project-link primary" data-lang-key="project-view-analysis">Ver Análisis</a>
-                    <a href="https://github.com/alvariitoSW/factores_riesgo_obesidad" class="project-link">GitHub</a>
-                </div>
-            </div>
-        </div>
 
-            <!-- Proyecto 5 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-comments"></i></div>
-                    <h3 class="project-title" data-lang-key="project5-title">Análisis de Sentimientos en Redes Sociales</h3>
-                    <p class="project-subtitle" data-lang-key="project5-subtitle">NLP & Social Media</p>
-                </div>
-                <div class="project-content">
-                    <p class="project-description" data-lang-key="project5-description">
-                        Sistema de procesamiento de lenguaje natural que analiza sentimientos en tiempo real 
-                        en múltiples plataformas sociales, identificando tendencias y patrones emocionales.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">BERT</span>
-                        <span class="tech-tag">spaCy</span>
-                        <span class="tech-tag">Kafka</span>
-                        <span class="tech-tag">Elasticsearch</span>
+                <!-- Proyecto 3 -->
+                <div class="project-card">
+                    <div class="project-background"></div>
+                    <div class="project-status">Reinforcement Learning</div>
+                    
+                    <div class="project-content-wrapper">
+                        <div class="project-header-new">
+                            <div class="project-icon-large"><i class="fas fa-brain"></i></div>
+                            <div class="project-meta">
+                                <h3 class="project-title-new" data-lang-key="project3-title">Sistema de Aprendizaje por Refuerzo Comparativo</h3>
+                                <p class="project-subtitle-new" data-lang-key="project3-subtitle">Reinforcement Learning Avanzado</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link primary" data-lang-key="project-view-demo">Ver Demo</a>
-                        <a href="#" class="project-link">GitHub</a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Proyecto 6 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-robot"></i></div>
-                    <h3 class="project-title" data-lang-key="project6-title">Chatbot Inteligente para E-commerce</h3>
-                    <p class="project-subtitle" data-lang-key="project6-subtitle">AI & Customer Experience</p>
-                </div>
-                <div class="project-content">
-                    <p class="project-description" data-lang-key="project6-description">
-                        Asistente virtual conversacional que integra procesamiento de lenguaje natural 
-                        con sistemas de recomendación para mejorar la experiencia de compra online.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">GPT-3</span>
-                        <span class="tech-tag">Rasa</span>
-                        <span class="tech-tag">Redis</span>
-                        <span class="tech-tag">WebSocket</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link primary" data-lang-key="project-view-demo">Ver Demo</a>
-                        <a href="#" class="project-link">GitHub</a>
+                    <div class="project-overlay">
+                        <div class="overlay-content">
+                            <p class="overlay-description" data-lang-key="project3-description">
+                                Implementé y comparé tres algoritmos de aprendizaje por refuerzo (Q-learning, SARSA y DQN) 
+                                en el entorno FrozenLake, analizando su comportamiento en configuraciones deterministas y estocásticas 
+                                con métricas de rendimiento.
+                            </p>
+                            <div class="overlay-tech-stack">
+                                <span class="overlay-tech-tag">Python</span>
+                                <span class="overlay-tech-tag">TensorFlow</span>
+                                <span class="overlay-tech-tag">NumPy</span>
+                                <span class="overlay-tech-tag">Matplotlib</span>
+                            </div>
+                            <div class="overlay-buttons">
+                                <a href="demos/RL.html" class="overlay-button primary" data-lang-key="project-view-analysis">Ver Análisis</a>
+                                <a href="https://github.com/alvariitoSW/reinforcement_learning" class="overlay-button">GitHub</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+                <!-- Proyecto 4 -->
+                <div class="project-card">
+                    <div class="project-background"></div>
+                    <div class="project-status">Salud Pública</div>
+                    
+                    <div class="project-content-wrapper">
+                        <div class="project-header-new">
+                            <div class="project-icon-large"><i class="fas fa-chart-pie"></i></div>
+                            <div class="project-meta">
+                                <h3 class="project-title-new" data-lang-key="project4-title">Estudio Estadístico de Factores de Riesgo</h3>
+                                <p class="project-subtitle-new" data-lang-key="project4-subtitle">Análisis Multivariante & Salud</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-overlay">
+                        <div class="overlay-content">
+                            <p class="overlay-description" data-lang-key="project4-description">
+                                Análisis estadístico exhaustivo aplicando cinco técnicas multivariantes (PCA, LDA, Clustering, Naive Bayes) 
+                                para identificar patrones y factores de riesgo asociados con la obesidad, alcanzando 85% de precisión 
+                                en clasificación con LDA y revelando insights clave para estrategias de prevención personalizadas.
+                            </p>
+                            <div class="overlay-tech-stack">
+                                <span class="overlay-tech-tag">R</span>
+                                <span class="overlay-tech-tag">ggplot2</span>
+                                <span class="overlay-tech-tag">Análisis Multivariante</span>
+                            </div>
+                            <div class="overlay-buttons">
+                                <a href="demos/estadistica.html" class="overlay-button primary" data-lang-key="project-view-analysis">Ver Análisis</a>
+                                <a href="https://github.com/alvariitoSW/factores_riesgo_obesidad" class="overlay-button">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 5 -->
+                <div class="project-card">
+                    <div class="project-background"></div>
+                    <div class="project-status">NLP & Social Media</div>
+                    
+                    <div class="project-content-wrapper">
+                        <div class="project-header-new">
+                            <div class="project-icon-large"><i class="fas fa-comments"></i></div>
+                            <div class="project-meta">
+                                <h3 class="project-title-new" data-lang-key="project5-title">Análisis de Sentimientos</h3>
+                                <p class="project-subtitle-new" data-lang-key="project5-subtitle">NLP & Social Media</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-overlay">
+                        <div class="overlay-content">
+                            <p class="overlay-description" data-lang-key="project5-description">
+                                Sistema de procesamiento de lenguaje natural que analiza sentimientos en tiempo real 
+                                en múltiples plataformas sociales, identificando tendencias y patrones emocionales.
+                            </p>
+                            <div class="overlay-tech-stack">
+                                <span class="overlay-tech-tag">Python</span>
+                                <span class="overlay-tech-tag">BERT</span>
+                                <span class="overlay-tech-tag">spaCy</span>
+                                <span class="overlay-tech-tag">Kafka</span>
+                                <span class="overlay-tech-tag">Elasticsearch</span>
+                            </div>
+                            <div class="overlay-buttons">
+                                <a href="#" class="overlay-button primary" data-lang-key="project-view-demo">Ver Demo</a>
+                                <a href="#" class="overlay-button">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 6 -->
+                <div class="project-card">
+                    <div class="project-background"></div>
+                    <div class="project-status">AI & E-commerce</div>
+                    
+                    <div class="project-content-wrapper">
+                        <div class="project-header-new">
+                            <div class="project-icon-large"><i class="fas fa-robot"></i></div>
+                            <div class="project-meta">
+                                <h3 class="project-title-new" data-lang-key="project6-title">Chatbot Inteligente</h3>
+                                <p class="project-subtitle-new" data-lang-key="project6-subtitle">AI & Customer Experience</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-overlay">
+                        <div class="overlay-content">
+                            <p class="overlay-description" data-lang-key="project6-description">
+                                Asistente virtual conversacional que integra procesamiento de lenguaje natural 
+                                con sistemas de recomendación para mejorar la experiencia de compra online.
+                            </p>
+                            <div class="overlay-tech-stack">
+                                <span class="overlay-tech-tag">Python</span>
+                                <span class="overlay-tech-tag">GPT-3</span>
+                                <span class="overlay-tech-tag">Rasa</span>
+                                <span class="overlay-tech-tag">Redis</span>
+                                <span class="overlay-tech-tag">WebSocket</span>
+                            </div>
+                            <div class="overlay-buttons">
+                                <a href="#" class="overlay-button primary" data-lang-key="project-view-demo">Ver Demo</a>
+                                <a href="#" class="overlay-button">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
@@ -1831,10 +2204,10 @@
                 'project2-description': 'Plataforma de análisis en tiempo real que utiliza modelos LSTM para predecir tendencias del mercado financiero con visualizaciones interactivas y alertas automáticas.',
                 'project3-title': 'Sistema de Aprendizaje por Refuerzo Comparativo',
                 'project3-subtitle': 'Reinforcement Learning Avanzado',
-                'project3-description': 'Implementé y comparé tres algoritmos fundamentales de aprendizaje por refuerzo (Q-learning, SARSA y DQN) en el entorno FrozenLake, analizando su comportamiento en configuraciones deterministas y estocásticas con métricas de rendimiento optimizadas.',
+                'project3-description': 'Implementé y comparé tres algoritmos de aprendizaje por refuerzo en el entorno FrozenLake, analizando su comportamiento en configuraciones deterministas y estocásticas con métricas de rendimiento.',
                 'project4-title': 'Estudio Estadístico de Factores de Riesgo en Obesidad',
                 'project4-subtitle': 'Análisis Multivariante & Salud Pública',
-                'project4-description': 'Análisis estadístico exhaustivo aplicando cinco técnicas multivariantes (PCA, LDA, Clustering, Naive Bayes) para identificar patrones y factores de riesgo asociados con la obesidad, alcanzando 85% de precisión en clasificación con LDA y revelando insights clave para estrategias de prevención personalizadas.',
+                'project4-description': 'Análisis estadístico multivariante con el fin de identificar patrones y factores de riesgo asociados con la obesidad, revelando insights clave para estrategias de prevención personalizadas.',
                 'project5-title': 'Análisis de Sentimientos en Redes Sociales',
                 'project5-subtitle': 'NLP & Social Media',
                 'project5-description': 'Sistema de procesamiento de lenguaje natural que analiza sentimientos en tiempo real en múltiples plataformas sociales, identificando tendencias y patrones emocionales.',
@@ -2130,16 +2503,6 @@
             observer.observe(el);
         });
 
-        // Project card interactions
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
 
         // Mobile menu toggle
         function toggleMobileMenu() {
