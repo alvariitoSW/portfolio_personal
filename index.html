@@ -830,8 +830,10 @@
 
         .tech-skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(3, 1fr); /* CAMBIO: 3 columnas fijas en lugar de auto-fit */
+            grid-template-rows: repeat(2, 1fr);    /* NUEVO: 2 filas explícitas para mejor control */
             gap: 1.5rem;
+            align-items: stretch; /* NUEVO: Asegura que todas las tarjetas tengan la misma altura */
         }
 
         .tech-skill-item {
@@ -1581,7 +1583,7 @@
                 <!-- Proyecto 1 - Destacado (Grande) -->
                 <div class="project-card">
                     <div class="project-background"></div>
-                    <div class="project-status">Proyecto Estrella</div>
+                    <div class="project-status">⭐ Proyecto Estrella</div>
                     
                     <div class="project-content-wrapper">
                         <div class="project-header-new">
@@ -1662,7 +1664,7 @@
                 <!-- Proyecto 3 -->
                 <div class="project-card">
                     <div class="project-background"></div>
-                    <div class="project-status">Reinforcement Learning</div>
+                    <div class="project-status">🎯 Reinforcement Learning</div>
                     
                     <div class="project-content-wrapper">
                         <div class="project-header-new">
@@ -1698,7 +1700,7 @@
                 <!-- Proyecto 4 -->
                 <div class="project-card">
                     <div class="project-background"></div>
-                    <div class="project-status">Salud Pública</div>
+                    <div class="project-status">🔬 Salud Pública</div>
                     
                     <div class="project-content-wrapper">
                         <div class="project-header-new">
@@ -1789,7 +1791,7 @@
                     <span class="tech-skill-tag">R</span>
                     <span class="tech-skill-tag">SQL</span>
                     <span class="tech-skill-tag">JavaScript</span>
-                    <span class="tech-skill-tag">Scala</span>
+                    <span class="tech-skill-tag">Matlab</span>
                 </div>
             </div>
 
@@ -1801,7 +1803,7 @@
                     <span class="tech-skill-tag">TensorFlow</span>
                     <span class="tech-skill-tag">PyTorch</span>
                     <span class="tech-skill-tag">Keras</span>
-                    <span class="tech-skill-tag">XGBoost</span>
+                    <span class="tech-skill-tag">Huggin Face</span>
                 </div>
             </div>
 
@@ -1812,8 +1814,7 @@
                     <span class="tech-skill-tag">Matplotlib</span>
                     <span class="tech-skill-tag">Seaborn</span>
                     <span class="tech-skill-tag">Plotly</span>
-                    <span class="tech-skill-tag">D3.js</span>
-                    <span class="tech-skill-tag">Tableau</span>
+                    <span class="tech-skill-tag">PowerBi</span>
                 </div>
             </div>
 
@@ -1823,33 +1824,8 @@
                 <div class="tech-skills-list">
                     <span class="tech-skill-tag">Apache Spark</span>
                     <span class="tech-skill-tag">Hadoop</span>
-                    <span class="tech-skill-tag">Kafka</span>
                     <span class="tech-skill-tag">Elasticsearch</span>
                     <span class="tech-skill-tag">MongoDB</span>
-                </div>
-            </div>
-
-            <div class="tech-skill-item">
-                <div class="tech-skill-icon"><i class="fas fa-comments"></i></div>
-                <div class="tech-skill-name">NLP & AI</div>
-                <div class="tech-skills-list">
-                    <span class="tech-skill-tag">BERT</span>
-                    <span class="tech-skill-tag">spaCy</span>
-                    <span class="tech-skill-tag">GPT-3</span>
-                    <span class="tech-skill-tag">Rasa</span>
-                    <span class="tech-skill-tag">Transformers</span>
-                </div>
-            </div>
-
-            <div class="tech-skill-item">
-                <div class="tech-skill-icon"><i class="fas fa-globe"></i></div>
-                <div class="tech-skill-name">Desarrollo Web</div>
-                <div class="tech-skills-list">
-                    <span class="tech-skill-tag">React</span>
-                    <span class="tech-skill-tag">Django</span>
-                    <span class="tech-skill-tag">Streamlit</span>
-                    <span class="tech-skill-tag">WebSocket</span>
-                    <span class="tech-skill-tag">REST APIs</span>
                 </div>
             </div>
 
@@ -1873,7 +1849,7 @@
                     <span class="tech-skill-tag">VS Code</span>
                     <span class="tech-skill-tag">Pandas</span>
                     <span class="tech-skill-tag">NumPy</span>
-                    <span class="tech-skill-tag">Apache Airflow</span>
+                    <span class="tech-skill-tag">Pandas</span>
                 </div>
             </div>
         </div>
