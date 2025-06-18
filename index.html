@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-lang-key="page-title">Mi Viaje en Ciencia e Ingeniería de Datos</title>
+    <title>Mi Viaje en Ciencia e Ingeniería de Datos</title>
     
     <!-- Favicon IA - Texto Simple -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23667eea' rx='6'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='12' font-family='monospace' fill='white' font-weight='bold'>AI</text></svg>">
@@ -34,31 +34,6 @@
             --contact-item-bg: rgba(255, 255, 255, 0.1);
             --contact-item-border: rgba(255, 255, 255, 0.2);
             --timeline-line: linear-gradient(to bottom, #667eea, #764ba2);
-        }
-
-        [data-theme="dark"] {
-            /* Dark theme colors */
-            --bg-color: #0d1117;
-            --text-color: #e6edf3;
-            --text-light: #b1bac4;
-            --text-muted: #8b949e;
-            --card-bg: #161b22;
-            --navbar-bg: rgba(13, 17, 23, 0.95);
-            --hero-gradient: linear-gradient(135deg, #4c6ef5 0%, #9c27b0 100%);
-            --section-bg: #0d1117;
-            --border-color: #30363d;
-            --shadow-light: rgba(0, 0, 0, 0.3);
-            --shadow-medium: rgba(0, 0, 0, 0.4);
-            --shadow-dark: rgba(0, 0, 0, 0.5);
-            --tech-bg: linear-gradient(135deg, #161b22 0%, #1c2128 100%);
-            --tech-item-bg: #21262d;
-            --soft-skill-bg: #161b22;
-            --academic-bg: linear-gradient(135deg, #161b22 0%, #1c2128 100%);
-            --footer-bg: #010409;
-            --footer-text: #8b949e;
-            --contact-item-bg: rgba(255, 255, 255, 0.05);
-            --contact-item-border: rgba(255, 255, 255, 0.1);
-            --timeline-line: linear-gradient(to bottom, #4c6ef5, #9c27b0);
         }
 
         * {
@@ -144,33 +119,6 @@
 
         .nav-links a:hover::after {
             width: 100%;
-        }
-
-        .nav-controls {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .theme-toggle, .lang-toggle {
-            background: none;
-            border: 2px solid var(--border-color);
-            border-radius: 50px;
-            padding: 0.5rem 1rem;
-            color: var(--text-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .theme-toggle:hover, .lang-toggle:hover {
-            border-color: #667eea;
-            color: #667eea;
-            transform: scale(1.05);
         }
 
         /* Hero Section */
@@ -530,7 +478,6 @@
             cursor: pointer;
             border: 2px solid transparent;
             backdrop-filter: blur(10px);
-            /* Agregar z-index para evitar problemas de apilamiento */
             z-index: 1;
         }
 
@@ -681,11 +628,9 @@
         }
 
         .project-card:hover {
-            /* Reducir la transformación para mantener el layout */
             transform: translateY(-8px) scale(1.01);
             border-color: rgba(255, 255, 255, 0.3);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-            /* Aumentar z-index en hover para que aparezca encima */
             z-index: 10;
         }
 
@@ -935,12 +880,6 @@
             font-weight: 500;
         }
 
-        /* Dark mode tech skill tags */
-        [data-theme="dark"] .tech-skill-tag {
-            background: #30363d;
-            color: #4c6ef5;
-        }
-
         /* Soft Skills */
         .soft-skills-grid {
             display: grid;
@@ -1165,11 +1104,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Theme transition class */
-        .theme-transition * {
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
-        }
-
         /* Responsive para la nueva sección de proyectos */
         @media (max-width: 1024px) {
             .projects-grid {
@@ -1245,23 +1179,6 @@
 
             .mobile-menu-btn {
                 display: block;
-            }
-
-            .nav-controls {
-                position: fixed;
-                top: 100px;
-                right: 1rem;
-                flex-direction: column;
-                gap: 0.5rem;
-                opacity: 0;
-                pointer-events: none;
-                transition: opacity 0.3s ease;
-                z-index: 1000;
-            }
-
-            .nav-controls.mobile-active {
-                opacity: 1;
-                pointer-events: auto;
             }
 
             .section {
@@ -1558,26 +1475,16 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo" data-lang-key="nav-logo">Mi Portfolio</div>
+            <div class="logo">Mi Portfolio</div>
             <div class="nav-center">
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="#inicio" onclick="closeMobileMenu()" data-lang-key="nav-home">Inicio</a></li>
-                    <li><a href="#recorrido" onclick="closeMobileMenu()" data-lang-key="nav-journey">Mi Recorrido</a></li>
-                    <li><a href="#proyectos" onclick="closeMobileMenu()" data-lang-key="nav-projects">Proyectos</a></li>
-                    <li><a href="#habilidades" onclick="closeMobileMenu()" data-lang-key="nav-skills">Habilidades</a></li>
-                    <li><a href="#expediente" onclick="closeMobileMenu()" data-lang-key="nav-record">Expediente</a></li>
-                    <li><a href="#contacto" onclick="closeMobileMenu()" data-lang-key="nav-contact">Contacto</a></li>
+                    <li><a href="#inicio" onclick="closeMobileMenu()">Inicio</a></li>
+                    <li><a href="#recorrido" onclick="closeMobileMenu()">Mi Recorrido</a></li>
+                    <li><a href="#proyectos" onclick="closeMobileMenu()">Proyectos</a></li>
+                    <li><a href="#habilidades" onclick="closeMobileMenu()">Habilidades</a></li>
+                    <li><a href="#expediente" onclick="closeMobileMenu()">Expediente</a></li>
+                    <li><a href="#contacto" onclick="closeMobileMenu()">Contacto</a></li>
                 </ul>
-            </div>
-            <div class="nav-controls">
-                <button class="theme-toggle" onclick="toggleTheme()">
-                    <i class="fas fa-moon" id="theme-icon"></i>
-                    <span data-lang-key="theme-toggle">Modo Oscuro</span>
-                </button>
-                <button class="lang-toggle" onclick="toggleLanguage()">
-                    <i class="fas fa-globe"></i>
-                    <span id="lang-text">EN</span>
-                </button>
             </div>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
                 <i class="fas fa-bars"></i>
@@ -1590,12 +1497,12 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <i class="fas fa-chart-line"></i>
-                <span data-lang-key="hero-badge">ESTUDIANTE DE GRADO</span>
+                <span>ESTUDIANTE DE GRADO</span>
             </div>
             <h1 class="hero-name">Álvaro Martínez Gamo</h1>
-            <h2 class="hero-title" data-lang-key="hero-title">Ciencia e Ingeniería de Datos</h2>
-            <p class="hero-university" data-lang-key="hero-university">Universidad Autónoma de Madrid</p>
-            <p class="hero-description" data-lang-key="hero-description">
+            <h2 class="hero-title">Ciencia e Ingeniería de Datos</h2>
+            <p class="hero-university">Universidad Autónoma de Madrid</p>
+            <p class="hero-description">
                 Transformando datos en conocimiento a través de la innovación tecnológica. 
                 Especializado en machine learning, análisis predictivo y desarrollo de soluciones 
                 basadas en inteligencia artificial.
@@ -1604,26 +1511,26 @@
             <div class="hero-stats">
                 <div class="hero-stat">
                     <span class="hero-stat-number">3+</span>
-                    <span class="hero-stat-label" data-lang-key="hero-stat-years">Años de Estudio</span>
+                    <span class="hero-stat-label">Años de Estudio</span>
                 </div>
                 <div class="hero-stat">
-                    <span class="hero-stat-number">15+</span>
-                    <span class="hero-stat-label" data-lang-key="hero-stat-projects">Proyectos</span>
+                    <span class="hero-stat-number">10+</span>
+                    <span class="hero-stat-label">Proyectos</span>
                 </div>
                 <div class="hero-stat">
                     <span class="hero-stat-number">8.28</span>
-                    <span class="hero-stat-label" data-lang-key="hero-stat-average">Promedio del último año (3º carrera)</span>
+                    <span class="hero-stat-label">Promedio del último año (3º carrera)</span>
                 </div>
             </div>
             
             <div class="hero-buttons">
                 <a href="#proyectos" class="cta-button primary">
                     <i class="fas fa-rocket"></i>
-                    <span data-lang-key="hero-button-projects">Ver Proyectos</span>
+                    <span>Ver Proyectos</span>
                 </a>
                 <a href="#contacto" class="cta-button">
                     <i class="fas fa-envelope"></i>
-                    <span data-lang-key="hero-button-contact">Contactar</span>
+                    <span>Contactar</span>
                 </a>
             </div>
         </div>
@@ -1631,16 +1538,16 @@
 
     <!-- Timeline Section -->
     <section id="recorrido" class="section">
-        <h2 class="section-title fade-in" data-lang-key="journey-title">Formación Académica y Desarrollo Profesional</h2>
+        <h2 class="section-title fade-in">Formación Académica y Desarrollo Profesional</h2>
         <div class="timeline fade-in">
             <div class="timeline-item">
                 <div class="timeline-year">2022/2023</div>
                 <div class="timeline-content">
-                    <h3 data-lang-key="timeline-year1-title">Primer Año - Fundamentos Matemáticos y Computacionales</h3>
-                    <p data-lang-key="timeline-year1-description">Establecimiento de una base sólida en matemáticas aplicadas, estadística inferencial y programación. Durante este período, desarrollé competencias fundamentales en análisis cuantitativo y adquirí dominio de las herramientas computacionales esenciales para la ciencia de datos. La formación incluyó metodologías rigurosas de investigación estadística y principios de diseño de experimentos que constituyen la base teórica para el análisis de datos avanzado.</p>
+                    <h3>Primer Año - Fundamentos Matemáticos y Computacionales</h3>
+                    <p>Establecimiento de una base sólida en matemáticas aplicadas, estadística inferencial y programación. Durante este período, desarrollé competencias fundamentales en análisis cuantitativo y adquirí dominio de las herramientas computacionales esenciales para la ciencia de datos. La formación incluyó metodologías rigurosas de investigación estadística y principios de diseño de experimentos que constituyen la base teórica para el análisis de datos avanzado.</p>
                     <div style="margin-top: 1.5rem;">
-                        <strong style="color: #667eea; font-size: 0.9rem;" data-lang-key="timeline-year1-skills-title">Competencias Adquiridas:</strong>
-                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);" data-lang-key="timeline-year1-skills">Álgebra lineal aplicada, cálculo multivariable, estadística descriptiva e inferencial, programación estructurada en Python y R, modelado matemático, y fundamentos de arquitecturas de bases de datos relacionales.</p>
+                        <strong style="color: #667eea; font-size: 0.9rem;">Competencias Adquiridas:</strong>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">Álgebra lineal aplicada, cálculo multivariable, estadística descriptiva e inferencial, programación estructurada en Python y R, modelado matemático, y fundamentos de arquitecturas de bases de datos relacionales.</p>
                     </div>
                 </div>
             </div>
@@ -1648,11 +1555,11 @@
             <div class="timeline-item">
                 <div class="timeline-year">2023/2024</div>
                 <div class="timeline-content">
-                    <h3 data-lang-key="timeline-year2-title">Segundo Año - Metodologías Avanzadas y Aplicaciones</h3>
-                    <p data-lang-key="timeline-year2-description">Profundización en algoritmos de aprendizaje automático supervisado y no supervisado, con énfasis en la implementación práctica de modelos predictivos. Este año se caracterizó por el desarrollo de proyectos multidisciplinarios que integraron técnicas estadísticas avanzadas con herramientas de visualización de datos. La formación abarcó metodologías de validación cruzada, optimización de hiperparámetros y evaluación robusta de modelos en escenarios reales.</p>
+                    <h3>Segundo Año - Metodologías Avanzadas y Aplicaciones</h3>
+                    <p>Profundización en algoritmos de aprendizaje automático supervisado y no supervisado, con énfasis en la implementación práctica de modelos predictivos. Este año se caracterizó por el desarrollo de proyectos multidisciplinarios que integraron técnicas estadísticas avanzadas con herramientas de visualización de datos. La formación abarcó metodologías de validación cruzada, optimización de hiperparámetros y evaluación robusta de modelos en escenarios reales.</p>
                     <div style="margin-top: 1.5rem;">
-                        <strong style="color: #667eea; font-size: 0.9rem;" data-lang-key="timeline-year2-achievements-title">Logros Destacados:</strong>
-                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);" data-lang-key="timeline-year2-achievements">Implementación de pipelines de machine learning end-to-end, desarrollo de dashboards interactivos con Plotly y D3.js, colaboración en proyectos de análisis de big data utilizando Apache Spark, y aplicación de técnicas de feature engineering avanzadas.</p>
+                        <strong style="color: #667eea; font-size: 0.9rem;">Logros Destacados:</strong>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">Implementación de pipelines de machine learning end-to-end, desarrollo de dashboards interactivos con Plotly y D3.js, colaboración en proyectos de análisis de big data utilizando Apache Spark, y aplicación de técnicas de feature engineering avanzadas.</p>
                     </div>
                 </div>
             </div>
@@ -1660,11 +1567,11 @@
             <div class="timeline-item">
                 <div class="timeline-year">2024/2025</div>
                 <div class="timeline-content">
-                    <h3 data-lang-key="timeline-year3-title">Tercer Año - Especialización en Inteligencia Artificial</h3>
-                    <p data-lang-key="timeline-year3-description">Concentración en arquitecturas de deep learning, procesamiento de lenguaje natural y sistemas de aprendizaje por refuerzo. Este período incluyó la realización de proyectos de investigación aplicada en colaboración con la industria, enfocándose en la implementación de soluciones escalables de inteligencia artificial. La formación abarcó metodologías MLOps, deployment de modelos en producción y consideraciones éticas en el desarrollo de sistemas inteligentes.</p>
+                    <h3>Tercer Año - Especialización en Inteligencia Artificial</h3>
+                    <p>Concentración en arquitecturas de deep learning, procesamiento de lenguaje natural y sistemas de aprendizaje por refuerzo. Este período incluyó la realización de proyectos de investigación aplicada en colaboración con la industria, enfocándose en la implementación de soluciones escalables de inteligencia artificial. La formación abarcó metodologías MLOps, deployment de modelos en producción y consideraciones éticas en el desarrollo de sistemas inteligentes.</p>
                     <div style="margin-top: 1.5rem;">
-                        <strong style="color: #667eea; font-size: 0.9rem;" data-lang-key="timeline-year3-research-title">Proyectos de Investigación:</strong>
-                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);" data-lang-key="timeline-year3-research">Desarrollo de modelos generativos con arquitecturas de difusión, implementación de sistemas de recomendación híbridos, análisis de sentimientos en tiempo real utilizando transformers, y optimización de algoritmos de aprendizaje por refuerzo para aplicaciones financieras.</p>
+                        <strong style="color: #667eea; font-size: 0.9rem;">Proyectos de Investigación:</strong>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">Desarrollo de modelos generativos con arquitecturas de difusión, implementación de sistemas de recomendación híbridos, análisis de sentimientos en tiempo real utilizando transformers, y optimización de algoritmos de aprendizaje por refuerzo para aplicaciones financieras.</p>
                     </div>
                 </div>
             </div>
@@ -1673,7 +1580,7 @@
 
     <!-- Projects Section -->
     <section id="proyectos" class="section">
-        <h2 class="section-title fade-in" data-lang-key="projects-title">Algunos de mis proyectos mas destacados</h2>
+        <h2 class="section-title fade-in">Algunos de mis proyectos mas destacados</h2>
         <div class="projects-showcase fade-in">
             <div class="projects-grid">
                 
@@ -1686,8 +1593,8 @@
                         <div class="project-header-new">
                             <div class="project-icon-large"><i class="fas fa-magic"></i></div>
                             <div class="project-meta">
-                                <h3 class="project-title-new" data-lang-key="project1-title">Sistema de Generación de Imágenes por Difusión</h3>
-                                <p class="project-subtitle-new" data-lang-key="project1-subtitle">Deep Learning Generativo</p>
+                                <h3 class="project-title-new">Sistema de Generación de Imágenes por Difusión</h3>
+                                <p class="project-subtitle-new">Deep Learning Generativo</p>
                             </div>
                         </div>
                         
@@ -1702,7 +1609,7 @@
 
                     <div class="project-overlay">
                         <div class="overlay-content">
-                            <p class="overlay-description" data-lang-key="project1-description">
+                            <p class="overlay-description">
                                 Desarrollé un framework completo para entrenamiento y generación de imágenes usando modelos de difusión. 
                                 Incluye múltiples procesos de difusión, métodos de muestreo avanzados, y capacidades de generación condicional, 
                                 colorización e inpainting con interfaz interactiva.
@@ -1716,7 +1623,7 @@
                                 <span class="overlay-tech-tag">Torchvision</span>
                             </div>
                             <div class="overlay-buttons">
-                                <a href="demos/IA_gen.html" class="overlay-button primary" data-lang-key="project-view-dashboard">Ver Dashboard</a>
+                                <a href="demos/IA_gen.html" class="overlay-button primary">Ver Dashboard</a>
                                 <a href="https://github.com/HectorTablero/image-gen" class="overlay-button">GitHub</a>
                             </div>
                         </div>
@@ -1732,15 +1639,15 @@
                         <div class="project-header-new">
                             <div class="project-icon-large"><i class="fas fa-chart-line"></i></div>
                             <div class="project-meta">
-                                <h3 class="project-title-new" data-lang-key="project2-title">Análisis Predictivo de Mercados</h3>
-                                <p class="project-subtitle-new" data-lang-key="project2-subtitle">Data Science & Finanzas</p>
+                                <h3 class="project-title-new">Análisis Predictivo de Mercados</h3>
+                                <p class="project-subtitle-new">Data Science & Finanzas</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="project-overlay">
                         <div class="overlay-content">
-                            <p class="overlay-description" data-lang-key="project2-description">
+                            <p class="overlay-description">
                                 Plataforma de análisis en tiempo real que utiliza modelos LSTM para predecir tendencias del mercado financiero 
                                 con visualizaciones interactivas y alertas automáticas.
                             </p>
@@ -1752,7 +1659,7 @@
                                 <span class="overlay-tech-tag">PostgreSQL</span>
                             </div>
                             <div class="overlay-buttons">
-                                <a href="#" class="overlay-button primary" data-lang-key="project-view-demo">Ver Demo</a>
+                                <a href="#" class="overlay-button primary">Ver Demo</a>
                                 <a href="#" class="overlay-button">GitHub</a>
                             </div>
                         </div>
@@ -1768,15 +1675,15 @@
                         <div class="project-header-new">
                             <div class="project-icon-large"><i class="fas fa-brain"></i></div>
                             <div class="project-meta">
-                                <h3 class="project-title-new" data-lang-key="project3-title">Sistema de Aprendizaje por Refuerzo Comparativo</h3>
-                                <p class="project-subtitle-new" data-lang-key="project3-subtitle">Reinforcement Learning Avanzado</p>
+                                <h3 class="project-title-new">Sistema de Aprendizaje por Refuerzo Comparativo</h3>
+                                <p class="project-subtitle-new">Reinforcement Learning Avanzado</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="project-overlay">
                         <div class="overlay-content">
-                            <p class="overlay-description" data-lang-key="project3-description">
+                            <p class="overlay-description">
                                 Implementé y comparé tres algoritmos de aprendizaje por refuerzo (Q-learning, SARSA y DQN) 
                                 en el entorno FrozenLake, analizando su comportamiento en configuraciones deterministas y estocásticas 
                                 con métricas de rendimiento.
@@ -1788,7 +1695,7 @@
                                 <span class="overlay-tech-tag">Matplotlib</span>
                             </div>
                             <div class="overlay-buttons">
-                                <a href="demos/RL.html" class="overlay-button primary" data-lang-key="project-view-analysis">Ver Análisis</a>
+                                <a href="demos/RL.html" class="overlay-button primary">Ver Análisis</a>
                                 <a href="https://github.com/alvariitoSW/reinforcement_learning" class="overlay-button">GitHub</a>
                             </div>
                         </div>
@@ -1804,15 +1711,15 @@
                         <div class="project-header-new">
                             <div class="project-icon-large"><i class="fas fa-chart-pie"></i></div>
                             <div class="project-meta">
-                                <h3 class="project-title-new" data-lang-key="project4-title">Estudio Estadístico de Factores de Riesgo</h3>
-                                <p class="project-subtitle-new" data-lang-key="project4-subtitle">Análisis Multivariante & Salud</p>
+                                <h3 class="project-title-new">Estudio Estadístico de Factores de Riesgo</h3>
+                                <p class="project-subtitle-new">Análisis Multivariante & Salud</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="project-overlay">
                         <div class="overlay-content">
-                            <p class="overlay-description" data-lang-key="project4-description">
+                            <p class="overlay-description">
                                 Análisis estadístico exhaustivo aplicando cinco técnicas multivariantes (PCA, LDA, Clustering, Naive Bayes) 
                                 para identificar patrones y factores de riesgo asociados con la obesidad, alcanzando 85% de precisión 
                                 en clasificación con LDA y revelando insights clave para estrategias de prevención personalizadas.
@@ -1823,7 +1730,7 @@
                                 <span class="overlay-tech-tag">Análisis Multivariante</span>
                             </div>
                             <div class="overlay-buttons">
-                                <a href="demos/estadistica.html" class="overlay-button primary" data-lang-key="project-view-analysis">Ver Análisis</a>
+                                <a href="demos/estadistica.html" class="overlay-button primary">Ver Análisis</a>
                                 <a href="https://github.com/alvariitoSW/factores_riesgo_obesidad" class="overlay-button">GitHub</a>
                             </div>
                         </div>
@@ -1831,7 +1738,7 @@
                 </div>
 
                 <!-- Proyecto 5 -->
-                <div class="project-card">
+                <!-- <div class="project-card">
                     <div class="project-background"></div>
                     <div class="project-status">NLP & Social Media</div>
                     
@@ -1839,15 +1746,15 @@
                         <div class="project-header-new">
                             <div class="project-icon-large"><i class="fas fa-comments"></i></div>
                             <div class="project-meta">
-                                <h3 class="project-title-new" data-lang-key="project5-title">Análisis de Sentimientos</h3>
-                                <p class="project-subtitle-new" data-lang-key="project5-subtitle">NLP & Social Media</p>
+                                <h3 class="project-title-new">Análisis de Sentimientos</h3>
+                                <p class="project-subtitle-new">NLP & Social Media</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="project-overlay">
                         <div class="overlay-content">
-                            <p class="overlay-description" data-lang-key="project5-description">
+                            <p class="overlay-description">
                                 Sistema de procesamiento de lenguaje natural que analiza sentimientos en tiempo real 
                                 en múltiples plataformas sociales, identificando tendencias y patrones emocionales.
                             </p>
@@ -1859,48 +1766,12 @@
                                 <span class="overlay-tech-tag">Elasticsearch</span>
                             </div>
                             <div class="overlay-buttons">
-                                <a href="#" class="overlay-button primary" data-lang-key="project-view-demo">Ver Demo</a>
+                                <a href="#" class="overlay-button primary">Ver Demo</a>
                                 <a href="#" class="overlay-button">GitHub</a>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Proyecto 6 -->
-                <div class="project-card">
-                    <div class="project-background"></div>
-                    <div class="project-status">AI & E-commerce</div>
-                    
-                    <div class="project-content-wrapper">
-                        <div class="project-header-new">
-                            <div class="project-icon-large"><i class="fas fa-robot"></i></div>
-                            <div class="project-meta">
-                                <h3 class="project-title-new" data-lang-key="project6-title">Chatbot Inteligente</h3>
-                                <p class="project-subtitle-new" data-lang-key="project6-subtitle">AI & Customer Experience</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-overlay">
-                        <div class="overlay-content">
-                            <p class="overlay-description" data-lang-key="project6-description">
-                                Asistente virtual conversacional que integra procesamiento de lenguaje natural 
-                                con sistemas de recomendación para mejorar la experiencia de compra online.
-                            </p>
-                            <div class="overlay-tech-stack">
-                                <span class="overlay-tech-tag">Python</span>
-                                <span class="overlay-tech-tag">GPT-3</span>
-                                <span class="overlay-tech-tag">Rasa</span>
-                                <span class="overlay-tech-tag">Redis</span>
-                                <span class="overlay-tech-tag">WebSocket</span>
-                            </div>
-                            <div class="overlay-buttons">
-                                <a href="#" class="overlay-button primary" data-lang-key="project-view-demo">Ver Demo</a>
-                                <a href="#" class="overlay-button">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </div> -->
 
             </div>
         </div>
@@ -1908,19 +1779,19 @@
 
     <!-- Skills Section -->
     <section id="habilidades" class="section">
-        <h2 class="section-title fade-in" data-lang-key="skills-title">Mis Competencias</h2>
+        <h2 class="section-title fade-in">Mis Competencias</h2>
         <div class="skills-container fade-in">
             
     <!-- Technical Skills -->
     <div class="technical-skills">
         <h3 class="tech-skills-title">
             <i class="fas fa-code"></i>
-            <span data-lang-key="technical-skills-title">Habilidades Técnicas</span>
+            <span>Habilidades Técnicas</span>
         </h3>
         <div class="tech-skills-grid">
             <div class="tech-skill-item">
                 <div class="tech-skill-icon"><i class="fas fa-code"></i></div>
-                <div class="tech-skill-name" data-lang-key="skill-programming">Programación</div>
+                <div class="tech-skill-name">Programación</div>
                 <div class="tech-skills-list">
                     <span class="tech-skill-tag">Python</span>
                     <span class="tech-skill-tag">R</span>
@@ -1944,7 +1815,7 @@
 
             <div class="tech-skill-item">
                 <div class="tech-skill-icon"><i class="fas fa-chart-bar"></i></div>
-                <div class="tech-skill-name" data-lang-key="skill-visualization">Visualización</div>
+                <div class="tech-skill-name">Visualización</div>
                 <div class="tech-skills-list">
                     <span class="tech-skill-tag">Matplotlib</span>
                     <span class="tech-skill-tag">Seaborn</span>
@@ -1980,7 +1851,7 @@
 
             <div class="tech-skill-item">
                 <div class="tech-skill-icon"><i class="fas fa-globe"></i></div>
-                <div class="tech-skill-name" data-lang-key="skill-web-dev">Desarrollo Web</div>
+                <div class="tech-skill-name">Desarrollo Web</div>
                 <div class="tech-skills-list">
                     <span class="tech-skill-tag">React</span>
                     <span class="tech-skill-tag">Django</span>
@@ -2004,7 +1875,7 @@
 
             <div class="tech-skill-item">
                 <div class="tech-skill-icon"><i class="fas fa-cogs"></i></div>
-                <div class="tech-skill-name" data-lang-key="skill-tools">Herramientas</div>
+                <div class="tech-skill-name">Herramientas</div>
                 <div class="tech-skills-list">
                     <span class="tech-skill-tag">Jupyter</span>
                     <span class="tech-skill-tag">VS Code</span>
@@ -2021,40 +1892,40 @@
                 
                 <div class="soft-skill-category">
                     <div class="soft-skill-icon"><i class="fas fa-users"></i></div>
-                    <h3 class="soft-skill-title" data-lang-key="soft-skill1-title">Liderazgo y Adaptabilidad</h3>
-                    <p class="soft-skill-subtitle" data-lang-key="soft-skill1-subtitle">Competencias clave para la transformación digital</p>
+                    <h3 class="soft-skill-title">Liderazgo y Adaptabilidad</h3>
+                    <p class="soft-skill-subtitle">Competencias clave para la transformación digital</p>
                     <ul class="soft-skill-list">
-                        <li data-lang-key="soft-skill1-item1">Flexibilidad y adaptación al cambio</li>
-                        <li data-lang-key="soft-skill1-item2">Liderazgo ágil en equipos multidisciplinares</li>
-                        <li data-lang-key="soft-skill1-item3">Mentalidad de crecimiento continuo</li>
-                        <li data-lang-key="soft-skill1-item4">Gestión efectiva del cambio tecnológico</li>
-                        <li data-lang-key="soft-skill1-item5">Capacidad de influir sin autoridad formal</li>
+                        <li>Flexibilidad y adaptación al cambio</li>
+                        <li>Liderazgo ágil en equipos multidisciplinares</li>
+                        <li>Mentalidad de crecimiento continuo</li>
+                        <li>Gestión efectiva del cambio tecnológico</li>
+                        <li>Capacidad de influir sin autoridad formal</li>
                     </ul>
                 </div>
 
                 <div class="soft-skill-category">
                     <div class="soft-skill-icon"><i class="fas fa-lightbulb"></i></div>
-                    <h3 class="soft-skill-title" data-lang-key="soft-skill2-title">Innovación y Resolución de Problemas</h3>
-                    <p class="soft-skill-subtitle" data-lang-key="soft-skill2-subtitle">Pensamiento creativo para soluciones disruptivas</p>
+                    <h3 class="soft-skill-title">Innovación y Resolución de Problemas</h3>
+                    <p class="soft-skill-subtitle">Pensamiento creativo para soluciones disruptivas</p>
                     <ul class="soft-skill-list">
-                        <li data-lang-key="soft-skill2-item1">Pensamiento crítico y analítico</li>
-                        <li data-lang-key="soft-skill2-item2">Creatividad aplicada a soluciones tecnológicas</li>
-                        <li data-lang-key="soft-skill2-item3">Innovación centrada en el cliente</li>
-                        <li data-lang-key="soft-skill2-item4">Resolución ágil de problemas complejos</li>
-                        <li data-lang-key="soft-skill2-item5">Curiosidad intelectual y aprendizaje continuo</li>
+                        <li>Pensamiento crítico y analítico</li>
+                        <li>Creatividad aplicada a soluciones tecnológicas</li>
+                        <li>Innovación centrada en el cliente</li>
+                        <li>Resolución ágil de problemas complejos</li>
+                        <li>Curiosidad intelectual y aprendizaje continuo</li>
                     </ul>
                 </div>
 
                 <div class="soft-skill-category">
                     <div class="soft-skill-icon"><i class="fas fa-handshake"></i></div>
-                    <h3 class="soft-skill-title" data-lang-key="soft-skill3-title">Colaboración y Comunicación</h3>
-                    <p class="soft-skill-subtitle" data-lang-key="soft-skill3-subtitle">Habilidades interpersonales para el éxito empresarial</p>
+                    <h3 class="soft-skill-title">Colaboración y Comunicación</h3>
+                    <p class="soft-skill-subtitle">Habilidades interpersonales para el éxito empresarial</p>
                     <ul class="soft-skill-list">
-                        <li data-lang-key="soft-skill3-item1">Comunicación efectiva con stakeholders técnicos y no técnicos</li>
-                        <li data-lang-key="soft-skill3-item2">Colaboración en entornos virtuales e híbridos</li>
-                        <li data-lang-key="soft-skill3-item3">Inteligencia emocional y empatía</li>
-                        <li data-lang-key="soft-skill3-item4">Construcción de relaciones sólidas</li>
-                        <li data-lang-key="soft-skill3-item5">Persuasión y negociación estratégica</li>
+                        <li>Comunicación efectiva con stakeholders técnicos y no técnicos</li>
+                        <li>Colaboración en entornos virtuales e híbridos</li>
+                        <li>Inteligencia emocional y empatía</li>
+                        <li>Construcción de relaciones sólidas</li>
+                        <li>Persuasión y negociación estratégica</li>
                     </ul>
                 </div>
 
@@ -2065,39 +1936,39 @@
 
     <!-- Academic Record -->
     <section id="expediente" class="section">
-        <h2 class="section-title fade-in" data-lang-key="academic-title">Expediente Académico</h2>
+        <h2 class="section-title fade-in">Expediente Académico</h2>
         <div class="academic-record fade-in">
-            <h3 style="text-align: center; margin-bottom: 2rem; color: #667eea; font-size: 1.5rem;" data-lang-key="academic-degree">
+            <h3 style="text-align: center; margin-bottom: 2rem; color: #667eea; font-size: 1.5rem;">
                 Licenciatura en Ciencia e Ingeniería de Datos
             </h3>
             <div class="record-grid">
                 <div class="record-item">
                     <div class="record-value">7.26</div>
-                    <div class="record-label" data-lang-key="academic-average">Promedio General</div>
+                    <div class="record-label">Promedio General</div>
                 </div>
                 <div class="record-item">
                     <div class="record-value">3/4</div>
-                    <div class="record-label" data-lang-key="academic-years">Años Completados</div>
+                    <div class="record-label">Años Completados</div>
                 </div>
                 <div class="record-item">
                     <div class="record-value">100%</div>
-                    <div class="record-label" data-lang-key="academic-subjects">Materias Aprobadas</div>
+                    <div class="record-label">Materias Aprobadas</div>
                 </div>
             </div>
             
             <div style="margin-top: 3rem; text-align: center;">
-                <h4 style="color: #667eea; margin-bottom: 1rem;" data-lang-key="academic-outstanding">Materias Destacadas</h4>
+                <h4 style="color: #667eea; margin-bottom: 1rem;">Materias Destacadas</h4>
                 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
-                    <span style="background: var(--card-bg); padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 10px var(--shadow-light);" data-lang-key="academic-subject1">
+                    <span style="background: var(--card-bg); padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 10px var(--shadow-light);">
                         Aprendizaje automático III - 9.3
                     </span>
-                    <span style="background: var(--card-bg); padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 10px var(--shadow-light);" data-lang-key="academic-subject2">
+                    <span style="background: var(--card-bg); padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 10px var(--shadow-light);">
                         Bases de datos: Integración y Arquitecturas - 9.0
                     </span>
-                    <span style="background: var(--card-bg); padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 10px var(--shadow-light);" data-lang-key="academic-subject3">
+                    <span style="background: var(--card-bg); padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 10px var(--shadow-light);">
                         Computación de altas prestaciones - 8.5
                     </span>
-                    <span style="background: var(--card-bg); padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 10px var(--shadow-light);" data-lang-key="academic-subject4">
+                    <span style="background: var(--card-bg); padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 10px var(--shadow-light);">
                         Tratamiento de señales y series temporales - 8.4
                     </span>
                 </div>
@@ -2108,10 +1979,10 @@
     <!-- Contact Section -->
     <section id="contacto" class="contact-section">
         <div class="section">
-            <h2 style="color: white; text-align: center; margin-bottom: 2rem; font-size: 2.5rem;" data-lang-key="contact-title">
+            <h2 style="color: white; text-align: center; margin-bottom: 2rem; font-size: 2.5rem;">
                 Conectemos
             </h2>
-            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; opacity: 0.9;" data-lang-key="contact-subtitle">
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; opacity: 0.9;">
                 ¿Listo para transformar datos en valor? ¡Hablemos!
             </p>
             
@@ -2124,338 +1995,42 @@
                 
                 <div class="contact-item">
                     <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                    <h4 data-lang-key="contact-phone">Teléfono</h4>
+                    <h4>Teléfono</h4>
                     <a href="tel:+34676785968">+34 676785968</a>
                 </div>
                 
                 <div class="contact-item">
                     <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
                     <h4>LinkedIn</h4>
-                    <a href="https://linkedin.com/in/tu-perfil" target="_blank" data-lang-key="contact-view-profile">Ver Perfil</a>
+                    <a href="https://linkedin.com/in/tu-perfil" target="_blank">Ver Perfil</a>
                 </div>
                 
                 <div class="contact-item">
                     <div class="contact-icon"><i class="fab fa-github"></i></div>
                     <h4>GitHub</h4>
-                    <a href="https://github.com/alvariitoSW" target="_blank" data-lang-key="contact-view-repos">Ver Repositorios</a>
+                    <a href="https://github.com/alvariitoSW" target="_blank">Ver Repositorios</a>
                 </div>
                 
                 <div class="contact-item">
                     <div class="contact-icon"><i class="fas fa-file-pdf"></i></div>
-                    <h4 data-lang-key="contact-cv">CV Completo</h4>
-                    <a href="imagenes/CV.pdf" target="_blank" data-lang-key="contact-download-pdf">Descargar PDF</a>
+                    <h4>CV Completo</h4>
+                    <a href="imagenes/CV.pdf" target="_blank">Descargar PDF</a>
                 </div>
-
-                <!-- <div class="contact-item">
-                    <div class="contact-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <h4 data-lang-key="contact-transcript">Expediente Académico</h4>
-                    <a href="imagenes/Expediente_Academico.pdf" target="_blank" data-lang-key="contact-download-pdf">Descargar PDF</a>
-                </div> -->
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <p data-lang-key="footer-text">&copy; 2024 Mi Portfolio de Ciencia e Ingeniería de Datos. Diseñado con pasión por los datos.</p>
+        <p>&copy; 2024 Mi Portfolio de Ciencia e Ingeniería de Datos. Diseñado con pasión por los datos.</p>
     </footer>
 
     <script>
-        // Translations object
-        const translations = {
-            es: {
-                'page-title': 'Mi Viaje en Ciencia e Ingeniería de Datos',
-                'nav-logo': 'Mi Portfolio',
-                'nav-home': 'Inicio',
-                'nav-journey': 'Mi Recorrido',
-                'nav-projects': 'Proyectos',
-                'nav-skills': 'Habilidades',
-                'nav-record': 'Expediente',
-                'nav-contact': 'Contacto',
-                'theme-toggle': 'Modo Oscuro',
-                'hero-badge': 'ESTUDIANTE DE GRADO',
-                'hero-title': 'Ciencia e Ingeniería de Datos',
-                'hero-university': 'Universidad Autónoma de Madrid',
-                'hero-description': 'Transformando datos en conocimiento a través de la innovación tecnológica. Especializado en machine learning, análisis predictivo y desarrollo de soluciones basadas en inteligencia artificial.',
-                'hero-stat-years': 'Años de Estudio',
-                'hero-stat-projects': 'Proyectos',
-                'hero-stat-average': 'Promedio del último año (3º carrera)',
-                'hero-button-projects': 'Ver Proyectos',
-                'hero-button-contact': 'Contactar',
-                'journey-title': 'Formación Académica y Desarrollo Profesional',
-                'timeline-year1-title': 'Primer Año - Fundamentos Matemáticos y Computacionales',
-                'timeline-year1-description': 'Establecimiento de una base sólida en matemáticas aplicadas, estadística inferencial y programación. Durante este período, desarrollé competencias fundamentales en análisis cuantitativo y adquirí dominio de las herramientas computacionales esenciales para la ciencia de datos. La formación incluyó metodologías rigurosas de investigación estadística y principios de diseño de experimentos que constituyen la base teórica para el análisis de datos avanzado.',
-                'timeline-year1-skills-title': 'Competencias Adquiridas:',
-                'timeline-year1-skills': 'Álgebra lineal aplicada, cálculo multivariable, estadística descriptiva e inferencial, programación estructurada en Python y R, modelado matemático, y fundamentos de arquitecturas de bases de datos relacionales.',
-                'timeline-year2-title': 'Segundo Año - Metodologías Avanzadas y Aplicaciones',
-                'timeline-year2-description': 'Profundización en algoritmos de aprendizaje automático supervisado y no supervisado, con énfasis en la implementación práctica de modelos predictivos. Este año se caracterizó por el desarrollo de proyectos multidisciplinarios que integraron técnicas estadísticas avanzadas con herramientas de visualización de datos. La formación abarcó metodologías de validación cruzada, optimización de hiperparámetros y evaluación robusta de modelos en escenarios reales.',
-                'timeline-year2-achievements-title': 'Logros Destacados:',
-                'timeline-year2-achievements': 'Implementación de pipelines de machine learning end-to-end, desarrollo de dashboards interactivos con Plotly y D3.js, colaboración en proyectos de análisis de big data utilizando Apache Spark, y aplicación de técnicas de feature engineering avanzadas.',
-                'timeline-year3-title': 'Tercer Año - Especialización en Inteligencia Artificial',
-                'timeline-year3-description': 'Concentración en arquitecturas de deep learning, procesamiento de lenguaje natural y sistemas de aprendizaje por refuerzo. Este período incluyó la realización de proyectos de investigación aplicada en colaboración con la industria, enfocándose en la implementación de soluciones escalables de inteligencia artificial. La formación abarcó metodologías MLOps, deployment de modelos en producción y consideraciones éticas en el desarrollo de sistemas inteligentes.',
-                'timeline-year3-research-title': 'Proyectos de Investigación:',
-                'timeline-year3-research': 'Desarrollo de modelos generativos con arquitecturas de difusión, implementación de sistemas de recomendación híbridos, análisis de sentimientos en tiempo real utilizando transformers, y optimización de algoritmos de aprendizaje por refuerzo para aplicaciones financieras.',
-                'projects-title': 'Algunos de mis proyectos mas destacados',
-                'project1-title': 'Sistema de Generación de Imágenes por Difusión',
-                'project1-subtitle': 'Deep Learning Generativo',
-                'project1-description': 'Desarrollé un framework completo para entrenamiento y generación de imágenes usando modelos de difusión. Incluye múltiples procesos de difusión, métodos de muestreo avanzados, y capacidades de generación condicional, colorización e inpainting con interfaz interactiva.',
-                'project2-title': 'Análisis Predictivo de Mercados',
-                'project2-subtitle': 'Data Science & Finanzas',
-                'project2-description': 'Plataforma de análisis en tiempo real que utiliza modelos LSTM para predecir tendencias del mercado financiero con visualizaciones interactivas y alertas automáticas.',
-                'project3-title': 'Sistema de Aprendizaje por Refuerzo Comparativo',
-                'project3-subtitle': 'Reinforcement Learning Avanzado',
-                'project3-description': 'Implementé y comparé tres algoritmos de aprendizaje por refuerzo en el entorno FrozenLake, analizando su comportamiento en configuraciones deterministas y estocásticas con métricas de rendimiento.',
-                'project4-title': 'Estudio Estadístico de Factores de Riesgo en Obesidad',
-                'project4-subtitle': 'Análisis Multivariante & Salud Pública',
-                'project4-description': 'Análisis estadístico multivariante con el fin de identificar patrones y factores de riesgo asociados con la obesidad, revelando insights clave para estrategias de prevención personalizadas.',
-                'project5-title': 'Análisis de Sentimientos en Redes Sociales',
-                'project5-subtitle': 'NLP & Social Media',
-                'project5-description': 'Sistema de procesamiento de lenguaje natural que analiza sentimientos en tiempo real en múltiples plataformas sociales, identificando tendencias y patrones emocionales.',
-                'project6-title': 'Chatbot Inteligente para E-commerce',
-                'project6-subtitle': 'AI & Customer Experience',
-                'project6-description': 'Asistente virtual conversacional que integra procesamiento de lenguaje natural con sistemas de recomendación para mejorar la experiencia de compra online.',
-                'project-view-dashboard': 'Ver Dashboard',
-                'project-view-demo': 'Ver Demo',
-                'project-view-analysis': 'Ver Análisis',
-                'skills-title': 'Mis Competencias',
-                'technical-skills-title': 'Habilidades Técnicas',
-                'skill-programming': 'Programación',
-                'skill-visualization': 'Visualización',
-                'skill-web-dev': 'Desarrollo Web',
-                'skill-tools': 'Herramientas',
-                'soft-skill1-title': 'Liderazgo y Adaptabilidad',
-                'soft-skill1-subtitle': 'Competencias clave para la transformación digital',
-                'soft-skill1-item1': 'Flexibilidad y adaptación al cambio',
-                'soft-skill1-item2': 'Liderazgo ágil en equipos multidisciplinares',
-                'soft-skill1-item3': 'Mentalidad de crecimiento continuo',
-                'soft-skill1-item4': 'Gestión efectiva del cambio tecnológico',
-                'soft-skill1-item5': 'Capacidad de influir sin autoridad formal',
-                'soft-skill2-title': 'Innovación y Resolución de Problemas',
-                'soft-skill2-subtitle': 'Pensamiento creativo para soluciones disruptivas',
-                'soft-skill2-item1': 'Pensamiento crítico y analítico',
-                'soft-skill2-item2': 'Creatividad aplicada a soluciones tecnológicas',
-                'soft-skill2-item3': 'Innovación centrada en el cliente',
-                'soft-skill2-item4': 'Resolución ágil de problemas complejos',
-                'soft-skill2-item5': 'Curiosidad intelectual y aprendizaje continuo',
-                'soft-skill3-title': 'Colaboración y Comunicación',
-                'soft-skill3-subtitle': 'Habilidades interpersonales para el éxito empresarial',
-                'soft-skill3-item1': 'Comunicación efectiva con stakeholders técnicos y no técnicos',
-                'soft-skill3-item2': 'Colaboración en entornos virtuales e híbridos',
-                'soft-skill3-item3': 'Inteligencia emocional y empatía',
-                'soft-skill3-item4': 'Construcción de relaciones sólidas',
-                'soft-skill3-item5': 'Persuasión y negociación estratégica',
-                'academic-title': 'Expediente Académico',
-                'academic-degree': 'Licenciatura en Ciencia e Ingeniería de Datos',
-                'academic-average': 'Promedio General',
-                'academic-years': 'Años Completados',
-                'academic-subjects': 'Materias Aprobadas',
-                'academic-outstanding': 'Materias Destacadas',
-                'academic-subject1': 'Aprendizaje automático III - 9.3',
-                'academic-subject2': 'Bases de datos: Integración y Arquitecturas - 9.0',
-                'academic-subject3': 'Computación de altas prestaciones - 8.5',
-                'academic-subject4': 'Tratamiento de señales y series temporales - 8.4',
-                'contact-title': 'Conectemos',
-                'contact-subtitle': '¿Listo para transformar datos en valor? ¡Hablemos!',
-                'contact-phone': 'Teléfono',
-                'contact-view-profile': 'Ver Perfil',
-                'contact-view-repos': 'Ver Repositorios',
-                'contact-cv': 'CV Completo',
-                'contact-transcript': 'Expediente Académico',
-                'contact-download-pdf': 'Descargar PDF',
-                'footer-text': '© 2024 Mi Portfolio de Ciencia e Ingeniería de Datos. Diseñado con pasión por los datos.'
-            },
-            en: {
-                'page-title': 'My Journey in Data Science and Engineering',
-                'nav-logo': 'My Portfolio',
-                'nav-home': 'Home',
-                'nav-journey': 'My Journey',
-                'nav-projects': 'Projects',
-                'nav-skills': 'Skills',
-                'nav-record': 'Academic Record',
-                'nav-contact': 'Contact',
-                'theme-toggle': 'Dark Mode',
-                'hero-badge': 'UNDERGRADUATE STUDENT',
-                'hero-title': 'Data Science and Engineering',
-                'hero-university': 'Autonomous University of Madrid',
-                'hero-description': 'Transforming data into knowledge through technological innovation. Specialized in machine learning, predictive analytics and development of artificial intelligence-based solutions.',
-                'hero-stat-years': 'Years of Study',
-                'hero-stat-projects': 'Projects',
-                'hero-stat-average': 'Last Academic Average Year (3rd year)',
-                'hero-button-projects': 'View Projects',
-                'hero-button-contact': 'Contact',
-                'journey-title': 'Academic Formation and Professional Development',
-                'timeline-year1-title': 'First Year - Mathematical and Computational Foundations',
-                'timeline-year1-description': 'Establishment of a solid foundation in applied mathematics, inferential statistics and programming. During this period, I developed fundamental competencies in quantitative analysis and acquired mastery of the computational tools essential for data science. The training included rigorous statistical research methodologies and experimental design principles that constitute the theoretical basis for advanced data analysis.',
-                'timeline-year1-skills-title': 'Acquired Competencies:',
-                'timeline-year1-skills': 'Applied linear algebra, multivariable calculus, descriptive and inferential statistics, structured programming in Python and R, mathematical modeling, and fundamentals of relational database architectures.',
-                'timeline-year2-title': 'Second Year - Advanced Methodologies and Applications',
-                'timeline-year2-description': 'Deepening in supervised and unsupervised machine learning algorithms, with emphasis on practical implementation of predictive models. This year was characterized by the development of multidisciplinary projects that integrated advanced statistical techniques with data visualization tools. The training covered cross-validation methodologies, hyperparameter optimization and robust model evaluation in real scenarios.',
-                'timeline-year2-achievements-title': 'Outstanding Achievements:',
-                'timeline-year2-achievements': 'Implementation of end-to-end machine learning pipelines, development of interactive dashboards with Plotly and D3.js, collaboration on big data analysis projects using Apache Spark, and application of advanced feature engineering techniques.',
-                'timeline-year3-title': 'Third Year - Artificial Intelligence Specialization',
-                'timeline-year3-description': 'Focus on deep learning architectures, natural language processing and reinforcement learning systems. This period included the realization of applied research projects in collaboration with industry, focusing on the implementation of scalable artificial intelligence solutions. The training covered MLOps methodologies, model deployment in production and ethical considerations in the development of intelligent systems.',
-                'timeline-year3-research-title': 'Research Projects:',
-                'timeline-year3-research': 'Development of generative models with diffusion architectures, implementation of hybrid recommendation systems, real-time sentiment analysis using transformers, and optimization of reinforcement learning algorithms for financial applications.',
-                'projects-title': 'Some of my most outstanding projects',
-                'project1-title': 'Diffusion Image Generation System',
-                'project1-subtitle': 'Generative Deep Learning',
-                'project1-description': 'I developed a complete framework for training and generating images using diffusion models. It includes multiple diffusion processes, advanced sampling methods, and conditional generation, colorization and inpainting capabilities with interactive interface.',
-                'project2-title': 'Predictive Market Analysis',
-                'project2-subtitle': 'Data Science & Finance',
-                'project2-description': 'Real-time analysis platform that uses LSTM models to predict financial market trends with interactive visualizations and automatic alerts.',
-                'project3-title': 'Comparative Reinforcement Learning System',
-                'project3-subtitle': 'Advanced Reinforcement Learning',
-                'project3-description': 'I implemented and compared three fundamental reinforcement learning algorithms (Q-learning, SARSA and DQN) in the FrozenLake environment, analyzing their behavior in deterministic and stochastic configurations with optimized performance metrics.',
-                'project4-title': 'Statistical Study of Obesity Risk Factors',
-                'project4-subtitle': 'Multivariate Analysis & Public Health',
-                'project4-description': 'Comprehensive statistical analysis applying five multivariate techniques (PCA, LDA, Clustering, Naive Bayes) to identify patterns and risk factors associated with obesity, achieving 85% accuracy in LDA classification and revealing key insights for personalized prevention strategies.',
-                'project5-title': 'Social Media Sentiment Analysis',
-                'project5-subtitle': 'NLP & Social Media',
-                'project5-description': 'Natural language processing system that analyzes sentiments in real time across multiple social platforms, identifying emotional trends and patterns.',
-                'project6-title': 'Intelligent E-commerce Chatbot',
-                'project6-subtitle': 'AI & Customer Experience',
-                'project6-description': 'Conversational virtual assistant that integrates natural language processing with recommendation systems to improve the online shopping experience.',
-                'project-view-dashboard': 'View Dashboard',
-                'project-view-demo': 'View Demo',
-                'project-view-analysis': 'View Analysis',
-                'skills-title': 'My Competencies',
-                'technical-skills-title': 'Technical Skills',
-                'skill-programming': 'Programming',
-                'skill-visualization': 'Visualization',
-                'skill-web-dev': 'Web Development',
-                'skill-tools': 'Tools',
-                'soft-skill1-title': 'Leadership and Adaptability',
-                'soft-skill1-subtitle': 'Key competencies for digital transformation',
-                'soft-skill1-item1': 'Flexibility and adaptation to change',
-                'soft-skill1-item2': 'Agile leadership in multidisciplinary teams',
-                'soft-skill1-item3': 'Continuous growth mindset',
-                'soft-skill1-item4': 'Effective technological change management',
-                'soft-skill1-item5': 'Ability to influence without formal authority',
-                'soft-skill2-title': 'Innovation and Problem Solving',
-                'soft-skill2-subtitle': 'Creative thinking for disruptive solutions',
-                'soft-skill2-item1': 'Critical and analytical thinking',
-                'soft-skill2-item2': 'Creativity applied to technological solutions',
-                'soft-skill2-item3': 'Customer-centered innovation',
-                'soft-skill2-item4': 'Agile resolution of complex problems',
-                'soft-skill2-item5': 'Intellectual curiosity and continuous learning',
-                'soft-skill3-title': 'Collaboration and Communication',
-                'soft-skill3-subtitle': 'Interpersonal skills for business success',
-                'soft-skill3-item1': 'Effective communication with technical and non-technical stakeholders',
-                'soft-skill3-item2': 'Collaboration in virtual and hybrid environments',
-                'soft-skill3-item3': 'Emotional intelligence and empathy',
-                'soft-skill3-item4': 'Building strong relationships',
-                'soft-skill3-item5': 'Strategic persuasion and negotiation',
-                'academic-title': 'Academic Record',
-                'academic-degree': 'Bachelor in Data Science and Engineering',
-                'academic-average': 'Overall Average',
-                'academic-years': 'Years Completed',
-                'academic-subjects': 'Subjects Passed',
-                'academic-outstanding': 'Outstanding Subjects',
-                'academic-subject1': 'Machine Learning III - 9.3',
-                'academic-subject2': 'Databases: Integration and Architectures - 9.0',
-                'academic-subject3': 'High Performance Computing - 8.5',
-                'academic-subject4': 'Signal Processing and Time Series - 8.4',
-                'contact-title': 'Let\'s Connect',
-                'contact-subtitle': 'Ready to transform data into value? Let\'s talk!',
-                'contact-phone': 'Phone',
-                'contact-view-profile': 'View Profile',
-                'contact-view-repos': 'View Repositories',
-                'contact-cv': 'Complete CV',
-                'contact-transcript': 'Academic Transcript',
-                'contact-download-pdf': 'Download PDF',
-                'footer-text': '© 2024 My Data Science and Engineering Portfolio. Designed with passion for data.'
-            }
-        };
-
-        // Current language and theme
-        let currentLanguage = 'es';
-        let currentTheme = 'light';
-
-        // Initialize theme and language from localStorage
-        function initializeSettings() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            const savedLanguage = localStorage.getItem('language') || 'es';
-            
-            currentTheme = savedTheme;
-            currentLanguage = savedLanguage;
-            
-            // Apply theme
-            document.documentElement.setAttribute('data-theme', currentTheme);
-            updateThemeIcon();
-            
-            // Apply language
-            updateLanguage();
-            updateLanguageButton();
-        }
-
-        // Theme toggle function
-        function toggleTheme() {
-            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', currentTheme);
-            localStorage.setItem('theme', currentTheme);
-            updateThemeIcon();
-        }
-
-        // Update theme icon and text
-        function updateThemeIcon() {
-            const themeIcon = document.getElementById('theme-icon');
-            const themeText = document.querySelector('[data-lang-key="theme-toggle"]');
-            
-            if (currentTheme === 'dark') {
-                themeIcon.className = 'fas fa-sun';
-                themeText.textContent = currentLanguage === 'es' ? 'Modo Claro' : 'Light Mode';
-            } else {
-                themeIcon.className = 'fas fa-moon';
-                themeText.textContent = currentLanguage === 'es' ? 'Modo Oscuro' : 'Dark Mode';
-            }
-        }
-
-        // Language toggle function
-        function toggleLanguage() {
-            currentLanguage = currentLanguage === 'es' ? 'en' : 'es';
-            localStorage.setItem('language', currentLanguage);
-            updateLanguage();
-            updateLanguageButton();
-            updateThemeIcon(); // Update theme text in new language
-        }
-
-        // Update language button
-        function updateLanguageButton() {
-            const langText = document.getElementById('lang-text');
-            langText.textContent = currentLanguage === 'es' ? 'EN' : 'ES';
-        }
-
-        // Update all text content based on current language
-        function updateLanguage() {
-            const elements = document.querySelectorAll('[data-lang-key]');
-            elements.forEach(element => {
-                const key = element.getAttribute('data-lang-key');
-                if (translations[currentLanguage] && translations[currentLanguage][key]) {
-                    if (element.tagName === 'INPUT' && element.type === 'button') {
-                        element.value = translations[currentLanguage][key];
-                    } else {
-                        element.textContent = translations[currentLanguage][key];
-                    }
-                }
-            });
-            
-            // Update document title
-            document.title = translations[currentLanguage]['page-title'];
-            
-            // Update HTML lang attribute
-            document.documentElement.lang = currentLanguage;
-        }
-
         // Loading animation
         window.addEventListener('load', function() {
             setTimeout(() => {
                 document.getElementById('loading').classList.add('hide');
             }, 1000);
-        });
-
-        // Initialize settings on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeSettings();
         });
 
         // Smooth scrolling for navigation links
@@ -2476,10 +2051,10 @@
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 100) {
-                navbar.style.background = currentTheme === 'dark' ? 'rgba(13, 17, 23, 0.98)' : 'rgba(255, 255, 255, 0.98)';
-                navbar.style.boxShadow = currentTheme === 'dark' ? '0 2px 20px rgba(0, 0, 0, 0.3)' : '0 2px 20px rgba(0, 0, 0, 0.1)';
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
             } else {
-                navbar.style.background = currentTheme === 'dark' ? 'rgba(13, 17, 23, 0.95)' : 'rgba(255, 255, 255, 0.95)';
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
                 navbar.style.boxShadow = 'none';
             }
         });
@@ -2503,15 +2078,12 @@
             observer.observe(el);
         });
 
-
         // Mobile menu toggle
         function toggleMobileMenu() {
             const navLinks = document.querySelector('.nav-links');
             const menuBtn = document.querySelector('.mobile-menu-btn');
-            const navControls = document.querySelector('.nav-controls');
             
             navLinks.classList.toggle('mobile-active');
-            navControls.classList.toggle('mobile-active');
             
             // Change icon
             const icon = menuBtn.querySelector('i');
@@ -2525,10 +2097,8 @@
         function closeMobileMenu() {
             const navLinks = document.querySelector('.nav-links');
             const menuBtn = document.querySelector('.mobile-menu-btn');
-            const navControls = document.querySelector('.nav-controls');
             
             navLinks.classList.remove('mobile-active');
-            navControls.classList.remove('mobile-active');
             
             // Reset icon
             const icon = menuBtn.querySelector('i');
@@ -2604,32 +2174,10 @@
 
         // Keyboard accessibility
         document.addEventListener('keydown', function(event) {
-            // Press 'T' to toggle theme
-            if (event.key === 't' || event.key === 'T') {
-                if (!event.target.matches('input, textarea')) {
-                    toggleTheme();
-                }
-            }
-            
-            // Press 'L' to toggle language
-            if (event.key === 'l' || event.key === 'L') {
-                if (!event.target.matches('input, textarea')) {
-                    toggleLanguage();
-                }
-            }
-            
             // Press 'Escape' to close mobile menu
             if (event.key === 'Escape') {
                 closeMobileMenu();
             }
-        });
-
-        // Add smooth transitions for theme changes
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add transition class after initial load to prevent flash
-            setTimeout(() => {
-                document.body.classList.add('theme-transition');
-            }, 100);
         });
     </script>
 </body>
