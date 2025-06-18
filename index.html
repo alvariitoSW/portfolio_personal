@@ -498,19 +498,15 @@
         }
 
         .project-card:nth-child(4) {
-            grid-column: span 4;
+            grid-column: span 6;
             grid-row: span 1;
         }
 
         .project-card:nth-child(5) {
-            grid-column: span 4;
+            grid-column: span 6;
             grid-row: span 1;
         }
 
-        .project-card:nth-child(6) {
-            grid-column: span 4;
-            grid-row: span 1;
-        }
 
         /* Gradientes únicos para cada proyecto */
         .project-card:nth-child(1) {
@@ -572,9 +568,11 @@
 
         .project-header-new {
             display: flex;
-            align-items: flex-start;
+            align-items: center; /* Cambiado de flex-start a center para centrado vertical */
             gap: 1.5rem;
             margin-bottom: auto;
+            text-align: center; /* NUEVO: Centrado horizontal del texto */
+            flex-direction: column; /* NUEVO: Apilamos icono y texto verticalmente */
         }
 
         .project-icon-large {
@@ -1108,7 +1106,7 @@
         @media (max-width: 1024px) {
             .projects-grid {
                 grid-template-columns: repeat(8, 1fr);
-                grid-template-rows: repeat(4, 250px);
+                grid-template-rows: repeat(3, 250px);
                 gap: 1rem;
             }
 
@@ -1128,19 +1126,15 @@
             }
 
             .project-card:nth-child(4) {
-                grid-column: span 3;
+                grid-column: span 4;
                 grid-row: span 1;
             }
 
             .project-card:nth-child(5) {
-                grid-column: span 3;
+                grid-column: span 4;
                 grid-row: span 1;
             }
 
-            .project-card:nth-child(6) {
-                grid-column: span 2;
-                grid-row: span 1;
-            }
         }
 
         /* Responsive */
@@ -1648,16 +1642,14 @@
                     <div class="project-overlay">
                         <div class="overlay-content">
                             <p class="overlay-description">
-                                Análisis cuantitativo ganador que llevó mi cartera "Dios, familia y fe" al primer lugar en la competición 
-                                de inversores. Implementación de modelos de optimización convexa, técnicas avanzadas de imputación de datos 
-                                y análisis de riesgo-rendimiento para la gestión de carteras con fondos reales del mercado financiero.
+                                Implementación de modelos de optimización convexa, técnicas avanzadas de imputación de datos 
+                                y análisis de riesgo-rendimiento para la gestión de carteras con fondos reales del mercado financiero, que me llevaron al primer puesto.
                             </p>
                             <div class="overlay-tech-stack">
                                 <span class="overlay-tech-tag">Python</span>
                                 <span class="overlay-tech-tag">CVXPY</span>
                                 <span class="overlay-tech-tag">BigQuery</span>
-                                <span class="overlay-tech-tag">Markowitz</span>
-                                <span class="overlay-tech-tag">Ratio Sharpe</span>
+                                <span class="overlay-tech-tag">Optimización</span>
                             </div>
                             <div class="overlay-buttons">
                                 <a href="https://ironia.tech/competition/aula-uam-bme-ironia-en-finanzas-cuantitativas-6" class="overlay-button primary" target="_blank">Ver Competición</a>
@@ -1721,9 +1713,8 @@
                     <div class="project-overlay">
                         <div class="overlay-content">
                             <p class="overlay-description">
-                                Análisis estadístico exhaustivo aplicando cinco técnicas multivariantes (PCA, LDA, Clustering, Naive Bayes) 
-                                para identificar patrones y factores de riesgo asociados con la obesidad, alcanzando 85% de precisión 
-                                en clasificación con LDA y revelando insights clave para estrategias de prevención personalizadas.
+                                Análisis estadístico exhaustivo aplicando cinco técnicas multivariantes
+                                para identificar patrones y factores de riesgo asociados con la obesidad, revelando insights clave para estrategias de prevención personalizadas.
                             </p>
                             <div class="overlay-tech-stack">
                                 <span class="overlay-tech-tag">R</span>
@@ -1739,7 +1730,7 @@
                 </div>
 
                 <!-- Proyecto 5 -->
-                <!-- <div class="project-card">
+                <div class="project-card">
                     <div class="project-background"></div>
                     <div class="project-status">NLP & Social Media</div>
                     
@@ -1772,7 +1763,7 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
 
             </div>
         </div>
