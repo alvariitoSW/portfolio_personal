@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de Rendimiento y Perfilado de Bases de Datos - Estudio Empírico</title>
+    <!-- Favicon DB - Texto Simple -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23667eea' rx='6'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='12' font-family='monospace' fill='white' font-weight='bold'>DB</text></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f9ff, #e8edff);
+            border: 1px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .tech-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+        }
+
+        .tech-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .capability-card {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .capability-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .capability-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .databases-comparison {
+            background: linear-gradient(135deg, #f1f3f4, #e8eaf6);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .database-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .database-name {
+            font-weight: bold;
+            color: #2c3e50;
+            min-width: 180px;
+        }
+
+        .database-trait {
+            color: #666;
+            font-style: italic;
+        }
+
+        .competencies {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .competency {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .dashboard-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .dashboard-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .dashboard-button {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            min-width: 220px;
+            text-align: center;
+        }
+
+        .dashboard-button.primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .dashboard-button.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            background: #f8f9ff;
+        }
+
+        .dashboard-button.secondary {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .dashboard-button.secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .header, .content {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .stats-row {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .tech-grid,
+            .capabilities-grid,
+            .competencies {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .dashboard-button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tech-grid,
+            .capabilities-grid,
+            .competencies {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Análisis de Rendimiento y Perfilado de Bases de Datos</h1>
+            <p>Estudio Empírico Comparativo de Sistemas de Gestión de Datos</p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>Descripción del Estudio</h2>
+                <p>Se desarrolló un estudio empírico exhaustivo para analizar el rendimiento de cuatro sistemas de gestión de bases de datos heterogéneos: MongoDB, PostgreSQL, SQLite3 y DuckDB. La investigación implementó metodologías rigurosas de benchmarking utilizando datos sintéticos generados específicamente para el contexto español, evaluando métricas críticas de rendimiento bajo diferentes escenarios operacionales.</p>
+                
+                <div class="highlight-box">
+                    <strong>Enfoque Metodológico:</strong> Implementación de un framework orientado a objetos que automatiza la generación de datos sintéticos realistas, el perfilado de operaciones CRUD, y la evaluación del impacto de mecanismos de optimización como indexación y caché en el rendimiento de sistemas de bases de datos.
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">SGBD Evaluados</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Métricas Principales</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">10M</span>
+                        <span class="stat-label">Registros Generados</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Metodología de Evaluación</h2>
+                <div class="capabilities-grid">
+                    <div class="capability-card">
+                        <div class="capability-icon">🔧</div>
+                        <div class="capability-title">Generación de Datos</div>
+                        <p>Creación de datasets sintéticos usando Faker con proveedores personalizados para el contexto español</p>
+                    </div>
+                    <div class="capability-card">
+                        <div class="capability-icon">⏱️</div>
+                        <div class="capability-title">Perfilado Temporal</div>
+                        <p>Medición precisa de tiempo real y tiempo CPU para operaciones de inserción, lectura y actualización</p>
+                    </div>
+                    <div class="capability-card">
+                        <div class="capability-icon">💾</div>
+                        <div class="capability-title">Análisis de Memoria</div>
+                        <p>Evaluación del consumo de memoria durante la ejecución de operaciones con diferentes volúmenes de datos</p>
+                    </div>
+                    <div class="capability-card">
+                        <div class="capability-icon">🚀</div>
+                        <div class="capability-title">Optimización</div>
+                        <p>Análisis del impacto de indexación, caché y paralelización en el rendimiento operacional</p>
+                    </div>
+                </div>
+                
+                <p>El estudio empleó una arquitectura modular basada en clases abstractas que permitió la implementación consistente de pruebas de rendimiento en todas las bases de datos evaluadas. Se desarrollaron proveedores personalizados para generar datos realistas incluyendo DNI españoles, matrículas de vehículos con códigos provinciales históricos, y información geográfica coherente con la estructura administrativa española.</p>
+            </div>
+
+            <div class="section">
+                <h2>Sistemas de Bases de Datos Analizados</h2>
+                <div class="databases-comparison">
+                    <div class="database-row">
+                        <span class="database-name">MongoDB</span>
+                        <span class="database-trait">Base de datos NoSQL orientada a documentos con flexibilidad de esquemas</span>
+                    </div>
+                    <div class="database-row">
+                        <span class="database-name">PostgreSQL</span>
+                        <span class="database-trait">RDBMS avanzado con soporte para operaciones complejas y extensibilidad</span>
+                    </div>
+                    <div class="database-row">
+                        <span class="database-name">SQLite3</span>
+                        <span class="database-trait">Base de datos embebida ligera con excelente portabilidad</span>
+                    </div>
+                    <div class="database-row">
+                        <span class="database-name">DuckDB</span>
+                        <span class="database-trait">DBMS analítico columnar optimizado para consultas agregadas</span>
+                    </div>
+                </div>
+                <p>Cada sistema fue evaluado utilizando conjuntos de datos escalables desde 1,000 hasta 10,000,000 de registros, permitiendo analizar comportamientos de rendimiento bajo diferentes cargas de trabajo. Las pruebas incluyeron operaciones individuales, operaciones por lotes, y evaluaciones con y sin mecanismos de optimización como indexación y caché.</p>
+            </div>
+
+            <div class="section">
+                <h2>Stack Tecnológico y Herramientas</h2>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4>Python & Faker</h4>
+                        <p>Generación automatizada de datos sintéticos con proveedores personalizados para contexto español</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>Memory Profiler</h4>
+                        <p>Medición precisa del consumo de memoria durante la ejecución de operaciones de base de datos</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>Multiprocessing</h4>
+                        <p>Paralelización del proceso de generación de datos para optimizar rendimiento y escalabilidad</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>PyMemcached</h4>
+                        <p>Implementación de sistema de caché distribuido para evaluación de impacto en rendimiento</p>
+                    </div>
+                </div>
+                
+                <p>La arquitectura implementada utilizó un enfoque orientado a objetos que facilita la extensibilidad y mantenimiento del código. El sistema de mediciones automatizadas permite realizar análisis exhaustivos y reproducibles del rendimiento, con capacidad para generar visualizaciones comparativas mediante matplotlib.</p>
+            </div>
+
+            <div class="section">
+                <h2>Competencias Técnicas Demostradas</h2>
+                <div class="competencies">
+                    <div class="competency">Diseño Experimental</div>
+                    <div class="competency">Análisis de Rendimiento</div>
+                    <div class="competency">Programación Orientada a Objetos</div>
+                    <div class="competency">Paralelización</div>
+                    <div class="competency">Visualización de Datos</div>
+                    <div class="competency">Optimización de Sistemas</div>
+                </div>
+                
+                <p>El proyecto evidencia competencias avanzadas en diseño experimental, implementación de sistemas de medición automatizados, y análisis estadístico de datos de rendimiento. La capacidad para generar insights accionables a partir de métricas complejas demuestra habilidades analíticas sólidas aplicables en contextos de optimización de infraestructuras de datos empresariales.</p>
+            </div>
+
+            <div class="section">
+                <h2>Principales Hallazgos y Conclusiones</h2>
+                <div class="highlight-box">
+                    <p><strong>Resultados Clave:</strong> MongoDB demostró excelencia en operaciones de inserción rápida pero mostró limitaciones en uso de memoria para actualizaciones. PostgreSQL ofreció el rendimiento más equilibrado entre todas las operaciones. SQLite3 destacó por su eficiencia en memoria y consistencia operacional. DuckDB sobresalió en operaciones de lectura analíticas pero presentó desafíos significativos en inserción masiva de datos.</p>
+                </div>
+                
+                <p>Las evaluaciones revelaron patrones específicos de rendimiento que proporcionan guidelines claros para la selección tecnológica. MongoDB es óptimo para sistemas de registro en tiempo real con alta frecuencia de inserciones. PostgreSQL representa la mejor opción para aplicaciones empresariales que requieren operaciones mixtas balanceadas. SQLite3 es ideal para aplicaciones con recursos limitados o que requieren portabilidad. DuckDB destaca como solución especializada para análisis de grandes volúmenes de datos y consultas agregadas complejas.</p>
+            </div>
+
+            <div class="section">
+                <h2>Impacto de Mecanismos de Optimización</h2>
+                <div class="highlight-box">
+                    <p><strong>Resultados de Optimización:</strong> Los índices mostraron mejoras significativas en operaciones de actualización, multiplicando el rendimiento por factores de 7-13x según el tamaño del dataset. Sin embargo, los mecanismos de caché implementados presentaron overhead de serialización que limitó su efectividad en operaciones de lectura intensiva.</p>
+                </div>
+                
+                <p>La investigación demostró que la inserción por lotes ofrece ventajas sustanciales sobre las operaciones individuales, especialmente en PostgreSQL y SQLite3. El mantenimiento de conexiones persistentes resultó en mejoras notables de rendimiento en la mayoría de sistemas, excepto en SQLite3 donde el overhead de conexión es mínimo. Estos hallazgos proporcionan evidencia empírica para la optimización de arquitecturas de datos en entornos de producción.</p>
+            </div>
+        </div>
+        </div>
+
+        <div class="footer">
+            <p>Estudio desarrollado como demostración de competencias avanzadas en Análisis de Rendimiento y Optimización de Sistemas de Bases de Datos</p>
+        </div>
+    </div>
+</body>
+</html>
