@@ -51,6 +51,39 @@ function initNavbarScroll() {
     }
 }
 
+// Sistema de memoria de posición de scroll para navegación fluida
+function initScrollMemory() {
+    // Detectar si estamos en la página principal del portfolio
+    const isMainPortfolio = window.location.pathname.endsWith('index.html') || 
+                           window.location.pathname.endsWith('/') ||
+                           window.location.pathname.split('/').pop() === '';
+    
+    if (isMainPortfolio) {
+        // Restaurar posición si venimos de una página de proyecto
+        const savedScrollPosition = sessionStorage.getItem('portfolioScrollPosition');
+        if (savedScrollPosition) {
+            // Usar setTimeout para asegurar que la página esté completamente cargada
+            setTimeout(() => {
+                window.scrollTo({
+                    top: parseInt(savedScrollPosition),
+                    behavior: 'smooth' // Desplazamiento suave para mejor UX
+                });
+                // Limpiar la posición guardada después de usarla
+                sessionStorage.removeItem('portfolioScrollPosition');
+            }, 100);
+        }
+        
+        // Guardar posición cuando se hace clic en enlaces de proyectos
+        const projectLinks = document.querySelectorAll('a[href^="demos/"]');
+        projectLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                // Guardar la posición actual del scroll
+                sessionStorage.setItem('portfolioScrollPosition', window.scrollY.toString());
+            });
+        });
+    }
+}
+
 // Inicialización común para todas las páginas
 function initCommonFeatures() {
     // Esperar a que el DOM esté completamente cargado
@@ -58,6 +91,7 @@ function initCommonFeatures() {
         initSmoothScrolling();
         initMobileMenu();
         initNavbarScroll();
+        initScrollMemory();
     });
 }
 
