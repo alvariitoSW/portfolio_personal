@@ -4,488 +4,245 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estudio Estadístico de Factores de Riesgo en Obesidad - Análisis Multivariante</title>
-    <!-- Favicon IA - Texto Simple -->
+    
+    <!-- Favicon dinámico -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23667eea' rx='6'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='12' font-family='monospace' fill='white' font-weight='bold'>AI</text></svg>">
     
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            color: white;
-            padding: 40px;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            font-weight: 300;
-        }
-
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .content {
-            padding: 40px;
-        }
-
-        .section {
-            margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .section:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-
-        .section h2 {
-            color: #2c3e50;
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            padding-left: 15px;
-            border-left: 4px solid #667eea;
-        }
-
-        .section p {
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, #f8f9ff, #e8edff);
-            border: 1px solid #667eea;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .tech-card {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            border: 2px solid #e9ecef;
-            transition: all 0.3s ease;
-        }
-
-        .tech-card:hover {
-            border-color: #667eea;
-            transform: translateY(-5px);
-        }
-
-        .tech-card h4 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .result-card {
-            background: white;
-            border: 2px solid #667eea;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .result-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-
-        .methodology-comparison {
-            background: linear-gradient(135deg, #f1f3f4, #e8eaf6);
-            border-radius: 10px;
-            padding: 25px;
-            margin: 20px 0;
-        }
-
-        .methodology-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 15px 0;
-            padding: 15px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .methodology-name {
-            font-weight: bold;
-            color: #2c3e50;
-            min-width: 120px;
-        }
-
-        .methodology-trait {
-            color: #666;
-            font-style: italic;
-        }
-
-        .risk-factors-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .risk-factor-card {
-            background: white;
-            border: 2px solid #e74c3c;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .risk-factor-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .risk-factor-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-
-        .footer {
-            background: #2c3e50;
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .competencies {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 10px;
-            margin: 20px 0;
-        }
-
-        .competency {
-            background: #667eea;
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: 500;
-        }
-
-        .stats-row {
-            display: flex;
-            justify-content: space-around;
-            margin: 30px 0;
-            text-align: center;
-        }
-
-        .stat-item {
-            flex: 1;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #667eea;
-            display: block;
-        }
-
-        .stat-label {
-            color: #666;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .variables-section {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 40px;
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .variables-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .variable-group {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-        }
-
-        .variable-group h4 {
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-
-        .variable-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .variable-list li {
-            margin: 8px 0;
-            padding: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                margin: 10px;
-            }
-            
-            .header, .content {
-                padding: 20px;
-            }
-            
-            .header h1 {
-                font-size: 1.8rem;
-            }
-
-            .stats-row {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .tech-grid, .results-grid, .risk-factors-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .variables-grid {
-                grid-template-columns: 1fr;
+    <!-- Font Awesome para iconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración personalizada de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#667eea',
+                        secondary: '#764ba2',
+                    },
+                    fontFamily: {
+                        sans: ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        'tech-bg': 'linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%)',
+                        'timeline-line': 'linear-gradient(to bottom, #667eea, #764ba2)',
+                        'card-gradient-1': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        'card-gradient-2': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                        'card-gradient-3': 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                        'card-gradient-4': 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                        'card-gradient-5': 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+                        'dark-gradient': 'linear-gradient(135deg, #2c3e50, #34495e)',
+                    },
+                    backdropBlur: {
+                        '15': '15px',
+                    }
+                }
             }
         }
-    </style>
+    </script>
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="../styles/common.css">
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Estudio Estadístico de Factores de Riesgo en Obesidad</h1>
-            <p>Análisis Multivariante Exhaustivo para Salud Pública</p>
+<body class="font-sans leading-relaxed text-gray-800 bg-hero-gradient min-h-screen p-4 sm:p-5 lg:p-8">
+    <!-- Botón de regreso al portfolio -->
+    <div class="fixed top-4 left-4 z-50">
+        <a href="../index.html" class="inline-flex items-center gap-2 px-4 py-2 bg-white/90 hover:bg-white text-primary font-semibold rounded-full shadow-lg backdrop-blur-lg border border-white/20 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <i class="fas fa-arrow-left"></i>
+            <span class="hidden sm:inline">Volver al Portfolio</span>
+            <span class="sm:hidden">Volver</span>
+        </a>
+    </div>
+
+    <div class="demo-container max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden mt-16 sm:mt-20">
+        <div class="demo-header bg-dark-gradient text-white p-8 sm:p-12 text-center">
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-light mb-3">Estudio Estadístico de Factores de Riesgo en Obesidad</h1>
+            <p class="text-lg sm:text-xl opacity-90">Análisis Multivariante Exhaustivo para Salud Pública</p>
         </div>
 
-        <div class="content">
-            <div class="section">
-                <h2>Descripción del Proyecto</h2>
-                <p>Desarrollé un análisis estadístico multivariante exhaustivo para identificar y caracterizar los principales factores de riesgo asociados con la obesidad en una población específica. El estudio aplica cinco técnicas estadísticas complementarias para revelar patrones ocultos y proporcionar insights valiosos para el desarrollo de estrategias de prevención efectivas y personalizadas.</p>
+        <div class="demo-content p-6 sm:p-8 lg:p-12">
+            <div class="demo-section">
+                <h2 class="text-xl sm:text-2xl text-gray-800 font-semibold mb-4 pl-4 border-l-4 border-primary">Descripción del Proyecto</h2>
+                <p class="mb-4 text-justify leading-relaxed">Desarrollé un análisis estadístico multivariante exhaustivo para identificar y caracterizar los principales factores de riesgo asociados con la obesidad en una población específica. El estudio aplica cinco técnicas estadísticas complementarias para revelar patrones ocultos y proporcionar insights valiosos para el desarrollo de estrategias de prevención efectivas y personalizadas.</p>
                 
-                <div class="highlight-box">
-                    <strong>Objetivo Principal:</strong> Examinar en profundidad los factores de riesgo desde antecedentes familiares hasta hábitos de vida cotidianos, aplicando técnicas estadísticas avanzadas para identificar patrones, relaciones y grupos de riesgo que aporten información crucial sobre las principales causas de la obesidad.
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-primary rounded-xl p-5 sm:p-6 my-6">
+                    <p class="font-semibold text-gray-800"><strong>Objetivo Principal:</strong> Examinar en profundidad los factores de riesgo desde antecedentes familiares hasta hábitos de vida cotidianos, aplicando técnicas estadísticas avanzadas para identificar patrones, relaciones y grupos de riesgo que aporten información crucial sobre las principales causas de la obesidad.</p>
                 </div>
 
-                <div class="stats-row">
-                    <div class="stat-item">
-                        <span class="stat-number">5</span>
-                        <span class="stat-label">Técnicas Estadísticas</span>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 my-8">
+                    <div class="text-center">
+                        <span class="block text-3xl sm:text-4xl font-bold text-primary mb-2">5</span>
+                        <span class="text-gray-600 text-sm uppercase tracking-wider">Técnicas Estadísticas</span>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number">15</span>
-                        <span class="stat-label">Variables Analizadas</span>
+                    <div class="text-center">
+                        <span class="block text-3xl sm:text-4xl font-bold text-primary mb-2">15</span>
+                        <span class="text-gray-600 text-sm uppercase tracking-wider">Variables Analizadas</span>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number">85%</span>
-                        <span class="stat-label">Precisión Máxima</span>
+                    <div class="text-center">
+                        <span class="block text-3xl sm:text-4xl font-bold text-primary mb-2">85%</span>
+                        <span class="text-gray-600 text-sm uppercase tracking-wider">Precisión Máxima</span>
                     </div>
                 </div>
             </div>
 
-            <div class="section">
-                <h2>Metodologías Estadísticas Implementadas</h2>
-                <div class="methodology-comparison">
-                    <div class="methodology-row">
-                        <span class="methodology-name">PCA</span>
-                        <span class="methodology-trait">Reducción dimensional e identificación de patrones principales</span>
-                    </div>
-                    <div class="methodology-row">
-                        <span class="methodology-name">LDA</span>
-                        <span class="methodology-trait">Clasificación optimizada con 85% de precisión</span>
-                    </div>
-                    <div class="methodology-row">
-                        <span class="methodology-name">Clustering</span>
-                        <span class="methodology-trait">Identificación de grupos naturales de riesgo</span>
-                    </div>
-                    <div class="methodology-row">
-                        <span class="methodology-name">Naive Bayes</span>
-                        <span class="methodology-trait">Clasificación probabilística con 70-78% accuracy</span>
-                    </div>
-                    <div class="methodology-row">
-                        <span class="methodology-name">PLS Evaluation</span>
-                        <span class="methodology-trait">Análisis crítico de aplicabilidad metodológica</span>
+            <div class="demo-section">
+                <h2 class="text-xl sm:text-2xl text-gray-800 font-semibold mb-4 pl-4 border-l-4 border-primary">Metodologías Estadísticas Implementadas</h2>
+                <div class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl p-6 sm:p-8 my-6">
+                    <div class="space-y-4">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center bg-white p-4 rounded-lg shadow-sm">
+                            <span class="font-bold text-gray-800 mb-2 sm:mb-0 sm:min-w-32">PCA</span>
+                            <span class="text-gray-600 italic text-sm sm:text-base">Reducción dimensional e identificación de patrones principales</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center bg-white p-4 rounded-lg shadow-sm">
+                            <span class="font-bold text-gray-800 mb-2 sm:mb-0 sm:min-w-32">LDA</span>
+                            <span class="text-gray-600 italic text-sm sm:text-base">Clasificación optimizada con 85% de precisión</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center bg-white p-4 rounded-lg shadow-sm">
+                            <span class="font-bold text-gray-800 mb-2 sm:mb-0 sm:min-w-32">Clustering</span>
+                            <span class="text-gray-600 italic text-sm sm:text-base">Identificación de grupos naturales de riesgo</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center bg-white p-4 rounded-lg shadow-sm">
+                            <span class="font-bold text-gray-800 mb-2 sm:mb-0 sm:min-w-32">Naive Bayes</span>
+                            <span class="text-gray-600 italic text-sm sm:text-base">Clasificación probabilística con 70-78% accuracy</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center bg-white p-4 rounded-lg shadow-sm">
+                            <span class="font-bold text-gray-800 mb-2 sm:mb-0 sm:min-w-32">PLS Evaluation</span>
+                            <span class="text-gray-600 italic text-sm sm:text-base">Análisis crítico de aplicabilidad metodológica</span>
+                        </div>
                     </div>
                 </div>
-                <p>Cada metodología fue seleccionada estratégicamente para revelar diferentes aspectos de los datos, desde la reducción dimensional hasta la clasificación supervisada, proporcionando una visión 360° del problema de la obesidad y sus factores asociados.</p>
+                <p class="text-justify leading-relaxed">Cada metodología fue seleccionada estratégicamente para revelar diferentes aspectos de los datos, desde la reducción dimensional hasta la clasificación supervisada, proporcionando una visión 360° del problema de la obesidad y sus factores asociados.</p>
             </div>
 
-            <div class="section">
-                <h2>Principales Factores de Riesgo Identificados</h2>
-                <div class="risk-factors-grid">
-                    <div class="risk-factor-card">
-                        <div class="risk-factor-icon">⚖️</div>
-                        <div class="risk-factor-title">Variables Antropométricas</div>
-                        <p>Peso y altura como predictores más significativos confirmados en todos los análisis</p>
+            <div class="demo-section">
+                <h2 class="text-xl sm:text-2xl text-gray-800 font-semibold mb-4 pl-4 border-l-4 border-primary">Principales Factores de Riesgo Identificados</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 my-6">
+                    <div class="bg-white border-2 border-red-500 rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                        <div class="text-4xl mb-4">⚖️</div>
+                        <h3 class="font-bold text-gray-800 mb-3">Variables Antropométricas</h3>
+                        <p class="text-sm text-gray-600">Peso y altura como predictores más significativos confirmados en todos los análisis</p>
                     </div>
-                    <div class="risk-factor-card">
-                        <div class="risk-factor-icon">📅</div>
-                        <div class="risk-factor-title">Factor Edad</div>
-                        <p>Variable crucial para clasificación y agrupación de casos de obesidad</p>
+                    <div class="bg-white border-2 border-red-500 rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                        <div class="text-4xl mb-4">📅</div>
+                        <h3 class="font-bold text-gray-800 mb-3">Factor Edad</h3>
+                        <p class="text-sm text-gray-600">Variable crucial para clasificación y agrupación de casos de obesidad</p>
                     </div>
-                    <div class="risk-factor-card">
-                        <div class="risk-factor-icon">🧬</div>
-                        <div class="risk-factor-title">Relación Peso-Altura</div>
-                        <p>Factor clave similar al IMC en identificación de grupos de riesgo</p>
+                    <div class="bg-white border-2 border-red-500 rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                        <div class="text-4xl mb-4">🧬</div>
+                        <h3 class="font-bold text-gray-800 mb-3">Relación Peso-Altura</h3>
+                        <p class="text-sm text-gray-600">Factor clave similar al IMC en identificación de grupos de riesgo</p>
                     </div>
                 </div>
                 
-                <p>Los análisis convergieron en la identificación de patrones claros: existe una separación natural entre individuos obesos y no obesos, mientras que las categorías intermedias presentan mayor solapamiento. Los factores antropométricos emergen consistentemente como los predictores más poderosos.</p>
+                <p class="text-justify leading-relaxed">Los análisis convergieron en la identificación de patrones claros: existe una separación natural entre individuos obesos y no obesos, mientras que las categorías intermedias presentan mayor solapamiento. Los factores antropométricos emergen consistentemente como los predictores más poderosos.</p>
             </div>
 
-            <div class="section">
-                <h2>Resultados de Rendimiento</h2>
-                <div class="results-grid">
-                    <div class="result-card">
-                        <div class="result-number">85%</div>
-                        <p>Precisión alcanzada con LDA en clasificación de niveles de obesidad</p>
+            <div class="demo-section">
+                <h2 class="text-xl sm:text-2xl text-gray-800 font-semibold mb-4 pl-4 border-l-4 border-primary">Resultados de Rendimiento</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 my-6">
+                    <div class="bg-white border-2 border-primary rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                        <div class="text-3xl sm:text-4xl font-bold text-primary mb-3">85%</div>
+                        <p class="text-sm text-gray-600">Precisión alcanzada con LDA en clasificación de niveles de obesidad</p>
                     </div>
-                    <div class="result-card">
-                        <div class="result-number">78%</div>
-                        <p>Accuracy con Naive Bayes en categorías de clasificación reducidas</p>
+                    <div class="bg-white border-2 border-primary rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                        <div class="text-3xl sm:text-4xl font-bold text-primary mb-3">78%</div>
+                        <p class="text-sm text-gray-600">Accuracy con Naive Bayes en categorías de clasificación reducidas</p>
                     </div>
-                    <div class="result-card">
-                        <div class="result-number">41.3%</div>
-                        <p>Variabilidad explicada por PCA en las dos primeras dimensiones</p>
+                    <div class="bg-white border-2 border-primary rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                        <div class="text-3xl sm:text-4xl font-bold text-primary mb-3">41.3%</div>
+                        <p class="text-sm text-gray-600">Variabilidad explicada por PCA en las dos primeras dimensiones</p>
                     </div>
                 </div>
                 
-                <p>El Análisis Discriminante Lineal mostró excelente clasificación para casos extremos (peso insuficiente y obesidad tipo III), mientras que Naive Bayes demostró versatilidad especial en la identificación de obesidad tipos 2 y 3. El análisis de clustering reveló 2-3 grupos óptimos con clara separación entre categorías.</p>
+                <p class="text-justify leading-relaxed">El Análisis Discriminante Lineal mostró excelente clasificación para casos extremos (peso insuficiente y obesidad tipo III), mientras que Naive Bayes demostró versatilidad especial en la identificación de obesidad tipos 2 y 3. El análisis de clustering reveló 2-3 grupos óptimos con clara separación entre categorías.</p>
             </div>
 
-            <div class="section">
-                <h2>Tecnologías y Herramientas Estadísticas</h2>
-                <div class="tech-grid">
-                    <div class="tech-card">
-                        <h4>R & FactoMineR</h4>
-                        <p>Framework principal para análisis multivariante y PCA avanzado</p>
+            <div class="demo-section">
+                <h2 class="text-xl sm:text-2xl text-gray-800 font-semibold mb-4 pl-4 border-l-4 border-primary">Tecnologías y Herramientas Estadísticas</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 my-6">
+                    <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 sm:p-6 text-center hover:border-primary hover:-translate-y-1 transition-all">
+                        <h4 class="font-semibold text-gray-800 mb-3">R & FactoMineR</h4>
+                        <p class="text-sm text-gray-600">Framework principal para análisis multivariante y PCA avanzado</p>
                     </div>
-                    <div class="tech-card">
-                        <h4>MASS Package</h4>
-                        <p>Implementación robusta de Análisis Discriminante Lineal</p>
+                    <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 sm:p-6 text-center hover:border-primary hover:-translate-y-1 transition-all">
+                        <h4 class="font-semibold text-gray-800 mb-3">MASS Package</h4>
+                        <p class="text-sm text-gray-600">Implementación robusta de Análisis Discriminante Lineal</p>
                     </div>
-                    <div class="tech-card">
-                        <h4>ggplot2 & GGally</h4>
-                        <p>Visualizaciones profesionales y matrices de correlación avanzadas</p>
+                    <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 sm:p-6 text-center hover:border-primary hover:-translate-y-1 transition-all">
+                        <h4 class="font-semibold text-gray-800 mb-3">ggplot2 & GGally</h4>
+                        <p class="text-sm text-gray-600">Visualizaciones profesionales y matrices de correlación avanzadas</p>
                     </div>
-                    <div class="tech-card">
-                        <h4>e1071 & caret</h4>
-                        <p>Machine learning con Naive Bayes y evaluación rigurosa de modelos</p>
+                    <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 sm:p-6 text-center hover:border-primary hover:-translate-y-1 transition-all">
+                        <h4 class="font-semibold text-gray-800 mb-3">e1071 & caret</h4>
+                        <p class="text-sm text-gray-600">Machine learning con Naive Bayes y evaluación rigurosa de modelos</p>
                     </div>
                 </div>
                 
-                <p>El stack tecnológico utiliza el ecosistema R especializado en estadística avanzada, garantizando implementaciones matemáticamente rigurosas y visualizaciones de calidad académica. La integración de múltiples paquetes especializados permite un análisis comprehensivo y reproducible.</p>
+                <p class="text-justify leading-relaxed">El stack tecnológico utiliza el ecosistema R especializado en estadística avanzada, garantizando implementaciones matemáticamente rigurosas y visualizaciones de calidad académica. La integración de múltiples paquetes especializados permite un análisis comprehensivo y reproducible.</p>
             </div>
 
-            <div class="section">
-                <h2>Competencias Técnicas Demostradas</h2>
-                <div class="competencies">
-                    <div class="competency">Análisis Multivariante</div>
-                    <div class="competency">Estadística Aplicada</div>
-                    <div class="competency">Machine Learning</div>
-                    <div class="competency">Visualización de Datos</div>
-                    <div class="competency">Investigación en Salud</div>
-                    <div class="competency">Interpretación Clínica</div>
+            <div class="demo-section">
+                <h2 class="text-xl sm:text-2xl text-gray-800 font-semibold mb-4 pl-4 border-l-4 border-primary">Competencias Técnicas Demostradas</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 my-6">
+                    <div class="bg-primary text-white p-4 rounded-lg text-center font-medium text-sm">Análisis Multivariante</div>
+                    <div class="bg-primary text-white p-4 rounded-lg text-center font-medium text-sm">Estadística Aplicada</div>
+                    <div class="bg-primary text-white p-4 rounded-lg text-center font-medium text-sm">Machine Learning</div>
+                    <div class="bg-primary text-white p-4 rounded-lg text-center font-medium text-sm">Visualización de Datos</div>
+                    <div class="bg-primary text-white p-4 rounded-lg text-center font-medium text-sm">Investigación en Salud</div>
+                    <div class="bg-primary text-white p-4 rounded-lg text-center font-medium text-sm">Interpretación Clínica</div>
                 </div>
                 
-                <p>El proyecto demuestra dominio completo del pipeline de análisis estadístico en salud pública, desde la conceptualización metodológica hasta la interpretación clínica de resultados. La capacidad para aplicar múltiples técnicas complementarias y extraer insights coherentes refleja competencias avanzadas en ciencia de datos aplicada al sector salud.</p>
+                <p class="text-justify leading-relaxed">El proyecto demuestra dominio completo del pipeline de análisis estadístico en salud pública, desde la conceptualización metodológica hasta la interpretación clínica de resultados. La capacidad para aplicar múltiples técnicas complementarias y extraer insights coherentes refleja competencias avanzadas en ciencia de datos aplicada al sector salud.</p>
             </div>
 
-            <div class="section">
-                <h2>Valor e Impacto en Salud Pública</h2>
-                <div class="highlight-box">
-                    <p><strong>Aplicabilidad Clínica:</strong> Los insights generados proporcionan guías basadas en evidencia para profesionales de la salud en la identificación temprana de factores de riesgo y desarrollo de estrategias de intervención personalizadas, contribuyendo directamente a la prevención efectiva de la obesidad.</p>
+            <div class="demo-section">
+                <h2 class="text-xl sm:text-2xl text-gray-800 font-semibold mb-4 pl-4 border-l-4 border-primary">Valor e Impacto en Salud Pública</h2>
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-primary rounded-xl p-5 sm:p-6 my-6">
+                    <p class="font-semibold text-gray-800"><strong>Aplicabilidad Clínica:</strong> Los insights generados proporcionan guías basadas en evidencia para profesionales de la salud en la identificación temprana de factores de riesgo y desarrollo de estrategias de intervención personalizadas, contribuyendo directamente a la prevención efectiva de la obesidad.</p>
                 </div>
                 
-                <p>La metodología rigurosa y los hallazgos convergentes entre diferentes técnicas estadísticas proporcionan confianza científica en los resultados. El enfoque multifactorial identificado sugiere que las estrategias de prevención más efectivas deben considerar tanto variables físicas como comportamentales, información crucial para políticas de salud pública basadas en evidencia.</p>
+                <p class="text-justify leading-relaxed">La metodología rigurosa y los hallazgos convergentes entre diferentes técnicas estadísticas proporcionan confianza científica en los resultados. El enfoque multifactorial identificado sugiere que las estrategias de prevención más efectivas deben considerar tanto variables físicas como comportamentales, información crucial para políticas de salud pública basadas en evidencia.</p>
             </div>
         </div>
 
-        <div class="variables-section">
-            <h2>📊 Dataset y Variables Analizadas</h2>
-            <p>Análisis comprehensivo de 15 variables predictoras abarcando características demográficas, antropométricas, hábitos alimenticios y factores de estilo de vida</p>
+        <div class="bg-hero-gradient text-white p-8 sm:p-12 text-center">
+            <h2 class="text-2xl sm:text-3xl font-semibold mb-4">📊 Dataset y Variables Analizadas</h2>
+            <p class="text-lg mb-8 opacity-90">Análisis comprehensivo de 15 variables predictoras abarcando características demográficas, antropométricas, hábitos alimenticios y factores de estilo de vida</p>
             
-            <div class="variables-grid">
-                <div class="variable-group">
-                    <h4>🔢 Variables Numéricas</h4>
-                    <ul class="variable-list">
-                        <li>Altura y Peso (antropométricas)</li>
-                        <li>Edad (demográfica)</li>
-                        <li>Consumo de vegetales y agua</li>
-                        <li>Frecuencia de actividad física</li>
-                        <li>Uso de dispositivos tecnológicos</li>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+                <div class="bg-white/10 backdrop-blur-lg p-6 sm:p-8 rounded-xl border border-white/20">
+                    <h4 class="text-xl font-semibold mb-4">🔢 Variables Numéricas</h4>
+                    <ul class="space-y-3 text-left">
+                        <li class="bg-white/10 backdrop-blur-lg p-3 rounded-lg">Altura y Peso (antropométricas)</li>
+                        <li class="bg-white/10 backdrop-blur-lg p-3 rounded-lg">Edad (demográfica)</li>
+                        <li class="bg-white/10 backdrop-blur-lg p-3 rounded-lg">Consumo de vegetales y agua</li>
+                        <li class="bg-white/10 backdrop-blur-lg p-3 rounded-lg">Frecuencia de actividad física</li>
+                        <li class="bg-white/10 backdrop-blur-lg p-3 rounded-lg">Uso de dispositivos tecnológicos</li>
                     </ul>
                 </div>
-                <div class="variable-group">
-                    <h4>🏷️ Variables Categóricas</h4>
-                    <ul class="variable-list">
-                        <li>Antecedentes familiares</li>
-                        <li>Hábitos alimenticios</li>
-                        <li>Patrones de snacking</li>
-                        <li>Consumo de alcohol y tabaco</li>
-                        <li>Medio de transporte utilizado</li>
+                <div class="bg-white/10 backdrop-blur-lg p-6 sm:p-8 rounded-xl border border-white/20">
+                    <h4 class="text-xl font-semibold mb-4">🏷️ Variables Categóricas</h4>
+                    <ul class="space-y-3 text-left">
+                        <li class="bg-white/10 backdrop-blur-lg p-3 rounded-lg">Antecedentes familiares</li>
+                        <li class="bg-white/10 backdrop-blur-lg p-3 rounded-lg">Hábitos alimenticios</li>
+                        <li class="bg-white/10 backdrop-blur-lg p-3 rounded-lg">Patrones de snacking</li>
+                        <li class="bg-white/10 backdrop-blur-lg p-3 rounded-lg">Consumo de alcohol y tabaco</li>
+                        <li class="bg-white/10 backdrop-blur-lg p-3 rounded-lg">Medio de transporte utilizado</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <div class="footer">
-            <p>Proyecto desarrollado como demostración de competencias avanzadas en Análisis Estadístico Multivariante y Ciencia de Datos aplicada a Salud Pública</p>
+        <div class="bg-gray-900 text-gray-300 text-center py-8">
+            <p class="text-sm">Proyecto desarrollado como demostración de competencias avanzadas en Análisis Estadístico Multivariante y Ciencia de Datos aplicada a Salud Pública</p>
         </div>
     </div>
+
+    <!-- Scripts -->
+    <script src="../scripts/common.js"></script>
 </body>
 </html>

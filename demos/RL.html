@@ -4,310 +4,171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecto de Aprendizaje por Refuerzo - Análisis Comparativo</title>
-    <!-- Favicon IA - Texto Simple -->
+    
+    <!-- Favicon dinámico -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23667eea' rx='6'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='12' font-family='monospace' fill='white' font-weight='bold'>AI</text></svg>">
     
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            color: white;
-            padding: 40px;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            font-weight: 300;
-        }
-
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .content {
-            padding: 40px;
-        }
-
-        .section {
-            margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .section:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-
-        .section h2 {
-            color: #2c3e50;
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            padding-left: 15px;
-            border-left: 4px solid #667eea;
-        }
-
-        .section p {
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, #f8f9ff, #e8edff);
-            border: 1px solid #667eea;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .tech-card {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            border: 2px solid #e9ecef;
-            transition: all 0.3s ease;
-        }
-
-        .tech-card:hover {
-            border-color: #667eea;
-            transform: translateY(-5px);
-        }
-
-        .tech-card h4 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .result-card {
-            background: white;
-            border: 2px solid #667eea;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .result-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-
-        .algorithm-comparison {
-            background: linear-gradient(135deg, #f1f3f4, #e8eaf6);
-            border-radius: 10px;
-            padding: 25px;
-            margin: 20px 0;
-        }
-
-        .algorithm-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 15px 0;
-            padding: 15px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .algorithm-name {
-            font-weight: bold;
-            color: #2c3e50;
-            min-width: 120px;
-        }
-
-        .algorithm-trait {
-            color: #666;
-            font-style: italic;
-        }
-
-        .footer {
-            background: #2c3e50;
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .competencies {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 10px;
-            margin: 20px 0;
-        }
-
-        .competency {
-            background: #667eea;
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: 500;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                margin: 10px;
-            }
-            
-            .header, .content {
-                padding: 20px;
-            }
-            
-            .header h1 {
-                font-size: 1.8rem;
+    <!-- Font Awesome para iconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración personalizada de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#667eea',
+                        secondary: '#764ba2',
+                    },
+                    fontFamily: {
+                        sans: ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        'tech-bg': 'linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%)',
+                        'timeline-line': 'linear-gradient(to bottom, #667eea, #764ba2)',
+                        'card-gradient-1': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        'card-gradient-2': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                        'card-gradient-3': 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                        'card-gradient-4': 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                        'card-gradient-5': 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+                        'dark-gradient': 'linear-gradient(135deg, #2c3e50, #34495e)',
+                    },
+                    backdropBlur: {
+                        '15': '15px',
+                    }
+                }
             }
         }
-    </style>
+    </script>
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="../styles/common.css">
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Proyecto de Aprendizaje por Refuerzo</h1>
-            <p>Análisis Comparativo de Algoritmos de Inteligencia Artificial</p>
+<body class="font-sans leading-relaxed text-gray-800 bg-hero-gradient min-h-screen p-4 sm:p-5 lg:p-8">
+    <!-- Botón de regreso al portfolio -->
+    <div class="fixed top-4 left-4 z-50">
+        <a href="../index.html" class="inline-flex items-center gap-2 px-4 py-2 bg-white/90 hover:bg-white text-primary font-semibold rounded-full shadow-lg backdrop-blur-lg border border-white/20 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <i class="fas fa-arrow-left"></i>
+            <span class="hidden sm:inline">Volver al Portfolio</span>
+            <span class="sm:hidden">Volver</span>
+        </a>
+    </div>
+
+    <div class="demo-container max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden mt-16 sm:mt-20">
+        <div class="demo-header bg-dark-gradient text-white p-8 sm:p-12 text-center">
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-light mb-3">Proyecto de Aprendizaje por Refuerzo</h1>
+            <p class="text-lg sm:text-xl opacity-90">Análisis Comparativo de Algoritmos de Inteligencia Artificial</p>
         </div>
 
-        <div class="content">
-            <div class="section">
-                <h2>Descripción del Proyecto</h2>
-                <p>Desarrollé un sistema completo de inteligencia artificial que compara tres algoritmos fundamentales de aprendizaje automático. El proyecto analiza cómo diferentes enfoques de aprendizaje resuelven problemas complejos, proporcionando insights valiosos para la toma de decisiones algorítmicas en proyectos reales.</p>
+        <div class="demo-content p-6 sm:p-8 lg:p-12">
+            <div class="demo-section">
+                <h2 class="text-xl sm:text-2xl text-gray-800 font-semibold mb-4 pl-4 border-l-4 border-primary">Descripción del Proyecto</h2>
+                <p class="mb-4 text-justify leading-relaxed">Desarrollé un sistema completo de inteligencia artificial que compara tres algoritmos fundamentales de aprendizaje automático. El proyecto analiza cómo diferentes enfoques de aprendizaje resuelven problemas complejos, proporcionando insights valiosos para la toma de decisiones algorítmicas en proyectos reales.</p>
                 
-                <div class="highlight-box">
-                    <strong>Objetivo Principal:</strong> Demostrar competencias avanzadas en machine learning mediante la implementación y análisis de algoritmos que aprenden a tomar decisiones óptimas en entornos dinámicos.
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-primary rounded-xl p-5 sm:p-6 my-6">
+                    <p class="font-semibold text-gray-800"><strong>Objetivo Principal:</strong> Demostrar competencias avanzadas en machine learning mediante la implementación y análisis de algoritmos que aprenden a tomar decisiones óptimas en entornos dinámicos.</p>
                 </div>
             </div>
 
-            <div class="section">
-                <h2>Algoritmos Implementados</h2>
-                <div class="algorithm-comparison">
-                    <div class="algorithm-row">
-                        <span class="algorithm-name">Q-Learning</span>
-                        <span class="algorithm-trait">Busca soluciones rápidas y eficientes</span>
-                    </div>
-                    <div class="algorithm-row">
-                        <span class="algorithm-name">SARSA</span>
-                        <span class="algorithm-trait">Prioriza estrategias seguras y conservadoras</span>
-                    </div>
-                    <div class="algorithm-row">
-                        <span class="algorithm-name">Deep Q-Learning</span>
-                        <span class="algorithm-trait">Utiliza redes neuronales para problemas complejos</span>
+            <div class="demo-section">
+                <h2 class="text-xl sm:text-2xl text-gray-800 font-semibold mb-4 pl-4 border-l-4 border-primary">Algoritmos Implementados</h2>
+                <div class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl p-6 sm:p-8 my-6">
+                    <div class="space-y-4">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center bg-white p-4 rounded-lg shadow-sm">
+                            <span class="font-bold text-gray-800 mb-2 sm:mb-0 sm:min-w-32">Q-Learning</span>
+                            <span class="text-gray-600 italic text-sm sm:text-base">Busca soluciones rápidas y eficientes</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center bg-white p-4 rounded-lg shadow-sm">
+                            <span class="font-bold text-gray-800 mb-2 sm:mb-0 sm:min-w-32">SARSA</span>
+                            <span class="text-gray-600 italic text-sm sm:text-base">Prioriza estrategias seguras y conservadoras</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center bg-white p-4 rounded-lg shadow-sm">
+                            <span class="font-bold text-gray-800 mb-2 sm:mb-0 sm:min-w-32">Deep Q-Learning</span>
+                            <span class="text-gray-600 italic text-sm sm:text-base">Utiliza redes neuronales para problemas complejos</span>
+                        </div>
                     </div>
                 </div>
-                <p>Cada algoritmo representa un enfoque diferente para resolver problemas de toma de decisiones secuenciales, similar a cómo un navegador GPS puede elegir entre la ruta más rápida, la más segura, o la que mejor se adapta a condiciones cambiantes del tráfico.</p>
+                <p class="text-justify leading-relaxed">Cada algoritmo representa un enfoque diferente para resolver problemas de toma de decisiones secuenciales, similar a cómo un navegador GPS puede elegir entre la ruta más rápida, la más segura, o la que mejor se adapta a condiciones cambiantes del tráfico.</p>
             </div>
 
-            <div class="section">
-                <h2>Resultados Principales</h2>
-                <div class="results-grid">
-                    <div class="result-card">
-                        <div class="result-number">89%</div>
-                        <p>Mejora en recompensas con SARSA versus Q-learning en entornos inciertos</p>
+            <div class="demo-section">
+                <h2 class="text-xl sm:text-2xl text-gray-800 font-semibold mb-4 pl-4 border-l-4 border-primary">Resultados Principales</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 my-6">
+                    <div class="bg-white border-2 border-primary rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                        <div class="text-3xl sm:text-4xl font-bold text-primary mb-3">89%</div>
+                        <p class="text-sm text-gray-600">Mejora en recompensas con SARSA versus Q-learning en entornos inciertos</p>
                     </div>
-                    <div class="result-card">
-                        <div class="result-number">60%</div>
-                        <p>Reducción en pasos necesarios con Q-learning para alcanzar objetivos</p>
+                    <div class="bg-white border-2 border-primary rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                        <div class="text-3xl sm:text-4xl font-bold text-primary mb-3">60%</div>
+                        <p class="text-sm text-gray-600">Reducción en pasos necesarios con Q-learning para alcanzar objetivos</p>
                     </div>
-                    <div class="result-card">
-                        <div class="result-number">3</div>
-                        <p>Algoritmos diferentes implementados y comparados sistemáticamente</p>
+                    <div class="bg-white border-2 border-primary rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                        <div class="text-3xl sm:text-4xl font-bold text-primary mb-3">3</div>
+                        <p class="text-sm text-gray-600">Algoritmos diferentes implementados y comparados sistemáticamente</p>
                     </div>
                 </div>
                 
-                <p>Los experimentos revelaron que SARSA logra mejores resultados en entornos donde la gestión del riesgo es importante, mientras que Q-learning excede en situaciones que requieren eficiencia. Deep Q-Learning demostró capacidad para manejar problemas más complejos mediante el uso de redes neuronales.</p>
+                <p class="text-justify leading-relaxed">Los experimentos revelaron que SARSA logra mejores resultados en entornos donde la gestión del riesgo es importante, mientras que Q-learning excede en situaciones que requieren eficiencia. Deep Q-Learning demostró capacidad para manejar problemas más complejos mediante el uso de redes neuronales.</p>
             </div>
 
-            <div class="section">
-                <h2>Metodología y Tecnologías</h2>
-                <div class="tech-grid">
-                    <div class="tech-card">
-                        <h4>Python & NumPy</h4>
-                        <p>Implementación core de algoritmos y cálculos científicos</p>
+            <div class="demo-section">
+                <h2 class="text-xl sm:text-2xl text-gray-800 font-semibold mb-4 pl-4 border-l-4 border-primary">Metodología y Tecnologías</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 my-6">
+                    <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 sm:p-6 text-center hover:border-primary hover:-translate-y-1 transition-all">
+                        <h4 class="font-semibold text-gray-800 mb-3">Python & NumPy</h4>
+                        <p class="text-sm text-gray-600">Implementación core de algoritmos y cálculos científicos</p>
                     </div>
-                    <div class="tech-card">
-                        <h4>TensorFlow</h4>
-                        <p>Desarrollo de redes neuronales para Deep Q-Learning</p>
+                    <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 sm:p-6 text-center hover:border-primary hover:-translate-y-1 transition-all">
+                        <h4 class="font-semibold text-gray-800 mb-3">TensorFlow</h4>
+                        <p class="text-sm text-gray-600">Desarrollo de redes neuronales para Deep Q-Learning</p>
                     </div>
-                    <div class="tech-card">
-                        <h4>Gymnasium</h4>
-                        <p>Entornos de simulación para pruebas controladas</p>
+                    <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 sm:p-6 text-center hover:border-primary hover:-translate-y-1 transition-all">
+                        <h4 class="font-semibold text-gray-800 mb-3">Gymnasium</h4>
+                        <p class="text-sm text-gray-600">Entornos de simulación para pruebas controladas</p>
                     </div>
-                    <div class="tech-card">
-                        <h4>Matplotlib</h4>
-                        <p>Visualización de resultados y análisis comparativo</p>
+                    <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 sm:p-6 text-center hover:border-primary hover:-translate-y-1 transition-all">
+                        <h4 class="font-semibold text-gray-800 mb-3">Matplotlib</h4>
+                        <p class="text-sm text-gray-600">Visualización de resultados y análisis comparativo</p>
                     </div>
                 </div>
                 
-                <p>Utilicé el entorno FrozenLake como laboratorio de pruebas, simulando un agente que debe navegar hacia un objetivo evitando obstáculos. Esta configuración permite evaluar diferentes estrategias de aprendizaje en condiciones controladas pero realistas.</p>
+                <p class="text-justify leading-relaxed">Utilicé el entorno FrozenLake como laboratorio de pruebas, simulando un agente que debe navegar hacia un objetivo evitando obstáculos. Esta configuración permite evaluar diferentes estrategias de aprendizaje en condiciones controladas pero realistas.</p>
             </div>
 
-            <div class="section">
-                <h2>Competencias Demostradas</h2>
-                <div class="competencies">
-                    <div class="competency">Implementación de Algoritmos ML</div>
-                    <div class="competency">Análisis de Datos Comparativo</div>
-                    <div class="competency">Optimización de Código</div>
-                    <div class="competency">Experimentación Sistemática</div>
-                    <div class="competency">Visualización de Resultados</div>
-                    <div class="competency">Documentación Técnica</div>
+            <div class="demo-section">
+                <h2 class="text-xl sm:text-2xl text-gray-800 font-semibold mb-4 pl-4 border-l-4 border-primary">Competencias Demostradas</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 my-6">
+                    <div class="bg-primary text-white p-4 rounded-lg text-center font-medium text-sm">Implementación de Algoritmos ML</div>
+                    <div class="bg-primary text-white p-4 rounded-lg text-center font-medium text-sm">Análisis de Datos Comparativo</div>
+                    <div class="bg-primary text-white p-4 rounded-lg text-center font-medium text-sm">Optimización de Código</div>
+                    <div class="bg-primary text-white p-4 rounded-lg text-center font-medium text-sm">Experimentación Sistemática</div>
+                    <div class="bg-primary text-white p-4 rounded-lg text-center font-medium text-sm">Visualización de Resultados</div>
+                    <div class="bg-primary text-white p-4 rounded-lg text-center font-medium text-sm">Documentación Técnica</div>
                 </div>
                 
-                <p>El proyecto demuestra capacidad para abordar problemas complejos de inteligencia artificial desde la conceptualización hasta la implementación, análisis de resultados y comunicación de hallazgos. La habilidad para comparar objetivamente diferentes enfoques y extraer insights accionables resulta directamente aplicable en entornos profesionales donde la selección del algoritmo apropiado impacta significativamente los resultados del negocio.</p>
+                <p class="text-justify leading-relaxed">El proyecto demuestra capacidad para abordar problemas complejos de inteligencia artificial desde la conceptualización hasta la implementación, análisis de resultados y comunicación de hallazgos. La habilidad para comparar objetivamente diferentes enfoques y extraer insights accionables resulta directamente aplicable en entornos profesionales donde la selección del algoritmo apropiado impacta significativamente los resultados del negocio.</p>
             </div>
 
-            <div class="section">
-                <h2>Valor e Impacto</h2>
-                <div class="highlight-box">
-                    <p><strong>Aplicabilidad Práctica:</strong> Los insights generados proporcionan guías claras para la selección de algoritmos según las características del problema, competencia valiosa para proyectos de machine learning en producción donde la toma de decisiones basada en datos es fundamental.</p>
+            <div class="demo-section">
+                <h2 class="text-xl sm:text-2xl text-gray-800 font-semibold mb-4 pl-4 border-l-4 border-primary">Valor e Impacto</h2>
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-primary rounded-xl p-5 sm:p-6 my-6">
+                    <p class="font-semibold text-gray-800"><strong>Aplicabilidad Práctica:</strong> Los insights generados proporcionan guías claras para la selección de algoritmos según las características del problema, competencia valiosa para proyectos de machine learning en producción donde la toma de decisiones basada en datos es fundamental.</p>
                 </div>
                 
-                <p>La metodología rigurosa de experimentación, combinada con implementaciones optimizadas y análisis sistemático, refleja capacidades sólidas en ciencia de datos aplicada. El proyecto evidencia tanto dominio técnico como pensamiento analítico, competencias directamente transferibles a roles donde se requiere desarrollar soluciones de inteligencia artificial para problemas empresariales complejos.</p>
+                <p class="text-justify leading-relaxed">La metodología rigurosa de experimentación, combinada con implementaciones optimizadas y análisis sistemático, refleja capacidades sólidas en ciencia de datos aplicada. El proyecto evidencia tanto dominio técnico como pensamiento analítico, competencias directamente transferibles a roles donde se requiere desarrollar soluciones de inteligencia artificial para problemas empresariales complejos.</p>
             </div>
         </div>
 
-        <div class="footer">
-            <p>Proyecto desarrollado como demostración de competencias en Machine Learning y Análisis de Datos</p>
+        <div class="bg-gray-900 text-gray-300 text-center py-8">
+            <p class="text-sm">Proyecto desarrollado como demostración de competencias en Machine Learning y Análisis de Datos</p>
         </div>
     </div>
+
+    <!-- Scripts -->
+    <script src="../scripts/common.js"></script>
 </body>
 </html>

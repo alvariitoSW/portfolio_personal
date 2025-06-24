@@ -1,0 +1,435 @@
+/* styles/common.css - Estilos CSS puros del proyecto */
+
+/* ===== EFECTOS DE TEXTO GRADIENTE ===== */
+.text-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-white {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ===== ANIMACIONES DE HOVER PERSONALIZADAS ===== */
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* ===== TIMELINE STYLES ===== */
+.timeline {
+    position: relative;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, #667eea, #764ba2);
+    transform: translateX(-50%);
+}
+
+.timeline-content {
+    position: relative;
+}
+
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+}
+
+.timeline-item:nth-child(odd) .timeline-content::before {
+    left: -20px;
+    border-right-color: white;
+}
+
+.timeline-item:nth-child(even) .timeline-content::before {
+    right: -20px;
+    border-left-color: white;
+}
+
+/* ===== PROJECTS GRID SYSTEM ===== */
+@media (min-width: 1024px) {
+    .projects-grid.lg\:block {
+        display: grid !important;
+        grid-template-columns: repeat(12, 1fr) !important;
+        grid-template-rows: repeat(3, 280px) !important;
+        gap: 1.5rem !important;
+        margin-top: 3rem !important;
+    }
+    
+    /* Proyecto principal - Domina visualmente el grid */
+    .projects-grid .project-card:nth-child(1) {
+        grid-column: span 7 !important;
+        grid-row: span 2 !important;
+    }
+    
+    /* Proyectos secundarios - Distribuidos estratégicamente */
+    .projects-grid .project-card:nth-child(2) {
+        grid-column: span 5 !important;
+        grid-row: span 1 !important;
+    }
+    
+    .projects-grid .project-card:nth-child(3) {
+        grid-column: span 5 !important;
+        grid-row: span 1 !important;
+    }
+    
+    .projects-grid .project-card:nth-child(4) {
+        grid-column: span 6 !important;
+        grid-row: span 1 !important;
+    }
+    
+    .projects-grid .project-card:nth-child(5) {
+        grid-column: span 6 !important;
+        grid-row: span 1 !important;
+    }
+}
+
+/* ===== PROJECT CARDS ===== */
+.project-card {
+    position: relative;
+    border-radius: 25px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.project-content-wrapper {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem;
+    color: white;
+}
+
+.project-header-new {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: auto;
+    text-align: center;
+    flex-direction: column;
+}
+
+.project-icon-large {
+    font-size: 3.5rem;
+    opacity: 0.9;
+    transition: all 0.4s ease;
+}
+
+.project-title-new {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.project-subtitle-new {
+    font-size: 0.9rem;
+    opacity: 0.85;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    transition: all 0.5s ease;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.overlay-content {
+    color: white;
+}
+
+.overlay-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 400px;
+}
+
+.overlay-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.overlay-tech-tag {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.overlay-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.overlay-button {
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.overlay-button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.overlay-button.primary {
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+.overlay-button.primary:hover {
+    background: white;
+    color: #333;
+}
+
+.project-status {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    z-index: 4;
+}
+
+/* ===== SECTION TITLES ===== */
+.section-title {
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 2px;
+}
+
+/* ===== DEMO PAGES STYLES ===== */
+.demo-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.demo-header {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    padding: 40px;
+    text-align: center;
+}
+
+.demo-section {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eee;
+}
+
+.demo-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.demo-section h2 {
+    color: #2c3e50;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    border-left: 4px solid #667eea;
+}
+
+/* ===== HOVER EFFECTS ===== */
+.hover-lift {
+    transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* ===== DASHBOARD BUTTONS ===== */
+.dashboard-button {
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    min-width: 220px;
+    text-align: center;
+}
+
+.dashboard-button.primary {
+    background: white;
+    color: #667eea;
+}
+
+.dashboard-button.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    background: #f8f9ff;
+}
+
+.dashboard-button.secondary {
+    background: linear-gradient(135deg, #34495e, #2c3e50);
+    color: white;
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+.dashboard-button.secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    border-color: rgba(255,255,255,0.5);
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+    .demo-container {
+        margin: 10px;
+    }
+    
+    .demo-header {
+        padding: 20px;
+    }
+    
+    .demo-header h1 {
+        font-size: 1.8rem;
+    }
+}
+/* ===== RISK FACTORS CARDS (específico para estadistica.html) ===== */
+.risk-factor-card {
+    background: white;
+    border: 2px solid #e74c3c;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.risk-factor-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.risk-factor-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+/* ===== VARIABLES SECTION STYLES ===== */
+.variables-section {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 40px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.variable-group {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.variable-list {
+    list-style: none;
+    padding: 0;
+}
+
+.variable-list li {
+    margin: 8px 0;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}

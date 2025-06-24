@@ -1,0 +1,38 @@
+<!-- includes/dependencies.html - Dependencias comunes del proyecto -->
+
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Font Awesome para iconos -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<!-- Configuración personalizada de Tailwind -->
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    primary: '#667eea',
+                    secondary: '#764ba2',
+                },
+                fontFamily: {
+                    sans: ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+                },
+                backgroundImage: {
+                    'hero-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    'tech-bg': 'linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%)',
+                    'timeline-line': 'linear-gradient(to bottom, #667eea, #764ba2)',
+                    'card-gradient-1': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    'card-gradient-2': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                    'card-gradient-3': 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                    'card-gradient-4': 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                    'card-gradient-5': 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+                    'dark-gradient': 'linear-gradient(135deg, #2c3e50, #34495e)',
+                },
+                backdropBlur: {
+                    '15': '15px',
+                }
+            }
+        }
+    }
+</script>

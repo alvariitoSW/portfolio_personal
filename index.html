@@ -5,870 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Viaje en Ciencia e Ingeniería de Datos</title>
     
+    <!-- Favicon dinámico -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23667eea' rx='6'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='12' font-family='monospace' fill='white' font-weight='bold'>AI</text></svg>">
     
+    <!-- Font Awesome para iconos -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
-    <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #333333;
-            --text-light: #555555;
-            --text-muted: #666666;
-            --card-bg: #ffffff;
-            --navbar-bg: rgba(255, 255, 255, 0.95);
-            --hero-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --section-bg: #ffffff;
-            --border-color: #f0f0f0;
-            --shadow-light: rgba(0, 0, 0, 0.1);
-            --shadow-medium: rgba(0, 0, 0, 0.15);
-            --tech-bg: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
-            --tech-item-bg: #ffffff;
-            --soft-skill-bg: #ffffff;
-            --academic-bg: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
-            --footer-bg: #1a1a1a;
-            --footer-text: #cccccc;
-            --contact-item-bg: rgba(255, 255, 255, 0.1);
-            --contact-item-border: rgba(255, 255, 255, 0.2);
-            --timeline-line: linear-gradient(to bottom, #667eea, #764ba2);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-        }
-
-        /* Navegación */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: var(--navbar-bg);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: #667eea;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: var(--hero-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            color: white;
-            max-width: 900px;
-            padding: 0 2rem;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 0.5rem 1.5rem;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .hero-name {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
-        }
-
-        .hero-title {
-            font-size: 1.8rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
-            opacity: 0.95;
-            letter-spacing: 0.5px;
-        }
-
-        .hero-university {
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin-bottom: 2rem;
-            opacity: 0.85;
-            letter-spacing: 0.3px;
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-            line-height: 1.6;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .hero-stat {
-            text-align: center;
-        }
-
-        .hero-stat-number {
-            font-size: 2.2rem;
-            font-weight: 700;
-            display: block;
-            margin-bottom: 0.3rem;
-        }
-
-        .hero-stat-label {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            padding: 1.2rem 2.5rem;
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            backdrop-filter: blur(15px);
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            transition: all 0.4s ease;
-            font-weight: 600;
-            font-size: 1rem;
-            letter-spacing: 0.3px;
-        }
-
-        .cta-button:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-4px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 255, 255, 0.4);
-        }
-
-        .cta-button.primary {
-            background: rgba(255, 255, 255, 0.9);
-            color: #667eea;
-            border-color: rgba(255, 255, 255, 0.9);
-        }
-
-        .cta-button.primary:hover {
-            background: white;
-            color: #5a6fd8;
-            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.2);
-        }
-
-        /* Secciones */
-        .section {
-            padding: 5rem 0;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
-            background: var(--section-bg);
-        }
-
-        .contact-section .section {
-            background: transparent;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 2px;
-        }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding: 2rem 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: var(--timeline-line);
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin: 3rem 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .timeline-item:nth-child(odd) {
-            flex-direction: row-reverse;
-        }
-
-        .timeline-content {
-            background: var(--card-bg);
-            color: var(--text-color);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px var(--shadow-light);
-            width: 45%;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px var(--shadow-medium);
-        }
-
-        .timeline-content::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 0;
-            height: 0;
-            border: 10px solid transparent;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content::before {
-            left: -20px;
-            border-right-color: var(--card-bg);
-        }
-
-        .timeline-item:nth-child(even) .timeline-content::before {
-            right: -20px;
-            border-left-color: var(--card-bg);
-        }
-
-        .timeline-year {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: bold;
-            z-index: 1;
-        }
-
-        /* Proyectos */
-        .projects-showcase {
-            margin-top: 4rem;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            grid-template-rows: repeat(3, 280px);
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .project-card {
-            position: relative;
-            border-radius: 25px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
-
-        .project-card:nth-child(1) {
-            grid-column: span 7;
-            grid-row: span 2;
-        }
-
-        .project-card:nth-child(2) {
-            grid-column: span 5;
-            grid-row: span 1;
-        }
-
-        .project-card:nth-child(3) {
-            grid-column: span 5;
-            grid-row: span 1;
-        }
-
-        .project-card:nth-child(4) {
-            grid-column: span 6;
-            grid-row: span 1;
-        }
-
-        .project-card:nth-child(5) {
-            grid-column: span 6;
-            grid-row: span 1;
-        }
-
-        .project-card:nth-child(1) {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .project-card:nth-child(2) {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-
-        .project-card:nth-child(3) {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        .project-card:nth-child(4) {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-        }
-
-        .project-card:nth-child(5) {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-        }
-
-        .project-content-wrapper {
-            position: relative;
-            z-index: 2;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 2rem;
-            color: white;
-        }
-
-        .project-header-new {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: auto;
-            text-align: center;
-            flex-direction: column;
-        }
-
-        .project-icon-large {
-            font-size: 3.5rem;
-            opacity: 0.9;
-            transition: all 0.4s ease;
-        }
-
-        .project-title-new {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
-        }
-
-        .project-subtitle-new {
-            font-size: 0.9rem;
-            opacity: 0.85;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            opacity: 0;
-            transition: all 0.5s ease;
-            z-index: 3;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .project-card:hover .project-overlay {
-            opacity: 1;
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-        }
-
-        .overlay-content {
-            color: white;
-        }
-
-        .overlay-description {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            max-width: 400px;
-        }
-
-        .overlay-tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
-
-        .overlay-tech-tag {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            color: white;
-            padding: 0.4rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .overlay-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .overlay-button {
-            padding: 0.8rem 1.5rem;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .overlay-button:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-2px);
-        }
-
-        .overlay-button.primary {
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
-            border-color: rgba(255, 255, 255, 0.9);
-        }
-
-        .overlay-button.primary:hover {
-            background: white;
-            color: #333;
-        }
-
-        .project-status {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            color: white;
-            padding: 0.4rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        /* Skills Section */
-        .skills-container {
-            margin-top: 3rem;
-        }
-
-        .technical-skills {
-            background: var(--tech-bg);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px var(--shadow-light);
-            margin-bottom: 3rem;
-        }
-
-        .tech-skills-title {
-            text-align: center;
-            font-size: 1.8rem;
-            color: #667eea;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .tech-skills-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 1.5rem;
-            align-items: stretch;
-        }
-
-        .tech-skill-item {
-            background: var(--tech-item-bg);
-            padding: 1rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 15px var(--shadow-light);
-            transition: all 0.3s ease;
-        }
-
-        .tech-skill-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px var(--shadow-medium);
-        }
-
-        .tech-skill-icon {
-            font-size: 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        .tech-skill-name {
-            font-weight: 600;
-            color: var(--text-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .tech-skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.3rem;
-            justify-content: center;
-        }
-
-        .tech-skill-tag {
-            background: #f0f2ff;
-            color: #667eea;
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        /* Soft Skills */
-        .soft-skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .soft-skill-category {
-            background: var(--soft-skill-bg);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px var(--shadow-light);
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .soft-skill-category::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .soft-skill-category:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px var(--shadow-medium);
-        }
-
-        .soft-skill-icon {
-            font-size: 3rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1.5rem;
-        }
-
-        .soft-skill-title {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-            font-weight: 600;
-        }
-
-        .soft-skill-subtitle {
-            font-size: 0.9rem;
-            color: #667eea;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .soft-skill-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .soft-skill-list li {
-            background: var(--tech-bg);
-            margin: 0.8rem 0;
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            color: var(--text-light);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border-left: 3px solid #667eea;
-        }
-
-        .soft-skill-list li:hover {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            transform: translateX(5px);
-        }
-
-        /* Academic Record */
-        .academic-record {
-            background: var(--academic-bg);
-            padding: 3rem;
-            border-radius: 20px;
-            margin-top: 3rem;
-            box-shadow: 0 10px 30px var(--shadow-light);
-        }
-
-        .record-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .record-item {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 15px var(--shadow-light);
-        }
-
-        .record-value {
-            font-size: 2rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        .record-label {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            background: var(--hero-gradient);
-            color: white;
-            padding: 5rem 0;
-            text-align: center;
-        }
-
-        /* CAMBIO PRINCIPAL: Tarjetas de contacto en línea */
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 3rem;
-            flex-wrap: nowrap; /* No permitir salto de línea */
-        }
-
-        .contact-item {
-            background: var(--contact-item-bg);
-            padding: 1.5rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--contact-item-border);
-            transition: all 0.3s ease;
-            min-width: 180px; /* Ancho mínimo para mantener consistencia */
-            flex: 1; /* Distribuir espacio uniformemente */
-            max-width: 220px; /* Ancho máximo para evitar que se vean muy anchas */
-        }
-
-        .contact-item:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .contact-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-item a {
-            color: white;
-            text-decoration: none;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--footer-bg);
-            color: var(--footer-text);
-            text-align: center;
-            padding: 2rem 0;
-        }
-    </style>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración personalizada de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#667eea',
+                        secondary: '#764ba2',
+                    },
+                    fontFamily: {
+                        sans: ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        'tech-bg': 'linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%)',
+                        'timeline-line': 'linear-gradient(to bottom, #667eea, #764ba2)',
+                        'card-gradient-1': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        'card-gradient-2': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                        'card-gradient-3': 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                        'card-gradient-4': 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                        'card-gradient-5': 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+                        'dark-gradient': 'linear-gradient(135deg, #2c3e50, #34495e)',
+                    },
+                    backdropBlur: {
+                        '15': '15px',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles/common.css">
 </head>
-<body>
+<body class="font-sans leading-relaxed text-gray-800 bg-white">
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">Mi Portfolio</div>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#recorrido">Mi Recorrido</a></li>
-                <li><a href="#proyectos">Proyectos</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#expediente">Expediente</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-lg py-4 z-50 border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="text-xl sm:text-2xl font-bold text-gradient">Mi Portfolio</div>
+            
+            <!-- Menú desktop -->
+            <ul class="hidden lg:flex space-x-8">
+                <li><a href="#inicio" class="nav-link relative text-gray-800 font-medium hover:text-primary transition-colors duration-300">Inicio</a></li>
+                <li><a href="#recorrido" class="nav-link relative text-gray-800 font-medium hover:text-primary transition-colors duration-300">Mi Recorrido</a></li>
+                <li><a href="#proyectos" class="nav-link relative text-gray-800 font-medium hover:text-primary transition-colors duration-300">Proyectos</a></li>
+                <li><a href="#habilidades" class="nav-link relative text-gray-800 font-medium hover:text-primary transition-colors duration-300">Habilidades</a></li>
+                <li><a href="#expediente" class="nav-link relative text-gray-800 font-medium hover:text-primary transition-colors duration-300">Expediente</a></li>
+                <li><a href="#contacto" class="nav-link relative text-gray-800 font-medium hover:text-primary transition-colors duration-300">Contacto</a></li>
             </ul>
+            
+            <!-- Botón menú móvil -->
+            <button id="mobile-menu-btn" class="lg:hidden p-2">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- Menú móvil -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#inicio" class="block py-2 text-gray-800 hover:text-primary">Inicio</a>
+                <a href="#recorrido" class="block py-2 text-gray-800 hover:text-primary">Mi Recorrido</a>
+                <a href="#proyectos" class="block py-2 text-gray-800 hover:text-primary">Proyectos</a>
+                <a href="#habilidades" class="block py-2 text-gray-800 hover:text-primary">Habilidades</a>
+                <a href="#expediente" class="block py-2 text-gray-800 hover:text-primary">Expediente</a>
+                <a href="#contacto" class="block py-2 text-gray-800 hover:text-primary">Contacto</a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-chart-line"></i>
+    <section id="inicio" class="min-h-screen bg-hero-gradient flex items-center justify-center text-center relative">
+        <div class="relative z-10 text-white max-w-4xl px-4 sm:px-6 lg:px-8">
+            <div class="inline-block bg-white/15 backdrop-blur-lg px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold tracking-wide mb-6 border border-white/20">
+                <i class="fas fa-chart-line mr-2"></i>
                 <span>ESTUDIANTE DE GRADO</span>
             </div>
-            <h1 class="hero-name">Álvaro Martínez Gamo</h1>
-            <h2 class="hero-title">Ciencia e Ingeniería de Datos</h2>
-            <p class="hero-university">Universidad Autónoma de Madrid</p>
-            <p class="hero-description">
+            
+            <h1 class="text-3xl sm:text-4xl lg:text-6xl font-bold mb-2 text-gradient-white tracking-tight">Álvaro Martínez Gamo</h1>
+            <h2 class="text-lg sm:text-xl lg:text-3xl font-light mb-4 opacity-95 tracking-wide">Ciencia e Ingeniería de Datos</h2>
+            <p class="text-base sm:text-lg font-medium mb-8 opacity-85 tracking-wide">Universidad Autónoma de Madrid</p>
+            <p class="text-base sm:text-xl mb-10 opacity-90 leading-relaxed max-w-3xl mx-auto">
                 Transformando datos en conocimiento a través de la innovación tecnológica. 
                 Especializado en machine learning, análisis predictivo y desarrollo de soluciones 
                 basadas en inteligencia artificial.
             </p>
             
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <span class="hero-stat-number">3+</span>
-                    <span class="hero-stat-label">Años de Estudio</span>
+            <!-- Hero Stats -->
+            <div class="flex flex-col sm:flex-row justify-center gap-6 sm:gap-12 mb-10">
+                <div class="text-center">
+                    <span class="block text-2xl sm:text-4xl font-bold">3+</span>
+                    <span class="text-xs sm:text-sm opacity-80 font-medium tracking-wider">Años de Estudio</span>
                 </div>
-                <div class="hero-stat">
-                    <span class="hero-stat-number">10+</span>
-                    <span class="hero-stat-label">Proyectos</span>
+                <div class="text-center">
+                    <span class="block text-2xl sm:text-4xl font-bold">10+</span>
+                    <span class="text-xs sm:text-sm opacity-80 font-medium tracking-wider">Proyectos</span>
                 </div>
-                <div class="hero-stat">
-                    <span class="hero-stat-number">8.28</span>
-                    <span class="hero-stat-label">Promedio del último año (3º carrera)</span>
+                <div class="text-center">
+                    <span class="block text-2xl sm:text-4xl font-bold">8.28</span>
+                    <span class="text-xs sm:text-sm opacity-80 font-medium tracking-wider">Promedio del último año (3º carrera)</span>
                 </div>
             </div>
             
-            <div class="hero-buttons">
-                <a href="#proyectos" class="cta-button primary">
+            <!-- Hero Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+                <a href="#proyectos" class="inline-flex items-center justify-center gap-3 px-6 sm:px-10 py-3 sm:py-4 bg-white/90 text-primary text-sm sm:text-base font-semibold rounded-full border-2 border-white/90 transition-all duration-400 hover:bg-white hover:text-blue-600 hover:-translate-y-1 hover:shadow-xl">
                     <i class="fas fa-rocket"></i>
                     <span>Ver Proyectos</span>
                 </a>
-                <a href="#contacto" class="cta-button">
+                <a href="#contacto" class="inline-flex items-center justify-center gap-3 px-6 sm:px-10 py-3 sm:py-4 bg-white/15 text-white text-sm sm:text-base font-semibold rounded-full backdrop-blur-xl border-2 border-white/25 transition-all duration-400 hover:bg-white/25 hover:-translate-y-1 hover:shadow-xl hover:border-white/40">
                     <i class="fas fa-envelope"></i>
                     <span>Contactar</span>
                 </a>
@@ -877,398 +131,510 @@
     </section>
 
     <!-- Timeline Section -->
-    <section id="recorrido" class="section">
-        <h2 class="section-title">Formación Académica y Desarrollo Profesional</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-year">2022/2023</div>
-                <div class="timeline-content">
-                    <h3>Primer Año - Fundamentos Matemáticos y Computacionales</h3>
-                    <p>Establecimiento de una base sólida en matemáticas aplicadas, estadística inferencial y programación. Durante este período, desarrollé competencias fundamentales en análisis cuantitativo y adquirí dominio de las herramientas computacionales esenciales para la ciencia de datos. La formación incluyó metodologías rigurosas de investigación estadística y principios de diseño de experimentos que constituyen la base teórica para el análisis de datos avanzado.</p>
-                    <div style="margin-top: 1.5rem;">
-                        <strong style="color: #667eea; font-size: 0.9rem;">Competencias Adquiridas:</strong>
-                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">Álgebra lineal aplicada, cálculo multivariable, estadística descriptiva e inferencial, programación estructurada en Python y R, modelado matemático, y fundamentos de arquitecturas de bases de datos relacionales.</p>
+    <section id="recorrido" class="py-12 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="section-title text-2xl sm:text-3xl lg:text-4xl text-center mb-8 sm:mb-12 text-gradient relative">
+            Formación Académica y Desarrollo Profesional
+        </h2>
+        
+        <div class="timeline relative py-8 hidden lg:block">
+            <!-- Timeline Items para Desktop -->
+            <div class="timeline-item relative my-12 flex items-center">
+                <div class="timeline-year absolute left-1/2 transform -translate-x-1/2 bg-hero-gradient text-white px-4 py-2 rounded-full font-bold z-10">2022/2023</div>
+                <div class="timeline-content bg-white text-gray-800 p-8 rounded-2xl shadow-xl w-2/5 relative transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <h3 class="text-xl font-semibold mb-4">Primer Año - Fundamentos Matemáticos y Computacionales</h3>
+                    <p class="mb-6 leading-relaxed">Establecimiento de una base sólida en matemáticas aplicadas, estadística inferencial y programación. Durante este período, desarrollé competencias fundamentales en análisis cuantitativo y adquirí dominio de las herramientas computacionales esenciales para la ciencia de datos.</p>
+                    <div class="mt-6">
+                        <strong class="text-primary text-sm">Competencias Adquiridas:</strong>
+                        <p class="mt-2 text-sm text-gray-600">Álgebra lineal aplicada, cálculo multivariable, estadística descriptiva e inferencial, programación estructurada en Python y R.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="timeline-item">
-                <div class="timeline-year">2023/2024</div>
-                <div class="timeline-content">
-                    <h3>Segundo Año - Metodologías Avanzadas y Aplicaciones</h3>
-                    <p>Profundización en algoritmos de aprendizaje automático supervisado y no supervisado, con énfasis en la implementación práctica de modelos predictivos. Este año se caracterizó por el desarrollo de proyectos multidisciplinarios que integraron técnicas estadísticas avanzadas con herramientas de visualización de datos. La formación abarcó metodologías de validación cruzada, optimización de hiperparámetros y evaluación robusta de modelos en escenarios reales.</p>
-                    <div style="margin-top: 1.5rem;">
-                        <strong style="color: #667eea; font-size: 0.9rem;">Logros Destacados:</strong>
-                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">Implementación de pipelines de machine learning end-to-end, desarrollo de dashboards interactivos con Plotly y D3.js, colaboración en proyectos de análisis de big data utilizando Apache Spark, y aplicación de técnicas de feature engineering avanzadas.</p>
+            <div class="timeline-item relative my-12 flex items-center flex-row-reverse">
+                <div class="timeline-year absolute left-1/2 transform -translate-x-1/2 bg-hero-gradient text-white px-4 py-2 rounded-full font-bold z-10">2023/2024</div>
+                <div class="timeline-content bg-white text-gray-800 p-8 rounded-2xl shadow-xl w-2/5 relative transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <h3 class="text-xl font-semibold mb-4">Segundo Año - Algoritmos y Estructuras de Datos</h3>
+                    <p class="mb-6 leading-relaxed">Consolidación de fundamentos computacionales esenciales a través del estudio intensivo de algoritmos y estructuras de datos. Este período me proporcionó las bases técnicas sólidas necesarias para comprender el funcionamiento interno de las herramientas de ciencia de datos y prepararme para una especialización profunda en el análisis de datos avanzado.</p>
+                    <div class="mt-6">
+                        <strong class="text-primary text-sm">Competencias Desarrolladas:</strong>
+                        <p class="mt-2 text-sm text-gray-600">Optimización algorítmica, estructuras de datos complejas, análisis de complejidad computacional, y diseño de soluciones eficientes como preparación para el procesamiento de grandes volúmenes de datos.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="timeline-item">
-                <div class="timeline-year">2024/2025</div>
-                <div class="timeline-content">
-                    <h3>Tercer Año - Especialización en Inteligencia Artificial</h3>
-                    <p>Concentración en arquitecturas de deep learning, procesamiento de lenguaje natural y sistemas de aprendizaje por refuerzo. Este período incluyó la realización de proyectos de investigación aplicada en colaboración con la industria, enfocándose en la implementación de soluciones escalables de inteligencia artificial. La formación abarcó metodologías MLOps, deployment de modelos en producción y consideraciones éticas en el desarrollo de sistemas inteligentes.</p>
-                    <div style="margin-top: 1.5rem;">
-                        <strong style="color: #667eea; font-size: 0.9rem;">Proyectos de Investigación:</strong>
-                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">Desarrollo de modelos generativos con arquitecturas de difusión, implementación de sistemas de recomendación híbridos, análisis de sentimientos en tiempo real utilizando transformers, y optimización de algoritmos de aprendizaje por refuerzo para aplicaciones financieras.</p>
+            <div class="timeline-item relative my-12 flex items-center">
+                <div class="timeline-year absolute left-1/2 transform -translate-x-1/2 bg-hero-gradient text-white px-4 py-2 rounded-full font-bold z-10">2024/2025</div>
+                <div class="timeline-content bg-white text-gray-800 p-8 rounded-2xl shadow-xl w-2/5 relative transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <h3 class="text-xl font-semibold mb-4">Tercer Año - Especialización en Inteligencia Artificial</h3>
+                    <p class="mb-6 leading-relaxed">Inmersión profunda en las últimas tendencias de inteligencia artificial, con enfoque especial en arquitecturas de deep learning, modelos generativos y técnicas de vanguardia. Esta especialización me ha preparado para dominar entornos completos de creación, desarrollo y despliegue de modelos de IA en contextos profesionales.</p>
+                    <div class="mt-6">
+                        <strong class="text-primary text-sm">Tecnologías Dominadas:</strong>
+                        <p class="mt-2 text-sm text-gray-600">Frameworks de deep learning modernos, modelos de difusión para generación de contenido, pipelines de MLOps, y metodologías de despliegue de modelos en producción.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Timeline móvil -->
+        <div class="lg:hidden space-y-8">
+            <div class="bg-white p-6 rounded-2xl shadow-xl">
+                <div class="bg-hero-gradient text-white px-4 py-2 rounded-full font-bold text-center mb-4 w-fit mx-auto">2022/2023</div>
+                <h3 class="text-lg font-semibold mb-3">Primer Año - Fundamentos Matemáticos y Computacionales</h3>
+                <p class="text-sm leading-relaxed mb-4">Establecimiento de una base sólida en matemáticas aplicadas, estadística inferencial y programación.</p>
+                <div>
+                    <strong class="text-primary text-sm">Competencias:</strong>
+                    <p class="mt-1 text-xs text-gray-600">Álgebra lineal, estadística, Python y R.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-2xl shadow-xl">
+                <div class="bg-hero-gradient text-white px-4 py-2 rounded-full font-bold text-center mb-4 w-fit mx-auto">2023/2024</div>
+                <h3 class="text-lg font-semibold mb-3">Segundo Año - Algoritmos y Estructuras de Datos</h3>
+                <p class="text-sm leading-relaxed mb-4">Consolidación de fundamentos computacionales esenciales preparando las bases para una especialización profunda en ciencia de datos.</p>
+                <div>
+                    <strong class="text-primary text-sm">Competencias:</strong>
+                    <p class="mt-1 text-xs text-gray-600">Optimización algorítmica, estructuras de datos complejas, análisis de complejidad computacional.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-2xl shadow-xl">
+                <div class="bg-hero-gradient text-white px-4 py-2 rounded-full font-bold text-center mb-4 w-fit mx-auto">2024/2025</div>
+                <h3 class="text-lg font-semibold mb-3">Tercer Año - Especialización en IA</h3>
+                <p class="text-sm leading-relaxed mb-4">Inmersión profunda en las últimas tendencias de IA, dominando entornos de creación, desarrollo y despliegue de modelos.</p>
+                <div>
+                    <strong class="text-primary text-sm">Tecnologías:</strong>
+                    <p class="mt-1 text-xs text-gray-600">Deep learning modernos, modelos generativos, pipelines MLOps.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="proyectos" class="section">
-        <h2 class="section-title">Algunos de mis proyectos mas destacados</h2>
-        <div class="projects-showcase">
-            <div class="projects-grid">
+    <section id="proyectos" class="py-20 max-w-7xl mx-auto px-8">
+        <h2 class="section-title text-2xl sm:text-3xl lg:text-4xl text-center mb-8 sm:mb-12 text-gradient relative">
+            Algunos de mis proyectos mas destacados
+        </h2>
+        
+        <!-- Grid Desktop -->
+        <div class="projects-grid hidden lg:block">
+            
+            <!-- Proyecto 1 - Destacado (Grande) -->
+            <div class="project-card bg-card-gradient-1">
+                <div class="project-status">⭐ Proyecto Estrella</div>
                 
-                <!-- Proyecto 1 - Destacado (Grande) -->
-                <div class="project-card">
-                    <div class="project-status">⭐ Proyecto Estrella</div>
-                    
-                    <div class="project-content-wrapper">
-                        <div class="project-header-new">
-                            <div class="project-icon-large"><i class="fas fa-magic"></i></div>
-                            <div class="project-meta">
-                                <h3 class="project-title-new">Sistema de Generación de Imágenes por Difusión</h3>
-                                <p class="project-subtitle-new">Deep Learning Generativo</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-overlay">
-                        <div class="overlay-content">
-                            <p class="overlay-description">
-                                Desarrollé un framework completo para entrenamiento y generación de imágenes usando modelos de difusión. 
-                                Incluye múltiples procesos de difusión, métodos de muestreo avanzados, y capacidades de generación condicional, 
-                                colorización e inpainting con interfaz interactiva.
-                            </p>
-                            <div class="overlay-tech-stack">
-                                <span class="overlay-tech-tag">Python</span>
-                                <span class="overlay-tech-tag">PyTorch</span>
-                                <span class="overlay-tech-tag">Streamlit</span>
-                                <span class="overlay-tech-tag">NumPy</span>
-                                <span class="overlay-tech-tag">PIL</span>
-                                <span class="overlay-tech-tag">Torchvision</span>
-                            </div>
-                            <div class="overlay-buttons">
-                                <a href="demos/IA_gen.html" class="overlay-button primary">Ver Dashboard</a>
-                                <a href="https://github.com/HectorTablero/image-gen" class="overlay-button">GitHub</a>
-                            </div>
+                <div class="project-content-wrapper">
+                    <div class="project-header-new">
+                        <div class="project-icon-large"><i class="fas fa-magic"></i></div>
+                        <div class="project-meta">
+                            <h3 class="project-title-new">Sistema de Generación de Imágenes por Difusión</h3>
+                            <p class="project-subtitle-new">Deep Learning Generativo</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Proyecto 2 -->
-                <div class="project-card">
-                    <div class="project-status">🏆 Primer Lugar</div>
-                    
-                    <div class="project-content-wrapper">
-                        <div class="project-header-new">
-                            <div class="project-icon-large"><i class="fas fa-trophy"></i></div>
-                            <div class="project-meta">
-                                <h3 class="project-title-new">Liga de Inversores UAM-BME-Ironia</h3>
-                                <p class="project-subtitle-new">Finanzas Cuantitativas & Optimización de Carteras</p>
-                            </div>
+                <div class="project-overlay">
+                    <div class="overlay-content">
+                        <p class="overlay-description">
+                            Desarrollé un framework completo para entrenamiento y generación de imágenes usando modelos de difusión con capacidades de generación condicional, colorización e inpainting.
+                        </p>
+                        <div class="overlay-tech-stack">
+                            <span class="overlay-tech-tag">Python</span>
+                            <span class="overlay-tech-tag">PyTorch</span>
+                            <span class="overlay-tech-tag">Streamlit</span>
+                        </div>
+                        <div class="overlay-buttons">
+                            <a href="demos/IA_gen.html" class="overlay-button primary">Ver Dashboard</a>
+                            <a href="https://github.com/HectorTablero/image-gen" class="overlay-button">GitHub</a>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="project-overlay">
-                        <div class="overlay-content">
-                            <p class="overlay-description">
-                                Implementación de modelos de optimización convexa, técnicas avanzadas de imputación de datos 
-                                y análisis de riesgo-rendimiento para la gestión de carteras con fondos reales del mercado financiero, que me llevaron al primer puesto.
-                            </p>
-                            <div class="overlay-tech-stack">
-                                <span class="overlay-tech-tag">Python</span>
-                                <span class="overlay-tech-tag">CVXPY</span>
-                                <span class="overlay-tech-tag">BigQuery</span>
-                                <span class="overlay-tech-tag">Optimización</span>
-                            </div>
-                            <div class="overlay-buttons">
-                                <a href="https://ironia.tech/competition/aula-uam-bme-ironia-en-finanzas-cuantitativas-6" class="overlay-button primary" target="_blank">Ver Competición</a>
-                                <a href="https://github.com/alvariitoSW/liga_inversores" class="overlay-button" target="_blank">GitHub</a>
-                            </div>
+            <!-- Proyecto 2 -->
+            <div class="project-card bg-card-gradient-2">
+                <div class="project-status">🏆 Primer Lugar</div>
+                
+                <div class="project-content-wrapper">
+                    <div class="project-header-new">
+                        <div class="project-icon-large"><i class="fas fa-trophy"></i></div>
+                        <div class="project-meta">
+                            <h3 class="project-title-new">Liga de Inversores UAM-BME-Ironia</h3>
+                            <p class="project-subtitle-new">Finanzas Cuantitativas</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Proyecto 3 -->
-                <div class="project-card">
-                    <div class="project-status">🎯 Reinforcement Learning</div>
-                    
-                    <div class="project-content-wrapper">
-                        <div class="project-header-new">
-                            <div class="project-icon-large"><i class="fas fa-brain"></i></div>
-                            <div class="project-meta">
-                                <h3 class="project-title-new">Sistema de Aprendizaje por Refuerzo Comparativo</h3>
-                                <p class="project-subtitle-new">Reinforcement Learning Avanzado</p>
-                            </div>
+                <div class="project-overlay">
+                    <div class="overlay-content">
+                        <p class="overlay-description">
+                            Implementación de modelos de optimización convexa y técnicas de análisis de riesgo-rendimiento que me llevaron al primer puesto.
+                        </p>
+                        <div class="overlay-tech-stack">
+                            <span class="overlay-tech-tag">Python</span>
+                            <span class="overlay-tech-tag">CVXPY</span>
+                            <span class="overlay-tech-tag">BigQuery</span>
+                        </div>
+                        <div class="overlay-buttons">
+                            <a href="https://ironia.tech/competition/aula-uam-bme-ironia-en-finanzas-cuantitativas-6" class="overlay-button primary" target="_blank">Ver Competición</a>
+                            <a href="https://github.com/alvariitoSW/liga_inversores" class="overlay-button" target="_blank">GitHub</a>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="project-overlay">
-                        <div class="overlay-content">
-                            <p class="overlay-description">
-                                Implementé y comparé tres algoritmos de aprendizaje por refuerzo (Q-learning, SARSA y DQN) 
-                                en el entorno FrozenLake, analizando su comportamiento en configuraciones deterministas y estocásticas 
-                                con métricas de rendimiento.
-                            </p>
-                            <div class="overlay-tech-stack">
-                                <span class="overlay-tech-tag">Python</span>
-                                <span class="overlay-tech-tag">TensorFlow</span>
-                                <span class="overlay-tech-tag">NumPy</span>
-                                <span class="overlay-tech-tag">Matplotlib</span>
-                            </div>
-                            <div class="overlay-buttons">
-                                <a href="demos/RL.html" class="overlay-button primary">Ver Análisis</a>
-                                <a href="https://github.com/alvariitoSW/reinforcement_learning" class="overlay-button">GitHub</a>
-                            </div>
+            <!-- Proyecto 3 -->
+            <div class="project-card bg-card-gradient-3">
+                <div class="project-status">🎯 RL</div>
+                
+                <div class="project-content-wrapper">
+                    <div class="project-header-new">
+                        <div class="project-icon-large"><i class="fas fa-brain"></i></div>
+                        <div class="project-meta">
+                            <h3 class="project-title-new">Sistema de Aprendizaje por Refuerzo</h3>
+                            <p class="project-subtitle-new">Reinforcement Learning</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Proyecto 4 -->
-                <div class="project-card">
-                    <div class="project-status">🔬 Salud Pública</div>
-                    
-                    <div class="project-content-wrapper">
-                        <div class="project-header-new">
-                            <div class="project-icon-large"><i class="fas fa-chart-pie"></i></div>
-                            <div class="project-meta">
-                                <h3 class="project-title-new">Estudio Estadístico de Factores de Riesgo</h3>
-                                <p class="project-subtitle-new">Análisis Multivariante & Salud</p>
-                            </div>
+                <div class="project-overlay">
+                    <div class="overlay-content">
+                        <p class="overlay-description">
+                            Comparación de algoritmos Q-learning, SARSA y DQN en entornos deterministas y estocásticos.
+                        </p>
+                        <div class="overlay-tech-stack">
+                            <span class="overlay-tech-tag">Python</span>
+                            <span class="overlay-tech-tag">TensorFlow</span>
+                        </div>
+                        <div class="overlay-buttons">
+                            <a href="demos/RL.html" class="overlay-button primary">Ver Análisis</a>
+                            <a href="https://github.com/alvariitoSW/reinforcement_learning" class="overlay-button">GitHub</a>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="project-overlay">
-                        <div class="overlay-content">
-                            <p class="overlay-description">
-                                Análisis estadístico exhaustivo aplicando cinco técnicas multivariantes
-                                para identificar patrones y factores de riesgo asociados con la obesidad, revelando insights clave para estrategias de prevención personalizadas.
-                            </p>
-                            <div class="overlay-tech-stack">
-                                <span class="overlay-tech-tag">R</span>
-                                <span class="overlay-tech-tag">ggplot2</span>
-                                <span class="overlay-tech-tag">Análisis Multivariante</span>
-                            </div>
-                            <div class="overlay-buttons">
-                                <a href="demos/estadistica.html" class="overlay-button primary">Ver Análisis</a>
-                                <a href="https://github.com/alvariitoSW/factores_riesgo_obesidad" class="overlay-button">GitHub</a>
-                            </div>
+            <!-- Proyecto 4 -->
+            <div class="project-card bg-card-gradient-4">
+                <div class="project-status">🔬 Salud</div>
+                
+                <div class="project-content-wrapper">
+                    <div class="project-header-new">
+                        <div class="project-icon-large"><i class="fas fa-chart-pie"></i></div>
+                        <div class="project-meta">
+                            <h3 class="project-title-new">Estudio de Factores de Riesgo</h3>
+                            <p class="project-subtitle-new">Análisis Multivariante</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Proyecto 5 -->
-                <div class="project-card">
-                    <div class="project-status">🛢️ Database Performance & Analysis</div>
-                    
-                    <div class="project-content-wrapper">
-                        <div class="project-header-new">
-                            <div class="project-icon-large"><i class="fas fa-database"></i></div>
-                            <div class="project-meta">
-                                <h3 class="project-title-new">Análisis de Rendimiento de SGBD</h3>
-                                <p class="project-subtitle-new">comparativa de distintas BBDD en distintos contextos
-                            </div>
+                <div class="project-overlay">
+                    <div class="overlay-content">
+                        <p class="overlay-description">
+                            Análisis estadístico aplicando técnicas multivariantes para identificar factores de riesgo asociados con la obesidad.
+                        </p>
+                        <div class="overlay-tech-stack">
+                            <span class="overlay-tech-tag">R</span>
+                            <span class="overlay-tech-tag">ggplot2</span>
+                        </div>
+                        <div class="overlay-buttons">
+                            <a href="demos/estadistica.html" class="overlay-button primary">Ver Análisis</a>
+                            <a href="https://github.com/alvariitoSW/factores_riesgo_obesidad" class="overlay-button">GitHub</a>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="project-overlay">
-                        <div class="overlay-content">
-                            <p class="overlay-description">
-                                Estudio empírico que evalúa el rendimiento de múltiples sistemas de gestión 
-                                de bases de datos mediante benchmarking automatizado, análisis de escalabilidad y optimización 
-                                con datos sintéticos.
-                            </p>
-                            <div class="overlay-tech-stack">
-                                <span class="overlay-tech-tag">Python</span>
-                                <span class="overlay-tech-tag">MongoDB</span>
-                                <span class="overlay-tech-tag">PostgreSQL</span>
-                                <span class="overlay-tech-tag">SQLite3</span>
-                                <span class="overlay-tech-tag">DuckDB</span>
-                            </div>
-                            <div class="overlay-buttons">
-                                <a href="demos/BD.html" class="overlay-button primary">Ver Análisis</a>
-                                <a href="https://github.com/alvariitoSW/comparacion_bbdd" class="overlay-button">GitHub</a>
-                            </div>
+            <!-- Proyecto 5 -->
+            <div class="project-card bg-card-gradient-5">
+                <div class="project-status">🛢️ Database</div>
+                
+                <div class="project-content-wrapper">
+                    <div class="project-header-new">
+                        <div class="project-icon-large"><i class="fas fa-database"></i></div>
+                        <div class="project-meta">
+                            <h3 class="project-title-new">Análisis de Rendimiento de SGBD</h3>
+                            <p class="project-subtitle-new">Comparativa de BBDD</p>
                         </div>
                     </div>
                 </div>
 
+                <div class="project-overlay">
+                    <div class="overlay-content">
+                        <p class="overlay-description">
+                            Estudio empírico del rendimiento de múltiples sistemas de gestión de bases de datos mediante benchmarking.
+                        </p>
+                        <div class="overlay-tech-stack">
+                            <span class="overlay-tech-tag">Python</span>
+                            <span class="overlay-tech-tag">MongoDB</span>
+                            <span class="overlay-tech-tag">PostgreSQL</span>
+                        </div>
+                        <div class="overlay-buttons">
+                            <a href="demos/BD.html" class="overlay-button primary">Ver Análisis</a>
+                            <a href="https://github.com/alvariitoSW/comparacion_bbdd" class="overlay-button">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Grid Móvil -->
+        <div class="lg:hidden space-y-6 mt-8">
+            <!-- Proyectos adaptados para móvil -->
+            <div class="bg-card-gradient-1 rounded-2xl p-6 text-white">
+                <div class="text-center mb-4">
+                    <div class="text-4xl mb-3"><i class="fas fa-magic"></i></div>
+                    <h3 class="text-lg font-bold mb-1">Sistema de Generación de Imágenes</h3>
+                    <p class="text-sm opacity-85">Deep Learning Generativo</p>
+                </div>
+                <p class="text-sm mb-4 leading-relaxed">Framework completo para generación de imágenes usando modelos de difusión.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="bg-white/20 px-2 py-1 rounded-lg text-xs">Python</span>
+                    <span class="bg-white/20 px-2 py-1 rounded-lg text-xs">PyTorch</span>
+                    <span class="bg-white/20 px-2 py-1 rounded-lg text-xs">Streamlit</span>
+                </div>
+                <div class="flex gap-2">
+                    <a href="demos/IA_gen.html" class="flex-1 text-center py-2 bg-white/20 rounded-lg text-sm font-medium">Ver Demo</a>
+                    <a href="https://github.com/HectorTablero/image-gen" class="flex-1 text-center py-2 border border-white/30 rounded-lg text-sm font-medium">GitHub</a>
+                </div>
+            </div>
+            
+            <div class="bg-card-gradient-2 rounded-2xl p-6 text-white">
+                <div class="text-center mb-4">
+                    <div class="text-4xl mb-3"><i class="fas fa-trophy"></i></div>
+                    <h3 class="text-lg font-bold mb-1">Liga de Inversores UAM</h3>
+                    <p class="text-sm opacity-85">Finanzas Cuantitativas</p>
+                </div>
+                <p class="text-sm mb-4 leading-relaxed">Optimización de carteras que me llevó al primer puesto en la competición.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="bg-white/20 px-2 py-1 rounded-lg text-xs">Python</span>
+                    <span class="bg-white/20 px-2 py-1 rounded-lg text-xs">CVXPY</span>
+                    <span class="bg-white/20 px-2 py-1 rounded-lg text-xs">BigQuery</span>
+                </div>
+                <div class="flex gap-2">
+                    <a href="https://ironia.tech/competition/aula-uam-bme-ironia-en-finanzas-cuantitativas-6" class="flex-1 text-center py-2 bg-white/20 rounded-lg text-sm font-medium" target="_blank">Ver Info</a>
+                    <a href="https://github.com/alvariitoSW/liga_inversores" class="flex-1 text-center py-2 border border-white/30 rounded-lg text-sm font-medium" target="_blank">GitHub</a>
+                </div>
+            </div>
+            
+            <div class="bg-card-gradient-3 rounded-2xl p-6 text-white">
+                <div class="text-center mb-4">
+                    <div class="text-4xl mb-3"><i class="fas fa-brain"></i></div>
+                    <h3 class="text-lg font-bold mb-1">Aprendizaje por Refuerzo</h3>
+                    <p class="text-sm opacity-85">Reinforcement Learning</p>
+                </div>
+                <p class="text-sm mb-4 leading-relaxed">Comparación de algoritmos Q-learning, SARSA y DQN.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="bg-white/20 px-2 py-1 rounded-lg text-xs">Python</span>
+                    <span class="bg-white/20 px-2 py-1 rounded-lg text-xs">TensorFlow</span>
+                </div>
+                <div class="flex gap-2">
+                    <a href="demos/RL.html" class="flex-1 text-center py-2 bg-white/20 rounded-lg text-sm font-medium">Ver Demo</a>
+                    <a href="https://github.com/alvariitoSW/reinforcement_learning" class="flex-1 text-center py-2 border border-white/30 rounded-lg text-sm font-medium">GitHub</a>
+                </div>
+            </div>
+            
+            <div class="bg-card-gradient-4 rounded-2xl p-6 text-white">
+                <div class="text-center mb-4">
+                    <div class="text-4xl mb-3"><i class="fas fa-chart-pie"></i></div>
+                    <h3 class="text-lg font-bold mb-1">Factores de Riesgo</h3>
+                    <p class="text-sm opacity-85">Análisis Multivariante</p>
+                </div>
+                <p class="text-sm mb-4 leading-relaxed">Análisis estadístico de factores de riesgo asociados con la obesidad.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="bg-white/20 px-2 py-1 rounded-lg text-xs">R</span>
+                    <span class="bg-white/20 px-2 py-1 rounded-lg text-xs">ggplot2</span>
+                </div>
+                <div class="flex gap-2">
+                    <a href="demos/estadistica.html" class="flex-1 text-center py-2 bg-white/20 rounded-lg text-sm font-medium">Ver Demo</a>
+                    <a href="https://github.com/alvariitoSW/factores_riesgo_obesidad" class="flex-1 text-center py-2 border border-white/30 rounded-lg text-sm font-medium">GitHub</a>
+                </div>
+            </div>
+            
+            <div class="bg-card-gradient-5 rounded-2xl p-6 text-white">
+                <div class="text-center mb-4">
+                    <div class="text-4xl mb-3"><i class="fas fa-database"></i></div>
+                    <h3 class="text-lg font-bold mb-1">Análisis de SGBD</h3>
+                    <p class="text-sm opacity-85">Comparativa de BBDD</p>
+                </div>
+                <p class="text-sm mb-4 leading-relaxed">Benchmarking de múltiples sistemas de gestión de bases de datos.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="bg-white/20 px-2 py-1 rounded-lg text-xs">Python</span>
+                    <span class="bg-white/20 px-2 py-1 rounded-lg text-xs">MongoDB</span>
+                    <span class="bg-white/20 px-2 py-1 rounded-lg text-xs">PostgreSQL</span>
+                </div>
+                <div class="flex gap-2">
+                    <a href="demos/BD.html" class="flex-1 text-center py-2 bg-white/20 rounded-lg text-sm font-medium">Ver Demo</a>
+                    <a href="https://github.com/alvariitoSW/comparacion_bbdd" class="flex-1 text-center py-2 border border-white/30 rounded-lg text-sm font-medium">GitHub</a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="habilidades" class="section">
-        <h2 class="section-title">Mis Competencias</h2>
-        <div class="skills-container">
-            
-            <!-- Technical Skills -->
-            <div class="technical-skills">
-                <h3 class="tech-skills-title">
-                    <i class="fas fa-code"></i>
-                    <span>Habilidades Técnicas</span>
-                </h3>
-                <div class="tech-skills-grid">
-                    <div class="tech-skill-item">
-                        <div class="tech-skill-icon"><i class="fas fa-code"></i></div>
-                        <div class="tech-skill-name">Programación</div>
-                        <div class="tech-skills-list">
-                            <span class="tech-skill-tag">Python</span>
-                            <span class="tech-skill-tag">R</span>
-                            <span class="tech-skill-tag">SQL</span>
-                            <span class="tech-skill-tag">JavaScript</span>
-                            <span class="tech-skill-tag">Matlab</span>
-                        </div>
+    <section id="habilidades" class="py-12 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="section-title text-2xl sm:text-3xl lg:text-4xl text-center mb-8 sm:mb-12 text-gradient relative">
+            Mis Competencias
+        </h2>
+        
+        <!-- Technical Skills -->
+        <div class="bg-tech-bg p-6 sm:p-12 rounded-3xl shadow-xl mb-8 sm:mb-12">
+            <h3 class="text-center text-xl sm:text-2xl text-primary mb-6 sm:mb-8 flex items-center justify-center gap-4">
+                <i class="fas fa-code"></i>
+                <span>Habilidades Técnicas</span>
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-4 sm:p-6 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                    <div class="text-2xl sm:text-3xl text-gradient mb-2"><i class="fas fa-code"></i></div>
+                    <div class="font-semibold text-gray-800 mb-3">Programación</div>
+                    <div class="flex flex-wrap gap-1 justify-center">
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">Python</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">R</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">SQL</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">JavaScript</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">Matlab</span>
                     </div>
+                </div>
 
-                    <div class="tech-skill-item">
-                        <div class="tech-skill-icon"><i class="fas fa-brain"></i></div>
-                        <div class="tech-skill-name">Machine Learning</div>
-                        <div class="tech-skills-list">
-                            <span class="tech-skill-tag">Scikit-learn</span>
-                            <span class="tech-skill-tag">TensorFlow</span>
-                            <span class="tech-skill-tag">PyTorch</span>
-                            <span class="tech-skill-tag">Keras</span>
-                            <span class="tech-skill-tag">Huggin Face</span>
-                        </div>
+                <div class="bg-white p-4 sm:p-6 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                    <div class="text-2xl sm:text-3xl text-gradient mb-2"><i class="fas fa-brain"></i></div>
+                    <div class="font-semibold text-gray-800 mb-3">Machine Learning</div>
+                    <div class="flex flex-wrap gap-1 justify-center">
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">Scikit-learn</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">TensorFlow</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">PyTorch</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">Keras</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">Hugging Face</span>
                     </div>
+                </div>
 
-                    <div class="tech-skill-item">
-                        <div class="tech-skill-icon"><i class="fas fa-chart-bar"></i></div>
-                        <div class="tech-skill-name">Visualización</div>
-                        <div class="tech-skills-list">
-                            <span class="tech-skill-tag">Matplotlib</span>
-                            <span class="tech-skill-tag">Seaborn</span>
-                            <span class="tech-skill-tag">Plotly</span>
-                            <span class="tech-skill-tag">PowerBi</span>
-                        </div>
+                <div class="bg-white p-4 sm:p-6 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                    <div class="text-2xl sm:text-3xl text-gradient mb-2"><i class="fas fa-chart-bar"></i></div>
+                    <div class="font-semibold text-gray-800 mb-3">Visualización</div>
+                    <div class="flex flex-wrap gap-1 justify-center">
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">Matplotlib</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">Seaborn</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">Plotly</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">PowerBI</span>
                     </div>
+                </div>
 
-                    <div class="tech-skill-item">
-                        <div class="tech-skill-icon"><i class="fas fa-database"></i></div>
-                        <div class="tech-skill-name">Big Data</div>
-                        <div class="tech-skills-list">
-                            <span class="tech-skill-tag">Apache Spark</span>
-                            <span class="tech-skill-tag">Hadoop</span>
-                            <span class="tech-skill-tag">Elasticsearch</span>
-                            <span class="tech-skill-tag">MongoDB</span>
-                        </div>
+                <div class="bg-white p-4 sm:p-6 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                    <div class="text-2xl sm:text-3xl text-gradient mb-2"><i class="fas fa-database"></i></div>
+                    <div class="font-semibold text-gray-800 mb-3">Big Data</div>
+                    <div class="flex flex-wrap gap-1 justify-center">
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">Apache Spark</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">Hadoop</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">Elasticsearch</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">MongoDB</span>
                     </div>
+                </div>
 
-                    <div class="tech-skill-item">
-                        <div class="tech-skill-icon"><i class="fas fa-cloud"></i></div>
-                        <div class="tech-skill-name">Cloud & DevOps</div>
-                        <div class="tech-skills-list">
-                            <span class="tech-skill-tag">AWS</span>
-                            <span class="tech-skill-tag">Docker</span>
-                            <span class="tech-skill-tag">Kubernetes</span>
-                            <span class="tech-skill-tag">Git</span>
-                            <span class="tech-skill-tag">MLOps</span>
-                        </div>
+                <div class="bg-white p-4 sm:p-6 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                    <div class="text-2xl sm:text-3xl text-gradient mb-2"><i class="fas fa-cloud"></i></div>
+                    <div class="font-semibold text-gray-800 mb-3">Cloud & DevOps</div>
+                    <div class="flex flex-wrap gap-1 justify-center">
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">AWS</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">Docker</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">Kubernetes</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">Git</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">MLOps</span>
                     </div>
+                </div>
 
-                    <div class="tech-skill-item">
-                        <div class="tech-skill-icon"><i class="fas fa-cogs"></i></div>
-                        <div class="tech-skill-name">Herramientas</div>
-                        <div class="tech-skills-list">
-                            <span class="tech-skill-tag">Jupyter</span>
-                            <span class="tech-skill-tag">VS Code</span>
-                            <span class="tech-skill-tag">Pandas</span>
-                            <span class="tech-skill-tag">NumPy</span>
-                            <span class="tech-skill-tag">Pandas</span>
-                        </div>
+                <div class="bg-white p-4 sm:p-6 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                    <div class="text-2xl sm:text-3xl text-gradient mb-2"><i class="fas fa-cogs"></i></div>
+                    <div class="font-semibold text-gray-800 mb-3">Herramientas</div>
+                    <div class="flex flex-wrap gap-1 justify-center">
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">Jupyter</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">VS Code</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">Pandas</span>
+                        <span class="bg-blue-50 text-primary px-2 py-1 rounded-xl text-xs font-medium">NumPy</span>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Soft Skills -->
-            <div class="soft-skills-grid">
-                
-                <div class="soft-skill-category">
-                    <div class="soft-skill-icon"><i class="fas fa-users"></i></div>
-                    <h3 class="soft-skill-title">Liderazgo y Adaptabilidad</h3>
-                    <p class="soft-skill-subtitle">Competencias clave para la transformación digital</p>
-                    <ul class="soft-skill-list">
-                        <li>Flexibilidad y adaptación al cambio</li>
-                        <li>Liderazgo ágil en equipos multidisciplinares</li>
-                        <li>Mentalidad de crecimiento continuo</li>
-                        <li>Gestión efectiva del cambio tecnológico</li>
-                        <li>Capacidad de influir sin autoridad formal</li>
-                    </ul>
-                </div>
-
-                <div class="soft-skill-category">
-                    <div class="soft-skill-icon"><i class="fas fa-lightbulb"></i></div>
-                    <h3 class="soft-skill-title">Innovación y Resolución de Problemas</h3>
-                    <p class="soft-skill-subtitle">Pensamiento creativo para soluciones disruptivas</p>
-                    <ul class="soft-skill-list">
-                        <li>Pensamiento crítico y analítico</li>
-                        <li>Creatividad aplicada a soluciones tecnológicas</li>
-                        <li>Innovación centrada en el cliente</li>
-                        <li>Resolución ágil de problemas complejos</li>
-                        <li>Curiosidad intelectual y aprendizaje continuo</li>
-                    </ul>
-                </div>
-
-                <div class="soft-skill-category">
-                    <div class="soft-skill-icon"><i class="fas fa-handshake"></i></div>
-                    <h3 class="soft-skill-title">Colaboración y Comunicación</h3>
-                    <p class="soft-skill-subtitle">Habilidades interpersonales para el éxito empresarial</p>
-                    <ul class="soft-skill-list">
-                        <li>Comunicación efectiva con stakeholders técnicos y no técnicos</li>
-                        <li>Colaboración en entornos virtuales e híbridos</li>
-                        <li>Inteligencia emocional y empatía</li>
-                        <li>Construcción de relaciones sólidas</li>
-                        <li>Persuasión y negociación estratégica</li>
-                    </ul>
-                </div>
-
+        <!-- Soft Skills -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div class="bg-white p-6 sm:p-10 rounded-3xl shadow-xl text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-hero-gradient"></div>
+                <div class="text-3xl sm:text-5xl text-gradient mb-6"><i class="fas fa-users"></i></div>
+                <h3 class="text-lg sm:text-xl mb-4 text-gray-800 font-semibold">Liderazgo y Adaptabilidad</h3>
+                <p class="text-sm text-primary mb-6 italic">Competencias clave para la transformación digital</p>
+                <ul class="space-y-3 text-left">
+                    <li class="bg-tech-bg p-3 sm:p-4 rounded-xl text-gray-600 font-medium transition-all duration-300 hover:bg-hero-gradient hover:text-white hover:translate-x-1 border-l-3 border-primary">Flexibilidad y adaptación al cambio</li>
+                    <li class="bg-tech-bg p-3 sm:p-4 rounded-xl text-gray-600 font-medium transition-all duration-300 hover:bg-hero-gradient hover:text-white hover:translate-x-1 border-l-3 border-primary">Liderazgo ágil en equipos multidisciplinares</li>
+                    <li class="bg-tech-bg p-3 sm:p-4 rounded-xl text-gray-600 font-medium transition-all duration-300 hover:bg-hero-gradient hover:text-white hover:translate-x-1 border-l-3 border-primary">Mentalidad de crecimiento continuo</li>
+                    <li class="bg-tech-bg p-3 sm:p-4 rounded-xl text-gray-600 font-medium transition-all duration-300 hover:bg-hero-gradient hover:text-white hover:translate-x-1 border-l-3 border-primary">Gestión efectiva del cambio tecnológico</li>
+                </ul>
             </div>
 
+            <div class="bg-white p-6 sm:p-10 rounded-3xl shadow-xl text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-hero-gradient"></div>
+                <div class="text-3xl sm:text-5xl text-gradient mb-6"><i class="fas fa-lightbulb"></i></div>
+                <h3 class="text-lg sm:text-xl mb-4 text-gray-800 font-semibold">Innovación y Resolución de Problemas</h3>
+                <p class="text-sm text-primary mb-6 italic">Pensamiento creativo para soluciones disruptivas</p>
+                <ul class="space-y-3 text-left">
+                    <li class="bg-tech-bg p-3 sm:p-4 rounded-xl text-gray-600 font-medium transition-all duration-300 hover:bg-hero-gradient hover:text-white hover:translate-x-1 border-l-3 border-primary">Pensamiento crítico y analítico</li>
+                    <li class="bg-tech-bg p-3 sm:p-4 rounded-xl text-gray-600 font-medium transition-all duration-300 hover:bg-hero-gradient hover:text-white hover:translate-x-1 border-l-3 border-primary">Creatividad aplicada a soluciones tecnológicas</li>
+                    <li class="bg-tech-bg p-3 sm:p-4 rounded-xl text-gray-600 font-medium transition-all duration-300 hover:bg-hero-gradient hover:text-white hover:translate-x-1 border-l-3 border-primary">Innovación centrada en el cliente</li>
+                    <li class="bg-tech-bg p-3 sm:p-4 rounded-xl text-gray-600 font-medium transition-all duration-300 hover:bg-hero-gradient hover:text-white hover:translate-x-1 border-l-3 border-primary">Resolución ágil de problemas complejos</li>
+                </ul>
+            </div>
+
+            <div class="bg-white p-6 sm:p-10 rounded-3xl shadow-xl text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-hero-gradient"></div>
+                <div class="text-3xl sm:text-5xl text-gradient mb-6"><i class="fas fa-handshake"></i></div>
+                <h3 class="text-lg sm:text-xl mb-4 text-gray-800 font-semibold">Colaboración y Comunicación</h3>
+                <p class="text-sm text-primary mb-6 italic">Habilidades interpersonales para el éxito empresarial</p>
+                <ul class="space-y-3 text-left">
+                    <li class="bg-tech-bg p-3 sm:p-4 rounded-xl text-gray-600 font-medium transition-all duration-300 hover:bg-hero-gradient hover:text-white hover:translate-x-1 border-l-3 border-primary">Comunicación efectiva con stakeholders</li>
+                    <li class="bg-tech-bg p-3 sm:p-4 rounded-xl text-gray-600 font-medium transition-all duration-300 hover:bg-hero-gradient hover:text-white hover:translate-x-1 border-l-3 border-primary">Colaboración en entornos virtuales</li>
+                    <li class="bg-tech-bg p-3 sm:p-4 rounded-xl text-gray-600 font-medium transition-all duration-300 hover:bg-hero-gradient hover:text-white hover:translate-x-1 border-l-3 border-primary">Inteligencia emocional y empatía</li>
+                    <li class="bg-tech-bg p-3 sm:p-4 rounded-xl text-gray-600 font-medium transition-all duration-300 hover:bg-hero-gradient hover:text-white hover:translate-x-1 border-l-3 border-primary">Construcción de relaciones sólidas</li>
+                </ul>
+            </div>
         </div>
     </section>
 
     <!-- Academic Record -->
-    <section id="expediente" class="section">
-        <h2 class="section-title">Expediente Académico</h2>
-        <div class="academic-record">
-            <h3 style="text-align: center; margin-bottom: 2rem; color: #667eea; font-size: 1.5rem;">
+    <section id="expediente" class="py-12 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="section-title text-2xl sm:text-3xl lg:text-4xl text-center mb-8 sm:mb-12 text-gradient relative">
+            Expediente Académico
+        </h2>
+        <div class="bg-tech-bg p-6 sm:p-12 rounded-3xl shadow-xl">
+            <h3 class="text-center mb-6 sm:mb-8 text-primary text-lg sm:text-2xl">
                 Licenciatura en Ciencia e Ingeniería de Datos
             </h3>
-            <div class="record-grid">
-                <div class="record-item">
-                    <div class="record-value">7.26</div>
-                    <div class="record-label">Promedio General</div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+                <div class="bg-white p-4 sm:p-6 rounded-2xl text-center shadow-lg">
+                    <div class="text-2xl sm:text-3xl font-bold text-gradient mb-2">7.26</div>
+                    <div class="text-gray-600 text-sm">Promedio General</div>
                 </div>
-                <div class="record-item">
-                    <div class="record-value">3/4</div>
-                    <div class="record-label">Años Completados</div>
+                <div class="bg-white p-4 sm:p-6 rounded-2xl text-center shadow-lg">
+                    <div class="text-2xl sm:text-3xl font-bold text-gradient mb-2">3/4</div>
+                    <div class="text-gray-600 text-sm">Años Completados</div>
                 </div>
-                <div class="record-item">
-                    <div class="record-value">100%</div>
-                    <div class="record-label">Materias Aprobadas</div>
+                <div class="bg-white p-4 sm:p-6 rounded-2xl text-center shadow-lg">
+                    <div class="text-2xl sm:text-3xl font-bold text-gradient mb-2">100%</div>
+                    <div class="text-gray-600 text-sm">Materias Aprobadas</div>
                 </div>
             </div>
             
-            <div style="margin-top: 3rem; text-align: center;">
-                <h4 style="color: #667eea; margin-bottom: 1rem;">Materias Destacadas</h4>
-                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
-                    <span style="background: var(--card-bg); padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 10px var(--shadow-light);">
+            <div class="mt-8 sm:mt-12 text-center">
+                <h4 class="text-primary mb-4 text-lg font-semibold">Materias Destacadas</h4>
+                <div class="flex flex-wrap justify-center gap-3 sm:gap-4">
+                    <span class="bg-white px-3 sm:px-4 py-2 rounded-full shadow-lg text-xs sm:text-sm font-medium">
                         Aprendizaje automático III - 9.3
                     </span>
-                    <span style="background: var(--card-bg); padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 10px var(--shadow-light);">
+                    <span class="bg-white px-3 sm:px-4 py-2 rounded-full shadow-lg text-xs sm:text-sm font-medium">
                         Bases de datos: Integración y Arquitecturas - 9.0
                     </span>
-                    <span style="background: var(--card-bg); padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 10px var(--shadow-light);">
+                    <span class="bg-white px-3 sm:px-4 py-2 rounded-full shadow-lg text-xs sm:text-sm font-medium">
                         Computación de altas prestaciones - 8.5
                     </span>
-                    <span style="background: var(--card-bg); padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 10px var(--shadow-light);">
+                    <span class="bg-white px-3 sm:px-4 py-2 rounded-full shadow-lg text-xs sm:text-sm font-medium">
                         Tratamiento de señales y series temporales - 8.4
                     </span>
                 </div>
@@ -1277,80 +643,109 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contacto" class="contact-section">
-        <div class="section">
-            <h2 style="color: white; text-align: center; margin-bottom: 2rem; font-size: 2.5rem;">
+    <section id="contacto" class="bg-hero-gradient text-white py-12 sm:py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-center mb-6 sm:mb-8 text-2xl sm:text-3xl lg:text-4xl font-bold">
                 Conectemos
             </h2>
-            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; opacity: 0.9;">
+            <p class="text-center text-base sm:text-xl mb-8 sm:mb-12 opacity-90">
                 ¿Listo para transformar datos en valor? ¡Hablemos!
             </p>
             
-            <div class="contact-links">
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                    <h4>Email</h4>
-                    <a href="mailto:alva00003@gmail.com">alva00003@gmail.com</a>
+            <!-- Contact Grid - Desktop -->
+            <div class="hidden sm:flex justify-center gap-6 lg:gap-6">
+                <div class="bg-white/10 p-4 lg:p-6 rounded-2xl backdrop-blur-lg border-2 border-white/20 transition-all duration-300 hover:bg-white/20 hover:-translate-y-1 min-w-0 flex-1 max-w-48">
+                    <div class="text-2xl lg:text-3xl mb-3 lg:mb-4 text-center"><i class="fas fa-envelope"></i></div>
+                    <h4 class="font-semibold mb-2 text-center text-sm lg:text-base">Email</h4>
+                    <a href="mailto:alva00003@gmail.com" class="text-white text-xs lg:text-sm break-all text-center block">alva00003@gmail.com</a>
                 </div>
                 
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                    <h4>Teléfono</h4>
-                    <a href="tel:+34676785968">+34 676785968</a>
+                <div class="bg-white/10 p-4 lg:p-6 rounded-2xl backdrop-blur-lg border-2 border-white/20 transition-all duration-300 hover:bg-white/20 hover:-translate-y-1 min-w-0 flex-1 max-w-48">
+                    <div class="text-2xl lg:text-3xl mb-3 lg:mb-4 text-center"><i class="fas fa-phone"></i></div>
+                    <h4 class="font-semibold mb-2 text-center text-sm lg:text-base">Teléfono</h4>
+                    <a href="tel:+34676785968" class="text-white text-xs lg:text-sm text-center block">+34 676785968</a>
                 </div>
                 
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
-                    <h4>LinkedIn</h4>
-                    <a href="https://linkedin.com/in/tu-perfil" target="_blank">Ver Perfil</a>
+                <div class="bg-white/10 p-4 lg:p-6 rounded-2xl backdrop-blur-lg border-2 border-white/20 transition-all duration-300 hover:bg-white/20 hover:-translate-y-1 min-w-0 flex-1 max-w-48">
+                    <div class="text-2xl lg:text-3xl mb-3 lg:mb-4 text-center"><i class="fab fa-linkedin"></i></div>
+                    <h4 class="font-semibold mb-2 text-center text-sm lg:text-base">LinkedIn</h4>
+                    <a href="https://linkedin.com/in/tu-perfil" target="_blank" class="text-white text-xs lg:text-sm text-center block">Ver Perfil</a>
                 </div>
                 
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fab fa-github"></i></div>
-                    <h4>GitHub</h4>
-                    <a href="https://github.com/alvariitoSW" target="_blank">Ver Repositorios</a>
+                <div class="bg-white/10 p-4 lg:p-6 rounded-2xl backdrop-blur-lg border-2 border-white/20 transition-all duration-300 hover:bg-white/20 hover:-translate-y-1 min-w-0 flex-1 max-w-48">
+                    <div class="text-2xl lg:text-3xl mb-3 lg:mb-4 text-center"><i class="fab fa-github"></i></div>
+                    <h4 class="font-semibold mb-2 text-center text-sm lg:text-base">GitHub</h4>
+                    <a href="https://github.com/alvariitoSW" target="_blank" class="text-white text-xs lg:text-sm text-center block">Ver Repositorios</a>
                 </div>
                 
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fas fa-file-pdf"></i></div>
-                    <h4>CV Completo</h4>
-                    <a href="imagenes/curriculum.pdf" target="_blank">Descargar PDF</a>
+                <div class="bg-white/10 p-4 lg:p-6 rounded-2xl backdrop-blur-lg border-2 border-white/20 transition-all duration-300 hover:bg-white/20 hover:-translate-y-1 min-w-0 flex-1 max-w-48">
+                    <div class="text-2xl lg:text-3xl mb-3 lg:mb-4 text-center"><i class="fas fa-file-pdf"></i></div>
+                    <h4 class="font-semibold mb-2 text-center text-sm lg:text-base">CV Completo</h4>
+                    <a href="imagenes/curriculum.pdf" target="_blank" class="text-white text-xs lg:text-sm text-center block">Descargar PDF</a>
+                </div>
+            </div>
+            
+            <!-- Contact Grid - Mobile -->
+            <div class="sm:hidden space-y-4">
+                <div class="bg-white/10 p-4 rounded-2xl backdrop-blur-lg border-2 border-white/20">
+                    <div class="flex items-center gap-4">
+                        <div class="text-2xl"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4 class="font-semibold">Email</h4>
+                            <a href="mailto:alva00003@gmail.com" class="text-white text-sm">alva00003@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 p-4 rounded-2xl backdrop-blur-lg border-2 border-white/20">
+                    <div class="flex items-center gap-4">
+                        <div class="text-2xl"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <h4 class="font-semibold">Teléfono</h4>
+                            <a href="tel:+34676785968" class="text-white text-sm">+34 676785968</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 p-4 rounded-2xl backdrop-blur-lg border-2 border-white/20">
+                    <div class="flex items-center gap-4">
+                        <div class="text-2xl"><i class="fab fa-linkedin"></i></div>
+                        <div>
+                            <h4 class="font-semibold">LinkedIn</h4>
+                            <a href="https://linkedin.com/in/tu-perfil" target="_blank" class="text-white text-sm">Ver Perfil</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 p-4 rounded-2xl backdrop-blur-lg border-2 border-white/20">
+                    <div class="flex items-center gap-4">
+                        <div class="text-2xl"><i class="fab fa-github"></i></div>
+                        <div>
+                            <h4 class="font-semibold">GitHub</h4>
+                            <a href="https://github.com/alvariitoSW" target="_blank" class="text-white text-sm">Ver Repositorios</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 p-4 rounded-2xl backdrop-blur-lg border-2 border-white/20">
+                    <div class="flex items-center gap-4">
+                        <div class="text-2xl"><i class="fas fa-file-pdf"></i></div>
+                        <div>
+                            <h4 class="font-semibold">CV Completo</h4>
+                            <a href="imagenes/curriculum.pdf" target="_blank" class="text-white text-sm">Descargar PDF</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 Mi Portfolio de Ciencia e Ingeniería de Datos. Diseñado con pasión por los datos.</p>
+    <footer class="bg-gray-900 text-gray-300 text-center py-6 sm:py-8">
+        <p class="text-sm sm:text-base">&copy; 2024 Mi Portfolio de Ciencia e Ingeniería de Datos. Diseñado con pasión por los datos.</p>
     </footer>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.boxShadow = 'none';
-            }
-        });
-    </script>
+    <!-- Scripts -->
+    <script src="scripts/common.js"></script>
 </body>
 </html>
