@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Código QR - Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            font-weight: 300;
+        }
+        .url-display {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+            font-size: 14px;
+            color: #495057;
+        }
+        .qr-container {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+        }
+        canvas {
+            border: 3px solid #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .info {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: left;
+            font-size: 14px;
+            color: #1565c0;
+        }
+        .preview-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .preview-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Código QR de tu Portfolio</h1>
+        
+        <div class="url-display">
+            <strong>Enlace:</strong><br>
+            <a href="https://alvariitosw.github.io/portfolio_personal/index.html" target="_blank" class="preview-link">
+                https://alvariitosw.github.io/portfolio_personal/index.html
+            </a>
+        </div>
+
+        <div class="qr-container">
+            <canvas id="qr-canvas"></canvas>
+        </div>
+
+        <button class="btn" onclick="downloadQR()">📥 Descargar QR como PNG</button>
+
+        <div class="info">
+            <strong>💡 Instrucciones:</strong><br>
+            • Tamaño optimizado (300px) para lectura universal<br>
+            • Haz clic en "Descargar" para obtener la imagen PNG<br>
+            • Compatible con cualquier app de escaneo QR<br>
+            • Código permanente sin expiración
+        </div>
+    </div>
+
+    <script>
+        const url = 'https://alvariitosw.github.io/portfolio_personal/index.html';
+        let qr;
+
+        function generateQR() {
+            const canvas = document.getElementById('qr-canvas');
+
+            qr = new QRious({
+                element: canvas,
+                value: url,
+                size: 300,
+                foreground: '#000000',
+                background: '#ffffff',
+                level: 'M'
+            });
+        }
+
+        function downloadQR() {
+            const canvas = document.getElementById('qr-canvas');
+            const link = document.createElement('a');
+            link.download = 'portfolio-qr-code.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // Generate initial QR code
+        generateQR();
+    </script>
+</body>
+</html>
